@@ -1,6 +1,6 @@
 # CONTRACT: the seam between Lane A and Lane B
 
-**Status: DRAFT.** Finalise in Phase 0 task 0.2 (after the Cypher spike, 0.3), then freeze. After freezing, changes need both people's agreement in a PR. Items marked `TODO(0.2)` are decisions to make in that session.
+**Status: FROZEN (task 0.2, 2026-10-15).** Both team members agreed the three open decisions below. Changes now need both people's agreement in a PR.
 
 ## 1. Tenancy
 
@@ -21,7 +21,7 @@
 | `Retraction` | `id, source, from, to, reason, operator, at, mode (preview\|commit)` | Audit trail |
 
 Indexes: `Mem(id)`, `Source(id)`, `Observation(observed_at)`, `Mem(status)`, vector index on `Mem.embedding`.
-`TODO(0.2)`: embedding dimension and model; confirm vector index call syntax from `docs/SPIKE.md`.
+**Decision: embeddings are 384-dimensional**, produced locally by `sentence-transformers/all-MiniLM-L6-v2` (offline, free, deterministic, no API key). Index: `CREATE VECTOR INDEX FOR (m:Mem) ON (m.embedding) OPTIONS {dimension:384, similarityFunction:'cosine'}`. The dimension is baked into the index; changing it means rebuilding the graph. Query syntax and the "score is a distance, lower is closer" gotcha are in `docs/SPIKE.md`.
 
 ## 3. Edges
 
@@ -31,12 +31,12 @@ Indexes: `Mem(id)`, `Source(id)`, `Observation(observed_at)`, `Mem(status)`, vec
 | `PREMISE_OF` | `(Mem)->(Justification)` | Premise of a derivation |
 | `JUSTIFIES` | `(Justification)->(Mem)` | Derivation concludes this node |
 | `HOLDS` | `(Agent)->(Mem)` | Agent has this node in memory |
-| `DEPENDS_ON` | `(conclusion)->(premise)` | For PageRank (Q8) |
-| `FLOW` | premise -> conclusion, `cap` | Maintained on write for Q7 min-cut |
+| `DEPENDS_ON` | `(conclusion)->(premise)`, `(Observation)->(Source)` | For PageRank (Q8) |
+| `FLOW` | `(Source)->(Observation)` cap 1 (the gate); `(premise)->(conclusion)` cap 1000000 | Maintained on write; `algo.maxFlow` needs exactly one rel type |
 | `CONTRADICTS` | `(Mem)-(Mem)` | For WCC clusters |
 | `RETRACTED` / `REINSTATED` | `(Retraction)->(Mem)` | Which nodes flipped |
 
-`TODO(0.2)`: confirm exact edge names against the Q1–Q8 skeletons after the spike.
+Edge names confirmed against the live engine in `docs/SPIKE.md`. Timestamps (`observed_at`, `executed_at`) are integer epoch seconds in the graph; fixtures use ISO 8601.
 
 ## 4. Status semantics (the JTMS invariant)
 
@@ -57,7 +57,13 @@ Indexes: `Mem(id)`, `Source(id)`, `Observation(observed_at)`, `Mem(status)`, vec
 | `why` | A | `node_id` | Justification tree (nested JSON) |
 | `recall_list` | A | `run` | `[{action_id, tool, amount, executed_at, agent}]` ordered by amount |
 
-`TODO(0.2)`: error shape, e.g. `{error: {code, message}}`; codes `NOT_FOUND`, `OUT_OF_WINDOW`, `BLOCKED_BY_POLICY`.
+**Error shape (decision):** every MCP tool returns either its normal payload or exactly:
+
+```json
+{"error": {"code": "NOT_FOUND", "message": "human-readable", "details": {}}}
+```
+
+A success payload never has an `error` key, so callers check that one field. Codes: `NOT_FOUND`, `OUT_OF_WINDOW`, `BLOCKED_BY_POLICY`, `INVALID_ARGUMENT`. `BLOCKED_BY_POLICY.details` carries the reason, e.g. `{"out_premise_ids": [...]}` or `{"independent_sources": 1, "required": 2}`; the Remediator and the UI both display it.
 
 ## 6. Retraction event (pushed to agents)
 
@@ -71,9 +77,17 @@ Indexes: `Mem(id)`, `Source(id)`, `Observation(observed_at)`, `Mem(status)`, vec
 }
 ```
 
-## 7. Gate policy
+## 7. Gate policy (decision)
 
-`act` succeeds only if every premise of the action is `IN` **and** the tool's policy is met. Default policy table (`TODO(0.2)` confirm): `pay` over $10,000 requires >= 2 independent sources (Q7 score); other tools require only all-IN premises. Gate lives in Lane A (`gate/`); it calls Lane B's `fragility`.
+`act` succeeds only if every premise of the action is `IN` **and** the tool's policy is met. The policy is data, not logic: a dict in `gate/policy.py`, so adding a tool is one entry. Gate lives in Lane A (`gate/`); it calls Lane B's `fragility`.
+
+| Tool | Rule |
+|---|---|
+| `pay` | All premises IN. If `amount > 10000`, also at least 2 independent sources (Q7 score). |
+| `email`, `notify` | All premises IN. |
+| any other tool | All premises IN. |
+
+Note for the demo: under this rule the $41,250 payment (one portal behind it, fragility 1) is flagged before any attack. The already-executed $18,400 payment exists in the recorded seed run; a live agent run would have been stopped by the same gate.
 
 ## 8. Scenario / fixture format
 

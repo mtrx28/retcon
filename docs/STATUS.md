@@ -1,6 +1,6 @@
 # STATUS: the baton
 
-Update your rows at the end of every session. States: `todo | doing | done | blocked`. Order = global finish sequence (same number runs in parallel). Acceptance command: `make accept T=<id>`.
+Update your rows at the end of every session. States: `todo | doing | done | blocked`. Order = global finish sequence (same number runs in parallel). Acceptance command: `python tasks.py accept <id>`.
 
 Owner column: put the person's name once decided (A = lane "Retract & Prove", B = lane "Remember & Foresee").
 
@@ -10,11 +10,11 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 | Id | Task | State | Last commit | Next step / gotchas |
 |---|---|---|---|---|
-| 0.1 | Repo skeleton, docker-compose, Makefile, test setup | todo | | |
-| 0.2 | Freeze `docs/CONTRACT.md` + `core/schema.cypher` + indexes | todo | | |
-| 0.3 | Cypher spike of Q1–Q8, vector index, maxFlow, GRAPH.COPY -> `docs/SPIKE.md` | todo | | |
-| 0.4 | Hand-written `data/fixtures/ap_tiny.json` + loader | todo | | |
-| 0.5 | CLAUDE.md / STATUS.md seeded | doing | | Skeletons written; fill Commands in CLAUDE.md after 0.1 |
+| 0.1 | Repo skeleton, docker-compose, task runner, test setup | done | | `tasks.py` replaces Makefile (no make on Windows). Python venv on 3.13 |
+| 0.2 | Freeze `docs/CONTRACT.md` + `core/schema.cypher` + indexes | done | | Decisions: 384-dim MiniLM embeddings, uniform `{error:{code,message,details}}`, data-driven gate policy. Contract frozen. |
+| 0.3 | Cypher spike of Q1–Q8, vector index, maxFlow, GRAPH.COPY -> `docs/SPIKE.md` | done | | All probes pass; see SPIKE.md for syntax changes vs spec |
+| 0.4 | Hand-written `data/fixtures/ap_tiny.json` + loader | done | | 24 Mem nodes; `python tasks.py fixture`; 3 tests pass |
+| 0.5 | CLAUDE.md / STATUS.md seeded | done | | |
 
 ## Lane A: Retract & Prove
 

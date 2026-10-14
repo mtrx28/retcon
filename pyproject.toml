@@ -1,0 +1,14 @@
+[project]
+name = "retcon"
+version = "0.0.1"
+requires-python = ">=3.12"
+dependencies = ["falkordb", "mcp", "numpy"]
+
+[project.optional-dependencies]
+dev = ["pytest", "hypothesis"]
+
+[tool.setuptools]
+packages = ["core", "mcp_server", "gate", "agents", "bench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

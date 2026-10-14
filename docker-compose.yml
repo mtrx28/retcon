@@ -1,0 +1,11 @@
+# FalkorDB is the only store. Server/UI services are added when they exist (B3/B6a).
+services:
+  falkordb:
+    image: falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6   # pinned; graph module ver 60002 (see docs/SPIKE.md). Was :latest on 2026-10-15
+    ports:
+      - "6379:6379"   # graph/redis protocol
+      - "3000:3000"   # FalkorDB Browser (judges can inspect the graph)
+    volumes:
+      - falkordb-data:/data
+volumes:
+  falkordb-data:

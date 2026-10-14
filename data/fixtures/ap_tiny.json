@@ -1,0 +1,73 @@
+{
+  "tenant": "northwind",
+  "description": "Tiny AP scenario: Coastal Produce portal compromised 2026-10-02..2026-10-09. Fictional, synthetic data.",
+  "window": {"source": "coastal-portal", "from": "2026-10-02T00:00:00Z", "to": "2026-10-09T23:59:59Z"},
+  "sources": [
+    {"id": "coastal-portal", "kind": "portal", "trust": 0.4},
+    {"id": "contract-pdf",   "kind": "pdf",    "trust": 0.9},
+    {"id": "erp",            "kind": "agent",  "trust": 0.95},
+    {"id": "po-system",      "kind": "agent",  "trust": 0.9}
+  ],
+  "agents": [
+    {"id": "intake",      "role": "intake"},
+    {"id": "analyst",     "role": "analyst"},
+    {"id": "payments",    "role": "payments"},
+    {"id": "comms",       "role": "comms"},
+    {"id": "remediator",  "role": "remediator"}
+  ],
+  "observations": [
+    {"id": "obs_portal_bank",  "source": "coastal-portal", "observed_at": "2026-10-05T10:00:00Z", "text": "Coastal Produce portal: bank details changed to IBAN SYN-9999-0001."},
+    {"id": "obs_portal_addr",  "source": "coastal-portal", "observed_at": "2026-10-05T10:01:00Z", "text": "Coastal Produce portal: remit address 12 Dock Road."},
+    {"id": "obs_pdf_addr",     "source": "contract-pdf",   "observed_at": "2026-10-03T09:00:00Z", "text": "Signed contract amendment: Coastal Produce address 12 Dock Road."},
+    {"id": "obs_old_bank",     "source": "contract-pdf",   "observed_at": "2026-10-01T09:00:00Z", "text": "Signed contract: Coastal Produce bank IBAN SYN-1111-0001."},
+    {"id": "obs_portal_pre",   "source": "coastal-portal", "observed_at": "2026-09-28T08:00:00Z", "text": "Coastal Produce portal: opening hours 06:00-14:00."},
+    {"id": "obs_portal_late",  "source": "coastal-portal", "observed_at": "2026-10-12T08:00:00Z", "text": "Coastal Produce portal: holiday closure notice 2026-10-20."},
+    {"id": "obs_inv_1",        "source": "erp",            "observed_at": "2026-10-06T11:00:00Z", "text": "Invoice INV-1001 from Coastal Produce, 18400 USD."},
+    {"id": "obs_inv_2",        "source": "erp",            "observed_at": "2026-10-08T11:00:00Z", "text": "Invoice INV-1002 from Coastal Produce, 41250 USD."},
+    {"id": "obs_po_1",         "source": "po-system",      "observed_at": "2026-10-01T12:00:00Z", "text": "Purchase orders PO-77 and PO-78 open for Coastal Produce."}
+  ],
+  "derivations": [
+    {"id": "d_bank_new",    "rule": "extract", "agent": "intake",   "premises": ["obs_portal_bank"],
+     "conclusion": {"id": "b_bank_new", "kind": "belief", "text": "Coastal Produce bank account is IBAN SYN-9999-0001."}},
+    {"id": "d_bank_echo_a", "rule": "infer",   "agent": "analyst",  "premises": ["b_bank_new"],
+     "conclusion": {"id": "b_bank_echo_analyst", "kind": "belief", "text": "Analyst note: vendor bank updated to SYN-9999-0001."}},
+    {"id": "d_bank_echo_c", "rule": "handoff", "agent": "comms",    "premises": ["b_bank_new"],
+     "conclusion": {"id": "b_bank_echo_comms", "kind": "belief", "text": "Comms note: vendor confirmed new bank SYN-9999-0001."}},
+    {"id": "d_addr_portal", "rule": "extract", "agent": "intake",   "premises": ["obs_portal_addr"],
+     "conclusion": {"id": "b_addr", "kind": "belief", "text": "Coastal Produce remit address is 12 Dock Road."}},
+    {"id": "d_addr_pdf",    "rule": "extract", "agent": "intake",   "premises": ["obs_pdf_addr"],
+     "conclusion": {"id": "b_addr", "kind": "belief", "text": "Coastal Produce remit address is 12 Dock Road."}},
+    {"id": "d_old_bank",    "rule": "extract", "agent": "intake",   "premises": ["obs_old_bank"],
+     "conclusion": {"id": "b_old_bank", "kind": "belief", "text": "Contract bank for Coastal Produce is IBAN SYN-1111-0001."}},
+    {"id": "d_inv1_ok",     "rule": "combine", "agent": "analyst",  "premises": ["obs_inv_1", "obs_po_1"],
+     "conclusion": {"id": "b_inv1_ok", "kind": "belief", "text": "INV-1001 (18400 USD) matches an open PO."}},
+    {"id": "d_inv2_ok",     "rule": "combine", "agent": "analyst",  "premises": ["obs_inv_2", "obs_po_1"],
+     "conclusion": {"id": "b_inv2_ok", "kind": "belief", "text": "INV-1002 (41250 USD) matches an open PO."}},
+    {"id": "d_plan_1",      "rule": "combine", "agent": "payments", "premises": ["b_inv1_ok", "b_bank_echo_analyst"],
+     "conclusion": {"id": "plan_pay_1", "kind": "plan", "text": "Pay INV-1001 18400 USD to SYN-9999-0001."}},
+    {"id": "d_plan_2",      "rule": "combine", "agent": "payments", "premises": ["b_inv2_ok", "b_bank_echo_comms"],
+     "conclusion": {"id": "plan_pay_2", "kind": "plan", "text": "Pay INV-1002 41250 USD to SYN-9999-0001."}},
+    {"id": "d_hours",       "rule": "extract", "agent": "intake",   "premises": ["obs_portal_pre"],
+     "conclusion": {"id": "b_hours", "kind": "belief", "text": "Coastal Produce opens 06:00-14:00."}},
+    {"id": "d_late",        "rule": "extract", "agent": "intake",   "premises": ["obs_portal_late"],
+     "conclusion": {"id": "b_closure", "kind": "belief", "text": "Coastal Produce closed on 2026-10-20."}},
+    {"id": "d_circ_a_obs",  "rule": "infer",   "agent": "analyst",  "premises": ["obs_portal_bank"],
+     "conclusion": {"id": "b_circ_a", "kind": "belief", "text": "Vendor payment channel changed (restated by analyst)."}},
+    {"id": "d_circ_a_b",    "rule": "infer",   "agent": "analyst",  "premises": ["b_circ_b"],
+     "conclusion": {"id": "b_circ_a", "kind": "belief", "text": "Vendor payment channel changed (restated by analyst)."}},
+    {"id": "d_circ_b_a",    "rule": "infer",   "agent": "comms",    "premises": ["b_circ_a"],
+     "conclusion": {"id": "b_circ_b", "kind": "belief", "text": "Vendor payment channel changed (restated by comms)."}}
+  ],
+  "actions": [
+    {"id": "act_pay_1", "tool": "pay", "agent": "payments", "amount": 18400, "executed": true,  "executed_at": "2026-10-07T14:00:00Z", "premises": ["plan_pay_1"]},
+    {"id": "act_pay_2", "tool": "pay", "agent": "payments", "amount": 41250, "executed": false, "executed_at": null,                    "premises": ["plan_pay_2"]}
+  ],
+  "ground_truth": {
+    "contaminated": ["obs_portal_bank", "obs_portal_addr", "b_bank_new", "b_bank_echo_analyst", "b_bank_echo_comms",
+                     "plan_pay_1", "plan_pay_2", "act_pay_1", "act_pay_2", "b_circ_a", "b_circ_b"],
+    "truly_supported": ["obs_pdf_addr", "obs_old_bank", "obs_portal_pre", "obs_portal_late", "obs_inv_1", "obs_inv_2",
+                        "obs_po_1", "b_addr", "b_old_bank", "b_inv1_ok", "b_inv2_ok", "b_hours", "b_closure"],
+    "recall_list": ["act_pay_1"],
+    "blocked": ["act_pay_2"]
+  }
+}
