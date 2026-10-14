@@ -20,7 +20,7 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 | Order | Id | Task | Est | State | Last commit | Next step / gotchas |
 |---|---|---|---|---|---|---|
-| 1 | A1 | Q3–Q5 cascade + re-derive loop on fixture; `:Retraction` node | 5 h | todo | | |
+| 1 | A1 | Q3–Q5 cascade + re-derive loop on fixture; `:Retraction` node | 5 h | done | (uncommitted, branch `a/A1-cascade`) | `core/retract/cascade.py`: `distrust()`, `reinstate()`; `core/recall/recall_list.py` (Q6 query, used by `distrust`; A4 still owns gate + Remediator). 10 tests (`accept A1`), ~10 ms on 24 nodes. Preview mode raises NotImplementedError until A5. Reinstate limitation noted in docstring. |
 | 2 | A2 | Property tests + in-memory JTMS reference + differential test | 4 h | todo | | |
 | 3 | A3 | MCP `distrust` / `reinstate` / `why`; audit trail | 3 h | todo | | |
 | 4 | A4 | Action gate + Q6 recall list + Remediator (one-click compensation) | 5 h | todo | | |

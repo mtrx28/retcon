@@ -49,23 +49,27 @@ def load(spec, db=None, graph_name=None):
           "CREATE (o)-[:DEPENDS_ON]->(s)",
           {"src": o["source"], "id": o["id"], "text": o["text"], "at": epoch(o["observed_at"])})
 
-    seen = set()
+    # Create every conclusion node before any justification: premises may reference conclusions
+    # defined later (circular support), and a missing premise would make a justification vacuous.
+    created = set()
     for d in spec["derivations"]:
         c = d["conclusion"]
-        label = "Plan" if c["kind"] == "plan" else "Belief"
-        if c["id"] not in seen:
+        if c["id"] not in created:
+            label = "Plan" if c["kind"] == "plan" else "Belief"
             q(f"CREATE (:Mem:{label} {{id:$id, text:$text, status:'IN', agent:$agent}})",
               {"id": c["id"], "text": c["text"], "agent": d["agent"]})
-            seen.add(c["id"])
-        _justify(q, d["id"], d["rule"], d["agent"], d["premises"], c["id"])
-        q("MATCH (a:Agent {id:$a}), (m:Mem {id:$m}) MERGE (a)-[:HOLDS]->(m)",
-          {"a": d["agent"], "m": c["id"]})
-
+            created.add(c["id"])
     for a in spec["actions"]:
         q("CREATE (:Mem:Action {id:$id, tool:$tool, amount:$amount, executed:$ex, executed_at:$at, "
           "status:'IN', agent:$agent, text:$text})",
           {"id": a["id"], "tool": a["tool"], "amount": a["amount"], "ex": a["executed"],
            "at": epoch(a["executed_at"]), "agent": a["agent"], "text": f"{a['tool']} {a['amount']}"})
+
+    for d in spec["derivations"]:
+        _justify(q, d["id"], d["rule"], d["agent"], d["premises"], d["conclusion"]["id"])
+        q("MATCH (a:Agent {id:$a}), (m:Mem {id:$m}) MERGE (a)-[:HOLDS]->(m)",
+          {"a": d["agent"], "m": d["conclusion"]["id"]})
+    for a in spec["actions"]:
         _justify(q, f"j_{a['id']}", "combine", a["agent"], a["premises"], a["id"])
         q("MATCH (a:Agent {id:$a}), (m:Mem {id:$m}) MERGE (a)-[:HOLDS]->(m)",
           {"a": a["agent"], "m": a["id"]})
@@ -77,6 +81,8 @@ def _justify(q, jid, rule, agent, premises, conclusion):
       "CREATE (j:Justification {id:$j, rule:$rule, agent:$agent})-[:JUSTIFIES]->(c)",
       {"j": jid, "rule": rule, "agent": agent, "c": conclusion})
     for p in premises:
+        if not q("MATCH (p:Mem {id:$p}) RETURN p.id", {"p": p}).result_set:
+            raise ValueError(f"fixture error: premise {p!r} of {jid!r} does not exist")
         q("MATCH (p:Mem {id:$p}), (j:Justification {id:$j}), (c:Mem {id:$c}) "
           "CREATE (p)-[:PREMISE_OF]->(j) "
           "MERGE (p)-[f:FLOW]->(c) SET f.cap = $cap "
