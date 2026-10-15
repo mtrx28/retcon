@@ -124,6 +124,8 @@ class Shell:
         r.add("GET", "/api/delta", guard(delta))
         r.add("GET", "/api/node", guard(node))
         r.add("GET", "/api/retractions", guard(retr))
+        from ui import ops          # operator console (A6): preview / commit / reinstate / approve
+        self.ops = ops.mount(r, self)
         return r
 
 

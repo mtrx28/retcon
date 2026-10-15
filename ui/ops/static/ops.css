@@ -1,0 +1,33 @@
+/* Operator panels (A6). Uses the shell's tokens; no new colours. */
+.ops-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 8px; }
+.ops-field { display: grid; gap: 3px; font-size: 12px; color: var(--muted); }
+.ops-field select, .ops-field input { width: 100%; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.danger { border-color: var(--out); color: var(--out); }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+.ops-msg { min-height: 1.4em; font-size: 12.5px; color: var(--muted); }
+.ops-msg.err { color: var(--out); }
+.ops-result { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; margin-top: 8px; background: var(--bg); }
+.ops-result h3 { margin: 0 0 4px; font-size: 13px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.pill.prev { color: var(--accent); }
+.ops-line { font-size: 13px; font-weight: 600; margin: 4px 0; overflow-wrap: anywhere; }
+.ops-sub { font-size: 12px; color: var(--muted); margin: 2px 0 6px; }
+.ops-hops { list-style: none; margin: 6px 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
+.ops-hops li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; align-items: start; min-width: 0; padding: 3px 6px;
+               border-left: 3px solid var(--out); background: var(--panel); border-radius: 0 6px 6px 0; }
+.ops-hops li.active { border-left-color: var(--tent); outline: 1px solid var(--tent); }
+.ops-hops .ids { display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; }
+.ops-result, .ops-list li, .ops-grid { min-width: 0; }
+.ops-line, .ops-sub { overflow-wrap: anywhere; }
+.ops-id { all: unset; cursor: pointer; font: 11px var(--mono); padding: 1px 6px; border: 1px solid var(--line);
+          border-radius: 999px; background: var(--panel); color: var(--ink); max-width: 100%; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ops-id:hover, .ops-id:focus-visible { border-color: var(--accent); }
+.ops-id.kept { border-color: var(--in); color: var(--in); }
+.ops-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ops-list li { border: 1px solid var(--line); border-radius: var(--radius); padding: 8px; background: var(--bg); }
+.ops-list .top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.ops-list .amt { font-variant-numeric: tabular-nums; font-weight: 600; }
+.ops-list .acts { display: flex; gap: 6px; margin-top: 6px; }
+.pill.draft { color: var(--tent); } .pill.executed { color: var(--in); } .pill.approved { color: var(--accent); }
+.pill.rejected, .pill.withdrawn { color: var(--muted); }
+#ops-badge { margin-left: 4px; }

@@ -135,3 +135,9 @@ Notes:
 - New MCP tools (Lane A): `list_remediations(status?)`, `approve_remediation(remediation_id, operator)`, `reject_remediation(remediation_id, operator)`.
 - `act(tool, args, agent)` is implemented in `gate/tools.py` + `core/actions.py` (Lane A, because the gate sits behind it) and registered by `mcp_server/server.py`. Signature unchanged. It justifies the action by the agent's captured recall context.
 - Gate decision block reason (`BLOCKED_BY_POLICY`): `details.reason_code` is `PREMISE_RETRACTED` (with `out_premise_ids`, `retraction_ids`) or `INSUFFICIENT_INDEPENDENT_SOURCES` (with `independent_sources`, `required`). The independence rule calls Lane B's `fragility`; until it exists the gate adds a warning instead of guessing.
+
+## v1.3 (A5/A6, Oct 15): additive
+
+- `distrust` response gains `survived_ids` (nodes downstream of the source that stayed IN by independent support) and `profile: {query, execution_ms, plan[]}` (GRAPH.PROFILE of the cascade traversal; wall-clock, so scrubbed from deterministic transcripts).
+- `distrust(mode="preview")` is implemented: same payload plus `preview: true` and `diff: [{id, kind, from, to, hop}]`. It runs on a `GRAPH.COPY` fork named `<graph>_preview_<retraction_id>`, which is deleted before returning. The live graph is not written (no Retraction, no Remediation). `retraction_id` is the id a commit would receive.
+- Operator console HTTP API (UI only, not MCP): `/api/ops/*`, see `ui/ops/__init__.py`.
