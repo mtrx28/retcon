@@ -4,10 +4,12 @@ Remediator's list_remediations / approve_remediation / reject_remediation (task 
 Plain functions over one tenant graph; `server.py` registers them. They never raise: failures come
 back as the uniform {"error": {code, message, details}} payload from core/errors.py.
 
-`distrust(mode="preview")` is task A5 (GRAPH.COPY fork) and returns NOT_IMPLEMENTED until then.
+`distrust(mode="preview")` runs the retraction on a GRAPH.COPY fork and returns the diff without
+touching the live graph (task A5).
 """
 from core.errors import RetconError
 from core.recall.recall_list import recall_list as _recall_list
+from core.preview import preview as preview_mod
 from core.retract import cascade
 from core.retract.why import why as _why
 from agents import remediator
@@ -43,7 +45,7 @@ def distrust(source: str, from_: str, to: str, mode: str = "commit",
     if mode not in ("preview", "commit"):
         return RetconError("INVALID_ARGUMENT", "mode must be 'preview' or 'commit'", {"mode": mode}).as_payload()
     if mode == "preview":
-        return RetconError("NOT_IMPLEMENTED", "preview mode lands with task A5", {"mode": mode}).as_payload()
+        return _guard(lambda g: preview_mod.preview(g, source, from_, to, operator=operator, reason=reason))
     def go(g):
         res = cascade.distrust(g, source, from_, to, mode="commit", operator=operator, reason=reason)
         # The Remediator wakes on every retraction and drafts compensations (nothing is sent yet).

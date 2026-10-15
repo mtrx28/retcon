@@ -62,3 +62,9 @@ shell already shows the final state through the delta feed.
 ## Tests
 `python tasks.py accept B6A` (API + static files) and `node --test tests/ui` (layout + store logic).
 The canvas rendering itself is checked by eye in a browser (see STATUS for the manual script).
+
+## Operator console (A6, `ui/ops/`)
+Three panels (Operator, Recall list and compensations, Retractions) and a header badge, added through the
+extension API above. They talk to `/api/ops/*` (token-guarded writes: preview, commit, reinstate, approve /
+reject). See `ui/ops/__init__.py` for the routes. Set `RETCON_SANDBOX_URL` so approved recalls reach the
+sandbox bank; without it an approval is recorded and nothing is sent.
