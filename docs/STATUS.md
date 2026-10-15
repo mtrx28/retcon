@@ -34,8 +34,8 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 | Order | Id | Task | Est | State | Last commit | Next step / gotchas |
 |---|---|---|---|---|---|---|
-| 1 | B1 | Q1 justified write + automatic premise-capture middleware | 4 h | todo | | |
-| 2 | B2 | Q2 vector retrieval, IN-only, support summary | 3 h | todo | | |
+| 1 | B1 | Q1 justified write + automatic premise-capture middleware | 4 h | done | uncommitted | `python tasks.py accept B1` (7 tests). Code: `core/write/{q1,capture}.py`, `core/memory.py`. Ids are content-hashed, so re-asserting a claim from new premises adds a 2nd Justification (OR). Status is decided by the graph rule (IN iff all premises IN). Capture context persists within a turn; `begin_turn(agent)` clears it. Only `remember`/`recall` wrappers exist in `mcp_server/tools_memory.py` (not yet registered with a server). |
+| 2 | B2 | Q2 vector retrieval, IN-only, support summary | 3 h | done | uncommitted | `python tasks.py accept B2` (8 tests). Code: `core/retrieve/{q2,embed}.py`. `score` is cosine **distance** (lower = closer). Support is an exact least-fixpoint over live justifications (cycles cannot self-ground), depth 12. Fixture graphs need `python tasks.py embed` before `recall` works. Embedder: `RETCON_EMBEDDER=minilm` (needs `pip install -e .[embed]`) or `hash` (offline, tests). Do not mix the two in one graph. |
 | 2 | B4a | Generator v1 (seeded AP scenario) + fake portal + mock bank + sandbox inbox | 4 h | todo | | |
 | 3 | B3 | Agent loop, four agents, handoff edges, re-plan on retraction event | 7 h | todo | | |
 | 4 | B6a | UI shell: graph canvas, live growth, status colours | 3 h | todo | | |
@@ -60,4 +60,4 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 ## Open questions / decisions log
 
-- _none yet_
+- 2026-10-15 (B): host port 6379 was taken by another local Redis, so FalkorDB for dev runs as container `retcon-falkordb` on 6380 (`FALKORDB_PORT=6380`). `docker-compose.yml` is unchanged.

@@ -2,6 +2,7 @@
 
   up | down           start/stop FalkorDB via docker compose
   fixture             load data/fixtures/ap_tiny.json into tenant_<RETCON_TENANT>
+  embed               create the vector index and embed every Mem of tenant_<RETCON_TENANT>
   test                run the full pytest suite
   accept <ID>         acceptance check for one task, e.g. accept A4 (runs tests marked/named for it)
   spike               run scripts/spike.py (live-engine syntax checks, writes docs/SPIKE.md)
@@ -26,6 +27,8 @@ def main(argv):
         run("docker", "compose", "down")
     elif t == "fixture":
         run(py, "-m", "data.load_fixture", *rest)
+    elif t == "embed":
+        run(py, "-m", "core.retrieve.embed_cli", *rest)
     elif t == "test":
         run(py, "-m", "pytest", "-q", *rest)
     elif t == "accept":

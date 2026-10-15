@@ -6,9 +6,14 @@ dependencies = ["falkordb", "mcp", "numpy"]
 
 [project.optional-dependencies]
 dev = ["pytest", "hypothesis"]
+embed = ["sentence-transformers"]
 
 [tool.setuptools]
 packages = ["core", "mcp_server", "gate", "agents", "bench"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "a1","a2","a3","a4","a5","a6","a7",
+    "b1","b2","b3","b4a","b5","b5b","b6a","b6b","b7",
+]

@@ -1,0 +1,116 @@
+"""Q1: justified write (task B1).
+
+Every derived memory is written together with its Justification (an AND of premises) in one query,
+so a belief can never exist without the edges the cascade (Q4/Q5) and the min-cut (Q7) rely on:
+  (premise)-[:PREMISE_OF]->(Justification)-[:JUSTIFIES]->(node)
+  (premise)-[:FLOW {cap}]->(node)      Q7 projection
+  (node)-[:DEPENDS_ON]->(premise)      Q8 projection
+  (Agent)-[:HOLDS]->(node)
+
+Identity is content-addressed, so the same write is idempotent and a re-assertion of the same
+claim from different premises adds a second Justification to the same node (the OR in
+OR-of-ANDs: independent corroboration).
+"""
+import hashlib
+import re
+import time
+
+from core.errors import RetconError
+
+FLOW_CAP = 1_000_000
+KINDS = {"belief": "Belief", "plan": "Plan"}
+
+
+def _norm(text):
+    return re.sub(r"\s+", " ", text.strip().lower())
+
+
+def _digest(*parts):
+    return hashlib.sha1("\x1f".join(parts).encode("utf8")).hexdigest()[:12]
+
+
+def node_id(kind, text):
+    return "mem_" + _digest(kind, _norm(text))
+
+
+def justification_id(nid, premise_ids):
+    return "j_" + _digest(nid, *sorted(premise_ids))
+
+
+def ensure_agent(g, agent):
+    g.query("MERGE (a:Agent {id:$a}) ON CREATE SET a.role=$a", {"a": agent})
+
+
+def write_observation(g, *, source, text, observed_at, agent="intake", obs_id=None, embedding=None):
+    """An Observation is the only node a Source touches directly. `observed_at` is epoch seconds.
+    Status follows the contract: IN iff its source is known (trust windows are applied by Q3)."""
+    if not g.query("MATCH (s:Source {id:$s}) RETURN s.id", {"s": source}).result_set:
+        raise RetconError("NOT_FOUND", f"unknown source {source!r}", {"source": source})
+    oid = obs_id or "obs_" + _digest(source, str(observed_at), _norm(text))
+    ensure_agent(g, agent)
+    g.query(
+        "MATCH (s:Source {id:$src}), (a:Agent {id:$agent}) "
+        "MERGE (o:Mem:Observation {id:$id}) "
+        "ON CREATE SET o.text=$text, o.status='IN', o.observed_at=$at, o.agent=$agent, "
+        "              o.created_at=$now, o.embedding=CASE WHEN $emb IS NULL THEN null ELSE vecf32($emb) END "
+        "MERGE (s)-[:SUPPORTS]->(o) "
+        "MERGE (s)-[f:FLOW]->(o) SET f.cap=1 "
+        "MERGE (o)-[:DEPENDS_ON]->(s) "
+        "MERGE (a)-[:HOLDS]->(o)",
+        {"src": source, "agent": agent, "id": oid, "text": text, "at": int(observed_at),
+         "now": int(time.time()), "emb": embedding})
+    return {"node_id": oid, "source": source}
+
+
+def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=None, now=None):
+    """Write a belief/plan justified by `premise_ids` (all AND-ed in one Justification).
+
+    Status is decided by the graph rule, not by the caller: IN iff every premise is IN right now
+    (or the node was already IN). Returns {node_id, premise_ids, justification_id, status, created}.
+    """
+    if kind not in KINDS:
+        raise RetconError("INVALID_ARGUMENT", f"kind must be belief or plan, got {kind!r}", {"kind": kind})
+    if not text or not text.strip():
+        raise RetconError("INVALID_ARGUMENT", "text is empty", {})
+    premises = sorted(set(premise_ids))
+    if not premises:
+        raise RetconError("INVALID_ARGUMENT",
+                          "no premises: recall something first, or write an observation from a source",
+                          {"agent": agent})
+
+    found = {r[0] for r in g.query("MATCH (p:Mem) WHERE p.id IN $ids RETURN p.id", {"ids": premises}).result_set}
+    missing = [p for p in premises if p not in found]
+    if missing:
+        raise RetconError("NOT_FOUND", f"unknown premise ids: {missing}", {"missing_ids": missing})
+
+    nid = node_id(kind, text)
+    if nid in premises:
+        raise RetconError("INVALID_ARGUMENT", "a node cannot be its own premise", {"node_id": nid})
+    jid = justification_id(nid, premises)
+    rule = rule or ("combine" if len(premises) > 1 else "infer")
+    ensure_agent(g, agent)
+    existed = bool(g.query("MATCH (m:Mem {id:$id}) RETURN m.id", {"id": nid}).result_set)
+
+    g.query(
+        f"MATCH (a:Agent {{id:$agent}}) "
+        f"MATCH (p:Mem) WHERE p.id IN $premises "
+        f"WITH a, collect(p) AS ps, all(x IN collect(p) WHERE x.status = 'IN') AS live "
+        f"MERGE (m:Mem:{KINDS[kind]} {{id:$nid}}) "
+        f"ON CREATE SET m.text=$text, m.status='OUT', m.agent=$agent, m.created_at=$now, "
+        f"             m.embedding=CASE WHEN $emb IS NULL THEN null ELSE vecf32($emb) END "
+        f"SET m.status = CASE WHEN m.status = 'IN' OR live THEN 'IN' ELSE 'OUT' END "
+        f"MERGE (j:Justification {{id:$jid}}) "
+        f"ON CREATE SET j.rule=$rule, j.agent=$agent, j.at=$now "
+        f"MERGE (j)-[:JUSTIFIES]->(m) "
+        f"MERGE (a)-[:HOLDS]->(m) "
+        f"WITH m, j, ps "
+        f"UNWIND ps AS p "
+        f"MERGE (p)-[:PREMISE_OF]->(j) "
+        f"MERGE (p)-[f:FLOW]->(m) SET f.cap=$cap "
+        f"MERGE (m)-[:DEPENDS_ON]->(p)",
+        {"agent": agent, "premises": premises, "nid": nid, "text": text, "now": int(now or time.time()),
+         "emb": embedding, "jid": jid, "rule": rule, "cap": FLOW_CAP})
+
+    status = g.query("MATCH (m:Mem {id:$id}) RETURN m.status", {"id": nid}).result_set[0][0]
+    return {"node_id": nid, "premise_ids": premises, "justification_id": jid,
+            "status": status, "created": not existed}
