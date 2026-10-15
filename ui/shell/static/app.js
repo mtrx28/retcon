@@ -424,6 +424,7 @@
     side.innerHTML = `
       <section><h2>Summary</h2><div id="summary" class="checks"></div></section>
       <section><h2>Selection</h2><div id="inspector"></div></section>
+      <div id="panels"></div>
       <section><h2>Filter</h2>
         <div class="checks" id="f-kinds"></div>
         <div class="checks" id="f-states" style="margin-top:8px"></div>
@@ -442,8 +443,7 @@
         <span><i class="sw" style="background:none;border:3px solid var(--se);border-radius:50%"></i>semantic</span>
         <span><i class="sw" style="background:none;border:3px solid var(--pr);border-radius:50%"></i>procedural</span>
         <span>◆ small diamond: one justification (an AND)</span>
-      </div></section>
-      <div id="panels"></div>`;
+      </div></section>`;
     const kinds = ["source", "observation", "belief", "plan", "action", "justification"];
     $("f-kinds").innerHTML = kinds.map((k) => `<label><input type="checkbox" data-kind="${k}" checked>${k}</label>`).join("");
     $("f-states").innerHTML = ["IN", "OUT", "TENTATIVE"].map((s) => `<label><input type="checkbox" data-state="${s}" checked>${s}</label>`).join("");

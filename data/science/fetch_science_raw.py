@@ -11,6 +11,7 @@ Usage:
 Output (all gitignored):
   data/science/raw/openalex/retracted/<openalex_id>.json
   data/science/raw/openalex/citing/<openalex_id>.json
+  data/science/raw/openalex/topic/<openalex_id>.json   (step 4, --add-topic-papers: same-topic, non-retracted)
   data/science/raw/selection.json   (which RW records we picked, with reason + dates)
 
 Set OPENALEX_MAILTO=you@example.com so requests go to OpenAlex's polite pool.
@@ -115,13 +116,47 @@ def fetch(rows, subject, max_retracted, citing_per_paper):
     print(f"Saved {kept} retracted papers and their citing works under {RAW}/openalex/")
 
 
+def add_topic_papers(per_topic):
+    """Step 4: papers that share a retracted paper's primary topic but are not retracted. Without them every
+    non-retracted paper in the corpus is there *because* it cites a retracted one, so no claim could ever have
+    independent support. Works already on disk are skipped; one query per distinct topic."""
+    have = set()
+    for kind in ("retracted", "citing", "topic"):
+        have |= {os.path.splitext(f)[0] for f in os.listdir(f"{RAW}/openalex/{kind}")}             if os.path.isdir(f"{RAW}/openalex/{kind}") else set()
+    topics = {}
+    folder = f"{RAW}/openalex/retracted"
+    for name in sorted(os.listdir(folder)):
+        with open(os.path.join(folder, name), encoding="utf-8") as f:
+            t = (json.load(f).get("primary_topic") or {}).get("id")
+        if t:
+            topics.setdefault(t.rsplit("/", 1)[-1], []).append(name)
+    saved = 0
+    for tid in sorted(topics):
+        res = oa_get("/works", {"filter": f"primary_topic.id:{tid},has_abstract:true,is_retracted:false",
+                                "per-page": per_topic, "sort": "cited_by_count:desc"})
+        for w in (res or {}).get("results", []):
+            wid = w["id"].rsplit("/", 1)[-1]
+            if wid in have or not w.get("abstract_inverted_index"):
+                continue
+            save(w, f"{RAW}/openalex/topic", wid)
+            have.add(wid)
+            saved += 1
+        time.sleep(0.2)
+    print(f"Saved {saved} same-topic papers across {len(topics)} topics under {RAW}/openalex/topic/")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("--add-topic-papers", type=int, metavar="N",
+                    help="step 4: add up to N same-topic non-retracted papers per topic (after the main fetch)")
     ap.add_argument("--list-subjects", action="store_true")
     ap.add_argument("--subject")
     ap.add_argument("--max-retracted", type=int, default=40)
     ap.add_argument("--citing-per-paper", type=int, default=10)
     a = ap.parse_args()
+    if a.add_topic_papers:
+        add_topic_papers(a.add_topic_papers)
+        sys.exit(0)
     rows = load_retractions()
     print(f"{len(rows)} retractions with a DOI")
     if a.list_subjects:

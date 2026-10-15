@@ -21,9 +21,13 @@ from core.errors import RetconError
 from core.fragility import fragility
 from core.retract.why import why
 from data.httpkit import Raw, Router, serve
+from gate.policy import policy_for
 from ui.shell import graphdata
 
 STATIC = Path(__file__).resolve().parent / "static"
+RADAR = Path(__file__).resolve().parents[1] / "radar"       # B6b: served at /static/radar.js
+STATIC_DIRS = (STATIC, RADAR)
+KINDS = {"plan": "Plan", "action": "Action", "belief": "Belief"}
 DEFAULT_GRAPH = os.getenv("RETCON_TENANT", "northwind")
 
 
@@ -39,6 +43,7 @@ class Shell:
         self.limit = limit
         self.min_interval = min_interval
         self._watchers = {}
+        self._frag_cache = {}
 
     # -- helpers ---------------------------------------------------------------------------
     def graph_names(self):
@@ -60,6 +65,41 @@ class Shell:
             self._watchers[name] = graphdata.Watcher(self.db.select_graph(name), self.limit, self.min_interval)
         return name, self._watchers[name]
 
+    def fragility_table(self, name, w, kinds, limit):
+        """Poisoning cost of the live (IN) nodes of the given kinds, cheapest-to-poison first. Cached
+        per graph version, so a polling radar costs nothing while the graph is quiet."""
+        w.refresh()
+        key = (name, w.version, tuple(kinds), limit)
+        hit = self._frag_cache.get(key)
+        if hit is not None:
+            return hit
+        labels = " OR ".join(f"m:{KINDS[k]}" for k in kinds)
+        rows = w.g.query(
+            f"MATCH (m:Mem) WHERE ({labels}) AND m.status = 'IN' "
+            "OPTIONAL MATCH (j:Justification)-[:JUSTIFIES]->(m) "
+            "WITH m, count(j) AS njust "
+            "RETURN m.id, labels(m), m.text, m.amount, m.executed, m.tool, m.args, njust "
+            "ORDER BY (m.amount IS NULL), m.amount DESC, njust DESC, m.id LIMIT $n", {"n": limit}).result_set
+        items = []
+        for mid, labs, text, amount, executed, tool, args, njust in rows:
+            kind = graphdata._kind(labs)
+            label = graphdata._action_label(tool, amount, args) if kind == "action" else graphdata._label(text)
+            try:
+                f = fragility(w.g, mid, with_flow=False)
+            except RetconError:
+                continue
+            items.append({"id": mid, "kind": kind, "label": graphdata._label(label, 70), "amount": amount,
+                          "executed": bool(executed) if executed is not None else None,
+                          "independent_sources": f["independent_sources"], "bound": f["bound"],
+                          "cut_set": f["cut_set"], "live_sources": f["live_sources"], "justifications": njust})
+        items.sort(key=lambda i: (i["independent_sources"], -(i["amount"] or 0), i["id"]))
+        rule = policy_for("pay").get("independent_sources", {})
+        out = {"version": w.version, "items": items,
+               "policy": {"min": rule.get("min", 2), "over_amount": rule.get("over_amount")}}
+        self._frag_cache = {k: v for k, v in self._frag_cache.items() if k[0] == name and k[1] == w.version}
+        self._frag_cache[key] = out
+        return out
+
     # -- routes ----------------------------------------------------------------------------
     def router(self):
         r = Router()
@@ -76,8 +116,13 @@ class Shell:
             return 200, Raw((STATIC / "index.html").read_bytes(), "text/html; charset=utf-8")
 
         def static(req):
-            p = (STATIC / req.params["name"]).resolve()
-            if STATIC not in p.parents or not p.is_file():
+            p = None
+            for base in STATIC_DIRS:
+                cand = (base / req.params["name"]).resolve()
+                if base.resolve() in cand.parents and cand.is_file():
+                    p = cand
+                    break
+            if p is None:
                 return _err(404, "NOT_FOUND", f"no such file {req.params['name']!r}")
             ctype = mimetypes.guess_type(p.name)[0] or "application/octet-stream"
             if ctype.startswith("text/") or ctype in ("application/javascript", "application/json"):
@@ -113,6 +158,18 @@ class Shell:
                 out["fragility"] = None
             return 200, out
 
+        def frag(req):
+            name, w = self.watcher(req.query.get("graph"))
+            kinds = [k for k in req.query.get("kinds", "plan,action").split(",") if k]
+            bad = [k for k in kinds if k not in KINDS]
+            if bad or not kinds:
+                raise RetconError("INVALID_ARGUMENT", f"kinds must be among {sorted(KINDS)}", {"kinds": kinds})
+            try:
+                limit = max(1, min(200, int(req.query.get("limit", "40"))))
+            except ValueError:
+                raise RetconError("INVALID_ARGUMENT", "limit must be an integer", {})
+            return 200, {"graph": name, **self.fragility_table(name, w, kinds, limit)}
+
         def retr(req):
             name, w = self.watcher(req.query.get("graph"))
             return 200, {"graph": name, "retractions": graphdata.retractions(w.g)}
@@ -124,6 +181,7 @@ class Shell:
         r.add("GET", "/api/delta", guard(delta))
         r.add("GET", "/api/node", guard(node))
         r.add("GET", "/api/retractions", guard(retr))
+        r.add("GET", "/api/fragility", guard(frag))
         return r
 
 
