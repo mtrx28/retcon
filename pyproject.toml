@@ -38,4 +38,5 @@ markers = [
     "b9",
     "a10", "a12", "a13", "b1plus", "b10", "b11",
     "gate",
+    "bench",
 ]

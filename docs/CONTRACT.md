@@ -141,3 +141,68 @@ Notes:
 - `distrust` response gains `survived_ids` (nodes downstream of the source that stayed IN by independent support) and `profile: {query, execution_ms, plan[]}` (GRAPH.PROFILE of the cascade traversal; wall-clock, so scrubbed from deterministic transcripts).
 - `distrust(mode="preview")` is implemented: same payload plus `preview: true` and `diff: [{id, kind, from, to, hop}]`. It runs on a `GRAPH.COPY` fork named `<graph>_preview_<retraction_id>`, which is deleted before returning. The live graph is not written (no Retraction, no Remediation). `retraction_id` is the id a commit would receive.
 - Operator console HTTP API (UI only, not MCP): `/api/ops/*`, see `ui/ops/__init__.py`.
+
+## v1.4 RetconBench interface (A7 / B7, Oct 15): additive, **proposed: B to confirm in review**
+
+Executable form: `bench/api.py` (pinned by `tests/bench/test_interface.py`). Lane A writes strategies and
+`metrics`; Lane B writes the harness, scale runs, laundering probe, charts and the graph-off ablation.
+Neither imports the other's package; both import `bench.api`.
+
+**Strategy** (one class per name; names are fixed and are the column order in every table):
+
+```python
+class Strategy(Protocol):
+    name: str                                            # delete_source | vector_only | edge_invalidation | coarse_taint | retcon
+    def retract(self, graph, window: Window) -> RetractionResult: ...
+    # optional: def support_count(self, graph, node_id) -> int     (laundering probe, Lane B)
+
+Window(source, t_from, t_to)            # from_spec(spec["window"]); inclusive; ISO 8601; same semantics as distrust
+RetractionResult(out_ids: set[str], engine_ms: float | None, notes: dict)
+```
+
+Rules:
+- `out_ids` = ids of `:Mem` nodes **no longer retrievable by an agent** after the retraction. A strategy
+  that never writes statuses (vector store, edge invalidation) reports what it deleted or invalidated.
+  Anything not in `out_ids` is still served. The harness reads the return value, never node statuses.
+- The harness gives every call a **freshly loaded** graph (`data.load_fixture.load(spec, graph_name=...)`,
+  ids equal spec ids), so a strategy may mutate it. Benchmarks load the spec directly; they do **not**
+  run agents, because agent-built graphs have hashed ids and no ground truth.
+- Deterministic: no unseeded randomness, no clock, no network. A strategy that needs embeddings uses
+  `core.retrieve.embed.get_embedder()` (default `hash` for CI) on `Mem.text`.
+- Errors: raise; the harness records `error` for that (scenario, strategy) and carries on.
+
+**Strategies (what each one means, so expectations are shared):**
+
+| name | out_ids | expected shape |
+|---|---|---|
+| `delete_source` | observations of `source` in the window, nothing else | residual high, no action recall |
+| `vector_only` | those observations plus every `Mem` whose cosine similarity to one of them is >= 0.75 (`notes.threshold`), no graph | residual high, noisy collateral; **also the graph-off ablation's retraction rule** (B7 imports it) |
+| `edge_invalidation` | those observations plus nodes one hop downstream (Graphiti-style), no cascade | residual high |
+| `coarse_taint` | every descendant of those observations by any path (any-ancestor rule), no re-derivation | residual ~0, **collateral high** |
+| `retcon` | `core.retract.cascade.distrust` on the fork, then every `:Mem` with `status = 'OUT'` | residual 0, collateral 0 |
+
+**Metrics** (`metrics(ground_truth, out_ids, actions)`; ratios in [0, 1], `None` when the denominator is empty):
+
+| key | definition | better |
+|---|---|---|
+| `residual_contamination` | contaminated nodes not in `out_ids` / contaminated | lower |
+| `collateral_loss` | truly_supported nodes in `out_ids` / truly_supported | lower |
+| `action_recall` | executed contaminated actions in `out_ids` / executed contaminated actions | higher |
+| `action_precision` | flagged executed actions that were contaminated / flagged executed actions | higher |
+| `blocked_recall` | pending contaminated actions in `out_ids` / pending contaminated actions | higher |
+| `counts` | `contaminated, truly_supported, out, executed_contaminated, pending_contaminated` | |
+
+`ground_truth` keys: `contaminated`, `truly_supported` (required, both domains); `recall_list`, `blocked`
+(optional; derived from `actions[].executed` when absent). Laundering resistance and cascade latency are
+Lane B's columns: latency is measured by the harness around `retract()` (`elapsed_ms`), `engine_ms` is the
+strategy's own number, and laundering uses the optional `support_count`.
+
+**Results file** (`bench/results/<run>.json`, a JSON list, one row per scenario x strategy; `record()`):
+
+```json
+{"scenario": "ap_1k", "domain": "ap", "nodes": 1000, "seed": 7, "strategy": "coarse_taint",
+ "out_count": 412, "metrics": {...}, "elapsed_ms": 31.2, "engine_ms": null, "notes": {}, "error": null}
+```
+
+Scenario names: `ap_tiny`, `ap_1k`, `ap_10k`, `ap_100k` (target tier), `science_tiny`, `science` (B10 output).
+`domain` is the contract v1.1 field. A's science report and B's charts read this same file.

@@ -71,6 +71,8 @@ Run it: `python tasks.py accept GATE` (`tests/e2e/test_gate.py`, 10 tests: 5 che
 
 ## Open questions / decisions log
 
+- 2026-10-15 (A): **Bench interface proposed** in CONTRACT v1.4 + `bench/api.py` (`Strategy.retract(graph, window) -> RetractionResult(out_ids)`, `metrics(ground_truth, out_ids, actions)`, results-file row, fixed strategy names and what each one means). **B: please read it before starting B7 and either ack here or amend in the same PR.** A7 builds the five strategies against it; B7's harness, laundering probe, scale runs and graph-off ablation (which reuses `vector_only`) consume it.
+
 - 2026-10-15 (B): `data/httpkit.py` now sends `Cache-Control: no-cache` and can return `Raw` (static files); the UI shell is dependency-free on purpose (offline for judges, no build step).
 - 2026-10-15 (B): B5 pulled forward into Phase 1 (own Phase 2 task, no dependency on A), so B3 uses real `fragility` and A4 gets a real policy hook. B5 numbers match the plan acceptance (payment 1, address 2) only because cost is AND-aware; raw max-flow would say 3. B10 and the benchmark keep Oct 17.
 - 2026-10-15 (B): `tasks.py accept B1+` previously selected zero tests (marker `b1+` does not exist); runner now maps `+` to `plus`.
