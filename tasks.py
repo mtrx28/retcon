@@ -31,6 +31,10 @@ def main(argv):
     elif t == "accept":
         if not rest:
             sys.exit("usage: python tasks.py accept <TASK_ID>")
+        import os
+        if rest[0].lower() == "a2":  # full strength: 1,000 differential graphs, 300 property graphs
+            os.environ.setdefault("RETCON_DIFF_N", "1000")
+            os.environ.setdefault("RETCON_PROP_N", "300")
         run(py, "-m", "pytest", "-q", "-m", rest[0].lower())
     elif t == "spike":
         run(py, "scripts/spike.py")

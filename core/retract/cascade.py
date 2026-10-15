@@ -64,11 +64,24 @@ def distrust(g, source: str, t_from, t_to, mode: str = "commit",
     rid = _next_retraction_id(g)
     reason = reason or f"Source {source} distrusted {t_from}..{t_to}"
 
-    # Q3: observations from the source inside the window go OUT (the cascade seeds).
+    g.query(
+        "CREATE (:Retraction {id:$rid, source:$s, from:$f, to:$t, reason:$reason, operator:$op, "
+        "at:$now, mode:'commit', reinstated:false})",
+        {"rid": rid, "s": source, "f": f, "t": t, "reason": reason, "op": operator,
+         "now": int(time.time())})
+
+    # Q3: the retraction claims EVERY observation of the source inside the window (standing
+    # distrust, so reinstating an overlapping retraction cannot resurrect it). Those that were IN
+    # are flipped OUT and seed the cascade; `flipped` records which ones this retraction changed.
+    g.query(
+        "MATCH (r:Retraction {id:$rid}), (:Source {id:$s})-[:SUPPORTS]->(o:Observation) "
+        "WHERE o.observed_at >= $f AND o.observed_at <= $t "
+        "CREATE (r)-[:RETRACTED {hop:0, flipped:(o.status = 'IN')}]->(o)",
+        {"rid": rid, "s": source, "f": f, "t": t})
     g.query(
         "MATCH (:Source {id:$s})-[:SUPPORTS]->(o:Observation) "
         "WHERE o.status = 'IN' AND o.observed_at >= $f AND o.observed_at <= $t "
-        "SET o.status = 'OUT', o.run = $run, o.hop = 0",
+        "SET o.status = 'OUT', o.run = $run",
         {"s": source, "f": f, "t": t, "run": rid})
 
     # Q4: everything downstream goes OUT tentatively; hop = derivation depth (2 edges per hop).
@@ -82,16 +95,13 @@ def distrust(g, source: str, t_from, t_to, mode: str = "commit",
     # Q5: well-founded re-derivation. Independently supported nodes come back IN.
     _rederive(g, rid)
 
-    # Audit trail: link the Retraction to everything that stayed OUT, then clear the cascade tags.
+    # Audit trail: link the Retraction to every derived node that stayed OUT, then clear scratch tags.
     g.query(
-        "CREATE (:Retraction {id:$rid, source:$s, from:$f, to:$t, reason:$reason, operator:$op, "
-        "at:$now, mode:'commit', reinstated:false})",
-        {"rid": rid, "s": source, "f": f, "t": t, "reason": reason, "op": operator,
-         "now": int(time.time())})
-    g.query(
-        "MATCH (r:Retraction {id:$rid}), (x:Mem {run:$rid}) WHERE x.status = 'OUT' "
-        "CREATE (r)-[:RETRACTED {hop: x.hop}]->(x) SET x.run = null, x.hop = null",
+        "MATCH (r:Retraction {id:$rid}), (x:Mem {run:$rid}) "
+        "WHERE x.status = 'OUT' AND NOT x:Observation "
+        "CREATE (r)-[:RETRACTED {hop: x.hop, flipped:true}]->(x)",
         {"rid": rid})
+    g.query("MATCH (x:Mem {run:$rid}) SET x.run = null, x.hop = null", {"rid": rid})
 
     return _report(g, rid, (time.perf_counter() - started) * 1000)
 
@@ -100,7 +110,7 @@ def _report(g, rid: str, latency_ms: float) -> dict:
     from core.recall.recall_list import blocked_actions, recall_list  # local: avoid import cycle
 
     rows = g.query(
-        "MATCH (:Retraction {id:$rid})-[e:RETRACTED]->(x:Mem) "
+        "MATCH (:Retraction {id:$rid})-[e:RETRACTED]->(x:Mem) WHERE e.flipped = true "
         "RETURN x.id, labels(x), e.hop ORDER BY e.hop, x.id", {"rid": rid}).result_set
     counts = {"observations": 0, "beliefs": 0, "plans": 0, "actions": 0}
     plural = {"Observation": "observations", "Belief": "beliefs", "Plan": "plans", "Action": "actions"}
@@ -121,11 +131,11 @@ def _report(g, rid: str, latency_ms: float) -> dict:
 
 
 def reinstate(g, retraction_id: str) -> dict:
-    """Reverse a retraction. Its observations go back IN; everything else it flipped is re-derived,
-    so a node that still lacks well-founded support (e.g. owed to a different retraction) stays OUT.
+    """Reverse a retraction without disturbing others.
 
-    Known limitation: if a later retraction's window also covers an observation this one flipped,
-    that observation was already OUT then and is not claimed by the later one, so it comes back here.
+    Observations it claimed go back IN unless another active (not reinstated) retraction still
+    claims them. Then every OUT derived node is re-derived globally, so the labelling is exactly the
+    well-founded one for the remaining distrusts, whatever order retractions were applied or undone in.
     """
     row = g.query("MATCH (r:Retraction {id:$rid}) RETURN r.reinstated", {"rid": retraction_id}).result_set
     if not row:
@@ -133,15 +143,16 @@ def reinstate(g, retraction_id: str) -> dict:
     if row[0][0]:
         raise ValueError("INVALID_ARGUMENT: retraction already reinstated")
     run = f"{retraction_id}_undo"
-    g.query(
-        "MATCH (:Retraction {id:$rid})-[:RETRACTED]->(x:Mem) "
-        "FOREACH (_ IN CASE WHEN x:Observation THEN [1] ELSE [] END | SET x.status = 'IN') "
-        "SET x.run = CASE WHEN x:Observation THEN null ELSE $run END",
-        {"rid": retraction_id, "run": run})
-    _rederive(g, run)
-    g.query("MATCH (x:Mem {run:$run}) SET x.run = null, x.hop = null", {"run": run})
     g.query("MATCH (r:Retraction {id:$rid}) SET r.reinstated = true, r.reinstated_at = $now",
             {"rid": retraction_id, "now": int(time.time())})
+    g.query(
+        "MATCH (:Retraction {id:$rid})-[:RETRACTED]->(o:Observation {status:'OUT'}) "
+        "WHERE NOT (o)<-[:RETRACTED]-(:Retraction {reinstated:false}) "
+        "SET o.status = 'IN'",
+        {"rid": retraction_id})
+    g.query("MATCH (b:Mem {status:'OUT'}) WHERE NOT b:Observation SET b.run = $run", {"run": run})
+    _rederive(g, run)
+    g.query("MATCH (x:Mem {run:$run}) SET x.run = null, x.hop = null", {"run": run})
     restored = g.query(
         "MATCH (:Retraction {id:$rid})-[:RETRACTED]->(x:Mem {status:'IN'}) RETURN count(x)",
         {"rid": retraction_id}).result_set[0][0]

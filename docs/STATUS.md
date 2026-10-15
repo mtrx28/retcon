@@ -20,8 +20,8 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 | Order | Id | Task | Est | State | Last commit | Next step / gotchas |
 |---|---|---|---|---|---|---|
-| 1 | A1 | Q3–Q5 cascade + re-derive loop on fixture; `:Retraction` node | 5 h | done | (uncommitted, branch `a/A1-cascade`) | `core/retract/cascade.py`: `distrust()`, `reinstate()`; `core/recall/recall_list.py` (Q6 query, used by `distrust`; A4 still owns gate + Remediator). 10 tests (`accept A1`), ~10 ms on 24 nodes. Preview mode raises NotImplementedError until A5. Reinstate limitation noted in docstring. |
-| 2 | A2 | Property tests + in-memory JTMS reference + differential test | 4 h | todo | | |
+| 1 | A1 | Q3–Q5 cascade + re-derive loop on fixture; `:Retraction` node | 5 h | done | (uncommitted, branch `a/A1-cascade`) | `core/retract/cascade.py`: `distrust()`, `reinstate()`; `core/recall/recall_list.py` (Q6 query, used by `distrust`; A4 still owns gate + Remediator). 10 tests (`accept A1`), ~10 ms on 24 nodes. Preview mode raises NotImplementedError until A5. |
+| 2 | A2 | Property tests + in-memory JTMS reference + differential test | 4 h | done | (uncommitted, branch `a/A2-property-tests`) | `tests/differential/jtms_ref.py` (least-fixpoint reference), `graphgen.py` (Hypothesis specs incl. cycles/OR/AND), `tests/property/test_jtms_properties.py` (P1–P6), `tests/differential/test_differential.py`, `tests/property/test_regressions.py`. `python tasks.py accept A2` = 1,000 differential + 300 property graphs, ~3.5 min; plain `test` runs 100/60. **Found and fixed 2 engine bugs:** overlapping distrusts could be undone by reinstating the first; reinstate did not revive nodes flipped by a different retraction. A retraction now claims every observation in its window (`RETRACTED {flipped}`), reinstate re-derives globally. |
 | 3 | A3 | MCP `distrust` / `reinstate` / `why`; audit trail | 3 h | todo | | |
 | 4 | A4 | Action gate + Q6 recall list + Remediator (one-click compensation) | 5 h | todo | | |
 | 5 | A5 | `GRAPH.COPY` preview + status diff; `mode=preview` | 3 h | todo | | |
