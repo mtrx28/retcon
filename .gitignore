@@ -8,3 +8,4 @@ dist/
 .hypothesis/
 falkordb-data/
 *.egg-info/
+data/science/raw/

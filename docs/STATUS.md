@@ -12,7 +12,7 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_  ·  Dev FalkorDB port: B uses 63
 |---|---|---|---|---|
 | 0.1–0.5 | Skeleton, contract v1, spike, fixture, CLAUDE.md/STATUS.md | done | main | |
 | 0.6 | Contract v1.1: optional `mtype`, `domain`, `retracted_at`/`rw_reason`; STATUS seeded | doing | branch `shared/0.6-contract-v1.1` | Additive only. Loader now stores the optional fields and validates `domain`/`mtype` (`validate_spec`). Test: `tests/queries/test_contract_v11.py`. Merge after both skim the diff. |
-| 0.7 | B: background data pull (Retraction Watch clone, OpenAlex fetches) into `data/science/raw/` (gitignored) | todo | | No LLM cost. Add `data/science/raw/` to `.gitignore` first. |
+| 0.7 | B: background data pull (Retraction Watch clone, OpenAlex fetches) into `data/science/raw/` (gitignored) | done | | Subject `(BLS) Biology - Cellular`. `selection.json`: 40 retracted papers (all with retraction date + RW reason); `openalex/retracted/` 40 files, `openalex/citing/` 305 files. Script: `data/science/fetch_science_raw.py` (run with `python -I`). Gotchas for B10: `retraction_date` is `M/D/YYYY H:MM` (parse, don't string-compare); `rw_reason` is a `;`-joined list; no `OPENALEX_MAILTO` was set. |
 | 0.8 | Both: progress note + one technical question in the FalkorDB Discord | todo | | |
 
 ## Lane A: Retract & Prove
