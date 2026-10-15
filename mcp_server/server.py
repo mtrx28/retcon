@@ -21,7 +21,7 @@ def build(graph=None, tenant=None) -> MCPServer:
     tools_retract.configure(g, executor)
     for fn in (tools_retract.distrust, tools_retract.reinstate, tools_retract.why, tools_retract.recall_list,
                tools_retract.list_remediations, tools_retract.approve_remediation,
-               tools_retract.reject_remediation):
+               tools_retract.reject_remediation, tools_retract.keystones, tools_retract.contradictions):
         server.add_tool(fn)
     _register_memory_tools(server, g, executor)
     return server

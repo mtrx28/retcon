@@ -7,6 +7,8 @@ back as the uniform {"error": {code, message, details}} payload from core/errors
 `distrust(mode="preview")` runs the retraction on a GRAPH.COPY fork and returns the diff without
 touching the live graph (task A5).
 """
+from core.analytics import contradictions as contradiction_mod
+from core.analytics import keystone as keystone_mod
 from core.errors import RetconError
 from core.recall.recall_list import recall_list as _recall_list
 from core.preview import preview as preview_mod
@@ -100,3 +102,19 @@ def approve_remediation(remediation_id: str, operator: str = "mcp"):
 def reject_remediation(remediation_id: str, operator: str = "mcp"):
     """Discard a drafted compensation."""
     return _guard(lambda g: remediator.reject(g, remediation_id, operator))
+
+
+def keystones(top: int = 10, order: str = "priority"):
+    """Sources the most memory rests on (PageRank over the dependency graph, Q8). `order`: priority
+    (rank x (1 - trust): audit these first), rank (pure PageRank), downstream (blast radius).
+    Each row: id, kind, trust, rank, priority, observations, downstream, live_downstream."""
+    if order not in keystone_mod.ORDERS:
+        return RetconError("INVALID_ARGUMENT", f"order must be one of {list(keystone_mod.ORDERS)}",
+                           {"order": order}).as_payload()
+    return _guard(lambda g: keystone_mod.keystones(g, top, order))
+
+
+def contradictions(link: bool = True):
+    """Clusters of beliefs that disagree (algo.WCC over CONTRADICTS). `link` refreshes the edges first.
+    A cluster is `resolved` when at most one of its conflicting values is still IN."""
+    return _guard(lambda g: contradiction_mod.contradiction_clusters(g, link))

@@ -31,3 +31,8 @@
 .pill.draft { color: var(--tent); } .pill.executed { color: var(--in); } .pill.approved { color: var(--accent); }
 .pill.rejected, .pill.withdrawn { color: var(--muted); }
 #ops-badge { margin-left: 4px; }
+
+/* keystone panel (A12) */
+.ks-bar { height: 6px; border-radius: 3px; background: var(--grid); margin: 6px 0 2px; overflow: hidden; }
+.ks-bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.ops-list code { font-size: 12px; }

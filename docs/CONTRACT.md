@@ -216,3 +216,9 @@ strategy's own number, and laundering uses the optional `support_count`.
 
 Scenario names: `ap_tiny`, `ap_1k`, `ap_10k`, `ap_100k` (target tier), `science_tiny`, `science` (B10 output).
 `domain` is the contract v1.1 field. A's science report and B's charts read this same file.
+
+## v1.5 (A12, Oct 16): additive
+
+- New edge `(:Mem)-[:CONTRADICTS {subject, attribute, detector, at}]->(:Mem)`, written on demand (`link_contradictions`), ids ordered. It records a conflict; it never changes IN/OUT.
+- New MCP tools (Lane A): `keystones(top=10, order="priority"|"rank"|"downstream")` returns `[{position, id, kind, trust, rank, priority, observations, downstream, live_downstream, retracted_at}]`; `contradictions(link=true)` returns `[{id, size, subject, attribute, resolved, live_values, members:[{id, text, status, agent, value, sources}]}]`.
+- Ops API (UI): `/api/ops/keystones`, `/api/ops/blast?source=`, `/api/ops/contradictions`.
