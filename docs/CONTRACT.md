@@ -125,3 +125,13 @@ Notes:
 - In a fixture, a derivation's `conclusion` may carry an optional `"mtype"`. Without it, the loader tags `semantic` for beliefs and leaves plans/actions untagged.
 - No `schema.cypher` change: FalkorDB does not require declared properties. Add `CREATE INDEX FOR (m:Mem) ON (m.mtype)` only if a query filters by type.
 - Describe retractions only through the dataset's own reason field (`rw_reason`); never characterise authors.
+
+## v1.2 (A4, Oct 15): additive
+
+- New node `:Remediation {id, kind (bank_recall|correction_email|manual_review), status (draft|approved|executed|rejected|withdrawn), title, payload(JSON), amount, reason, retraction_id, created_at, approved_by, approved_at, result, error}`.
+  Edges: `(Retraction)-[:TRIGGERED]->(Remediation)-[:COMPENSATES]->(Action)`.
+- `:Action` gains `args` (JSON string), `result` (JSON string), `gate_state` (`blocked|released`), `blocked_reason` (JSON). `executed` / `executed_at` as before.
+- `distrust` response gains `remediations: [...]` (drafts, never executed on their own).
+- New MCP tools (Lane A): `list_remediations(status?)`, `approve_remediation(remediation_id, operator)`, `reject_remediation(remediation_id, operator)`.
+- `act(tool, args, agent)` is implemented in `gate/tools.py` + `core/actions.py` (Lane A, because the gate sits behind it) and registered by `mcp_server/server.py`. Signature unchanged. It justifies the action by the agent's captured recall context.
+- Gate decision block reason (`BLOCKED_BY_POLICY`): `details.reason_code` is `PREMISE_RETRACTED` (with `out_premise_ids`, `retraction_ids`) or `INSUFFICIENT_INDEPENDENT_SOURCES` (with `independent_sources`, `required`). The independence rule calls Lane B's `fragility`; until it exists the gate adds a warning instead of guessing.

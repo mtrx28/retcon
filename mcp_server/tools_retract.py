@@ -1,4 +1,5 @@
-"""Lane A MCP tools: distrust, reinstate, why, recall_list (docs/CONTRACT.md section 5).
+"""Lane A MCP tools (docs/CONTRACT.md section 5): distrust, reinstate, why, recall_list, plus the
+Remediator's list_remediations / approve_remediation / reject_remediation (task A4).
 
 Plain functions over one tenant graph; `server.py` registers them. They never raise: failures come
 back as the uniform {"error": {code, message, details}} payload from core/errors.py.
@@ -9,14 +10,18 @@ from core.errors import RetconError
 from core.recall.recall_list import recall_list as _recall_list
 from core.retract import cascade
 from core.retract.why import why as _why
+from agents import remediator
 
 _graph = None
+_executor = None
 
 
-def configure(graph):
-    """Inject the tenant graph these tools act on."""
-    global _graph
-    _graph = graph
+def configure(graph, executor=None):
+    """Inject the tenant graph these tools act on, and the executor that carries out approved
+    compensations (gate.executors.SandboxExecutor / HttpExecutor). Without one, approvals are
+    recorded but nothing is sent."""
+    global _graph, _executor
+    _graph, _executor = graph, executor
 
 
 def _guard(fn):
@@ -39,8 +44,12 @@ def distrust(source: str, from_: str, to: str, mode: str = "commit",
         return RetconError("INVALID_ARGUMENT", "mode must be 'preview' or 'commit'", {"mode": mode}).as_payload()
     if mode == "preview":
         return RetconError("NOT_IMPLEMENTED", "preview mode lands with task A5", {"mode": mode}).as_payload()
-    return _guard(lambda g: cascade.distrust(g, source, from_, to, mode="commit",
-                                             operator=operator, reason=reason))
+    def go(g):
+        res = cascade.distrust(g, source, from_, to, mode="commit", operator=operator, reason=reason)
+        # The Remediator wakes on every retraction and drafts compensations (nothing is sent yet).
+        res["remediations"] = remediator.remediate(g, res["retraction_id"])
+        return res
+    return _guard(go)
 
 
 def reinstate(retraction_id: str):
@@ -73,3 +82,19 @@ def recall_list(run: str | None = None):
                     out.append({**a, "retraction_id": rid})
         return sorted(out, key=lambda a: -(a["amount"] or 0))
     return _guard(go)
+
+
+def list_remediations(status: str | None = None):
+    """Drafted compensations (bank recalls, correction emails), largest amount first.
+    `status` filters: draft | approved | executed | rejected | withdrawn."""
+    return _guard(lambda g: remediator.list_remediations(g, status))
+
+
+def approve_remediation(remediation_id: str, operator: str = "mcp"):
+    """One human click: carry out the drafted compensation."""
+    return _guard(lambda g: remediator.approve(g, remediation_id, operator, _executor))
+
+
+def reject_remediation(remediation_id: str, operator: str = "mcp"):
+    """Discard a drafted compensation."""
+    return _guard(lambda g: remediator.reject(g, remediation_id, operator))
