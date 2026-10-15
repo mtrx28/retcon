@@ -1,0 +1,255 @@
+{
+ "about": "Held-out sample (seed 101) drawn from the final fixture and labelled by the model reviewer BEFORE any rule was tuned on it. Used as a regression guard, not for tuning.",
+ "cases": [
+  {
+   "text": "Adipose tissue growth involves an increase in adipocyte size and the formation of new adipocytes from precursor cells.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Reflecting integrin-mediated signals, the osteoclast develops a specialized cytoskeleton that permits it to establish an isolated microenvironment between itself and bone, wherein matrix degradation occurs by a process involving proton transport.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Today nanotechnology is finding growing applications in industry, biology, and medicine.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The advent of facile genome engineering using the bacterial RNA-guided CRISPR-Cas9 system in animals and plants is transforming biology.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Anti-double-stranded DNA antibodies, with a mean onset 2.2 years before the diagnosis, were found later than antinuclear antibodies (P=0.06) and earlier than anti-nuclear ribonucleoprotein antibodies (P=0.005).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "REM sleep behavior disorder, severe neuroleptic sensitivity, and reduced striatal dopamine transporter activity on functional neuroimaging are given greater diagnostic weighting as features suggestive of a DLB diagnosis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Subjects receiving ketamine showed significant improvement in depression compared with subjects receiving placebo within 110 minutes after injection, which remained significant throughout the following week.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In univariate analyses, baseline factors that predicted the development of POAG included older age, race (African American), sex (male), larger vertical cup-disc ratio, larger horizontal cup-disc ratio, higher intraocular pressure, greater Humphrey visual field pattern standard deviation, heart disease, and thinner central corneal measurement.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Adolescent and adult OPG-/- mice exhibit a decrease in total bone density characterized by severe trabecular and cortical bone porosity, marked thinning of the parietal bones of the skull, and a high incidence of fractures.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The adult skeleton regenerates by temporary cellular structures that comprise teams of juxtaposed osteoclasts and osteoblasts and replace periodically old bone with new.A considerable body of evidence accumulated during the last decade has shown that the rate of genesis of these two highly specialized cell types, as well as the prevalence of their apoptosis, is essential for the maintenance of bone homeostasis; and that common metabolic bone disorders such as osteoporosis result largely from a derangement in the birth or death of these cells.",
+   "label": "background",
+   "note": "two sentences glued (\"new.A considerable\")"
+  },
+  {
+   "text": "Interestingly, a number of studies have reported that ginsenosides and their metabolites/derivatives-including ginsenoside (G)-Rb1, compound K, G-Rb2, G-Rd, G-Re, G-Rg1, G-Rg3, G-Rg5, G-Rh1, G-Rh2, and G-Rp1-exert anti-inflammatory activities in inflammatory responses by suppressing the production of proinflammatory cytokines and regulating the activities of inflammatory signaling pathways, such as nuclear factor-κB and activator protein-1.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The expression of miR-27a and SFRP1 in osteosarcoma tissues and cells was detected, followed by identification of their relations.",
+   "label": "non-claim",
+   "note": "methods: detected, followed by identification"
+  },
+  {
+   "text": "Although many factors lead to fibrosis and cancer, pathophysiological analysis has demonstrated that tissue fibrosis and cancer share a common process of epithelial-mesenchymal transition (EMT).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "With high genetic heritability (79%), finding the disease's causal genes is a crucial step in finding a treatment for AD.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The information in Hypertension in Pregnancy should not be viewed as a body of rigid rules.",
+   "label": "non-claim",
+   "note": "statement about the document"
+  },
+  {
+   "text": "miR-130a-5p diminished the growth and EMT of NSCLC cells by regulating the RUNX2/STK32A/NF-κB p65 axis, offering possible targets for the treatment for NSCLC.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Osteoporosis (OP) is a bone metabolic disease, is characterized by degeneration of bone structure and decreased bone mass.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The down-regulation of miR-27a-3p in MCF-7/ADR enhanced the sensitivity of cancer cells to adriamycin treatment, decreased multidrug resistance gene 1/P-glycoprotein (MDR1/P-gp) expression, enhanced the apoptosis-related proteins expression, increased adriamycin-induced apoptosis, and inhibited cell proliferation as compared to NC groups ( P < 0.05).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In vitro culture of human adipose-derived mesenchymal stem cells (HASCs) on the MCNTs and nHA demonstrated that although there was no significant difference in the cell adhesion amount between on the MCNTs and nHA, the cell attachment strength and proliferation on the MCNTs were better.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The results showed that emodin (50-100 μmol/L) could significantly inhibit the proliferation of MCF-7 cells in a time and dose-dependent manner.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The expression of DAMPs is often constitutive in tumor cells, but it is the initiating stressor, called ICD-inducer, which finally triggers the intracellular response that determines the kinetics and intensity of their release.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The miR-20a, miR-30a, miR-210, and miR-874 exhibited higher overexpression in H. pylori-infected GC patients than healthy persons (P=0.004, 0.033, 0.023, 0.024).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Key genes for lipid A biosynthesis have unexpectedly also been found in higher plants, indicating that eukaryotic lipid A-like molecules may exist.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Patients with advanced biliary tract cancer have a poor prognosis, and first-line standard of care (gemcitabine plus cisplatin) has remained unchanged for more than 10 years.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The fibroblasts in the keloid were under a cellular hyper-m6A-methylated condition, and the hyper-m6A-modified highly expressed Wnt/β-catenin pathway in the dermal fibroblasts might promote the pathogenesis of keloid.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "PTEN is a tumor-suppressor operator in cancer that inhibits PI3K/Akt/mTOR axis in diminishing growth, metastasis and drug resistance.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Previous data showed that the abundance of Akkermansia muciniphila (Am) was lower in patients with PE than in normotensive pregnant women.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Studies have demonstrated that inhibiting M1-type macrophage polarization or promoting M2-type polarization can effectively combat chronic liver diseases such as alcoholic liver disease, non-alcoholic fatty liver disease, and liver fibrosis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The epithelial-to-mesenchymal transition (EMT) is a trans-differentiation process that endows epithelial cells with mesenchymal properties, including motility and invasion capacity; therefore, its aberrant reactivation in cancerous cells represents a critical step to gain a metastatic phenotype.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Metabolic reprogramming, one of the important signs of malignant tumours, provides necessary nutrition for tumorigenesis and cancer development; thus, it has recently become a research hot spot, even though the metabolic mechanism is quite intricate.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Evidence suggests that inhibitors of the RAAS, which are conventionally used to treat cardiovascular diseases, may be beneficial in cancer therapies.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In addition, it is confirmed that gastrodin can protect the function of lung and other organs, enhance antiviral activity via upregulating the type I interferon (IFN-I), and inhibit angiotensin II (AngII), a key factor in \"cytokine storm\" caused by COVID-19.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Their deregulation is associated with aberrant expression, gene mutations and/or epigenetic alterations that can be related to the pathogenesis of various human diseases, and especially in cancer.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "GAS has significant anti-inflammatory, antioxidant, neuroprotective, vascular protective, blood sugar lowering, lipid-regulating, analgesic, anticancer, and antiviral effects.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "These features indicate strong biomarker and therapeutic potential and have generated broad interest, as evidenced by the steady year-on-year increase in the numbers of scientific publications about EVs.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Cervical cancer (CC) is the second most common malignancy in women, and identifying biomarkers of CC is crucial for prognosis prediction.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In contrast, ACE inhibitors reduce neutrophil killing of bacteria in mice and humans.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "GAS5 showed low expression in glioma cells and tissues, and up-regulation of GAS5 could depress the invasion, proliferation, and metastasis of glioma.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Although all three materials demonstrate good biocompatibility and osseointegration properties, the biomimetic porous Ti6Al4V, with its excellent mechanical properties and a structure closely resembling bone trabecular tissue, exhibited superior bone ingrowth and osseointegration performance.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The cell proliferation, apoptosis, and inflammatory factors were assessed using cell counting kit-8 (CCK-8), flow cytometry, and enzyme-linked immunosorbent assay (ELISA). miR-629-5p target genes were identified in the database and validated using the dual-luciferase report assay.",
+   "label": "non-claim",
+   "note": "methods: assays used"
+  },
+  {
+   "text": "MMP23B protein levels in the intestinal tissue of STZ-induced diabetic mice were significantly higher than those in the intestinal tissue of control mice, with the DEX group displaying decreased MMP23B levels.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Protein kinase C (PKC), an intermediate of the non-canonical Wnt pathway stimulated by phorbol myristate acetate (PMA), possibly prevents NP cell senescence, although not yet demonstrated in human-based studies.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In vitro experiments demonstrated that the survival rate of R28 cells after glutamate treatment dropped to 33.4%, while 10 μM baicalin significantly inhibited glutamate-induced damage in RGCs ( P < 0.001) and enhanced cell viability through decreasing ROS levels, increasing antioxidant enzyme activity, and suppressing the expression of inflammatory factors iNOS, TNF-α, IL-6, and IL-1β ( P < 0.001).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "However, the receptor activator of the nuclear factor B ligand (RANKL) primarily stimulates mature osteoclasts to resorb bone, and its upregulation leads to osteoporosis in patients.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Cancer remains the second leading cause of death worldwide.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Nicotinamide N-methyltransferase (NNMT), a metabolic enzyme central to NAD+ and methionine cycles, has emerged as a critical regulator of tumorigenesis across cancers.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "This review systematically synthesizes current evidence on NNMT’s dual role in HCC: (1) driving NAD+ depletion and homocysteine (Hcy) accumulation via metabolic dysregulation, (2) promoting malignant phenotypes (proliferation, invasion, metastasis, and drug resistance), and (3) serving as a prognostic biomarker and therapeutic target.",
+   "label": "non-claim",
+   "note": "describes the review (\"synthesizes\")"
+  },
+  {
+   "text": "The HCC TME comprises a complex network of cellular components, including cancer-associated fibroblasts, tumor-associated macrophages, and infiltrating immune cells, alongside non-cellular factors such as extracellular matrix proteins, cytokines, and angiogenic mediators.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Current vector control strategies rely heavily on insecticides, which face challenges due to increased resistance.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Our findings highlight that macrophages engulf apoptotic tumor cells, thereby impairing immune responses and promoting tumor progression.",
+   "label": "finding",
+   "note": null
+  }
+ ]
+}

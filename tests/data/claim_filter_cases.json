@@ -1,0 +1,1275 @@
+{
+ "about": "Hand-labelled science claim candidates (model reviewer): finding | background | non-claim | source-error. 50 from the original extractor, 50 after the first filter pass, 50 held-out (seed 11), 50 held-out (seed 23).",
+ "cases": [
+  {
+   "text": "Several single-base substitution mutations have been introduced into the lacZ alpha gene in cloning vector M13mp2, at 40-60% efficiency, in a rapid procedure requiring only transfection of the unfractionated products of standard in vitro mutagenesis reactions.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Here, we investigated the kinase involved and show that the Tau-specific kinase, glycogen synthase kinase 3beta (GSK-3beta), is robustly activated in various MPP(+)/MPTP models of Parkinsonism (SH-SY5Y cotransfected cells, mesencephalic neurons, transgenic mice overexpressing alpha-Syn, and postmortem striatum of PD patients).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "These transcription factors primarily regulate genes involved in lipid metabolism and also play a role in adipocyte differentiation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Census, the Centers for Disease Control, the Health Care Financing Administration, and the American Hospital Association.",
+   "label": "non-claim",
+   "note": "list of data sources, not a claim"
+  },
+  {
+   "text": "PARKINSONISM, described in its entirety over one hundred and fifty years ago,' rarely presents itself as a diagnostic problem.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "METHODS: Twenty-four variables were identified as important factors in a disease activity index.",
+   "label": "non-claim",
+   "note": "methods statement"
+  },
+  {
+   "text": "BACKGROUND: Although many studies have found an association between Helicobacter pylori infection and the development of gastric cancer, many aspects of this relation remain uncertain.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Knaus, William A.",
+   "label": "non-claim",
+   "note": "author name"
+  },
+  {
+   "text": "The \"catecholamine hypothesis of affective disorders\" proposes that some, if not all, depressions are associated with an absolute or relative decrease in catecholamines, particularly norepinephrine, available at central adrenergic receptor sites.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Although there are certainly multiple components to clinical ischemic and reperfusion injury, it appears likely that free-radical production may make a major contribution at certain stages in the progression of the injury.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Activation of the TLRs leads not only to the induction of inflammatory responses but also to the development of antigen-specific adaptive immunity.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In addition, the rate of tumor control among patients in the cisplatin-gemcitabine group was significantly increased (81.4% vs.",
+   "label": "finding",
+   "note": "sentence cut at \"vs.\""
+  },
+  {
+   "text": "Purified exosomes were enriched in ceramide, and the release of exosomes was reduced after the inhibition of neutral sphingomyelinases.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "RNA regulatory networks may determine most of our complex characteristics, play a significant role in disease and constitute an unexplored world of genetic variation both within and between species.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Osteoprotegerin (OPG) is a secreted protein that inhibits osteoclast formation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "This review focuses on recent progress in our understanding of how mast cells can contribute to the initiation, development, expression, and regulation of acquired immune responses, both those associated with IgE and those that are apparently expressed independently of this class of Ig.",
+   "label": "non-claim",
+   "note": "aim of the review"
+  },
+  {
+   "text": "Tissue injury induced by a diverse group of xenobiotics appears to involve both direct and indirect damage to target cells.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Myocardial ischemia has, for many decades, been viewed as an all-or-none process that causes myocardial necrosis when prolonged and severe, but whose effects are transient when it is brief or mild.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "6-OHDA significantly inhibited phosphorylation of GSK3beta at Ser9, whereas it induced hyperphosphorylation of Tyr216 with little effect on GSK3beta expression in SH-SY5Y cells and PC12 cells (a rat dopamine cell line), as well as CGNs.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "A novel human zinc metalloprotease that has considerable homology to human angiotensin-converting enzyme (ACE) (40% identity and 61% similarity) has been identified.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Cases are diagnosed on the grounds of both structural and functional evidence of glaucomatous optic neuropathy.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The present study shows that pre-exposure to chronic stress enhanced lung colonization efficiency by circulating tumor cells, suggesting that chronic stress critically influences pre-metastatic lungs before the arrival of disseminated tumor cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "These factors may induce acute and/or chronic inflammatory responses in the heart, pancreas, liver, kidney, lung, brain, intestinal tract and reproductive system, potentially leading to tissue damage or disease.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In most cases, miRNAs interact with the 3' untranslated region (3' UTR) of target mRNAs to induce mRNA degradation and translational repression.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Brain-derived neurotrophic factor (BDNF) promotes neuroprotection and neuroregeneration.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "RESULTS: miR-130a-5p was diminished in NSCLC tissues and cells versus their counterparts. miR-130a-5p exerted its repressive role in NSCLC by curtailing cell viability, migration, invasion as well as EMT, while facilitating apoptosis. miR-130a-5p directly targeted RUNX2, a transcription factor, and conversely regulated its expression.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In addition, inhibiting infiltrating immune cells or reactivating the immune system along with modulating the CXCL12/CXCR4/ACKR3 axis in the TME has therapeutic promise.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Melatonin, an indoleamine hormone produced and secreted at night by pinealocytes and extra-pineal cells, plays an important role in timing circadian rhythms (24-h internal clock) and regulating the sleep/wake cycle in humans.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Methods: The mice model of depression was induced by chronic unpredictable mild stress (CUMS) for 6 weeks.",
+   "label": "non-claim",
+   "note": "methods statement"
+  },
+  {
+   "text": "To understand the role of this receptor, the drug JNJ7777120 was used to reveal the chronic depression-glutamate relationship.",
+   "label": "non-claim",
+   "note": "aim/method"
+  },
+  {
+   "text": "MAIN RESULTS AND THE ROLE OF CHANCE: This guideline aims to help clinicians to apply best care for women with endometriosis.",
+   "label": "non-claim",
+   "note": "aim, under a mislabeled section header"
+  },
+  {
+   "text": "The purpose of this investigation was to identify whether they have a prognostic signature.",
+   "label": "non-claim",
+   "note": "aim of the study"
+  },
+  {
+   "text": "MiR27-a promotes the proliferation of colon cancer cells by stimulating the Wnt/β-catenin pathway.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Abstract TNF-α mediates both protective and detrimental manifestations of the host immune response.",
+   "label": "background",
+   "note": "\"Abstract\" artifact prefix"
+  },
+  {
+   "text": "Recent studies have increasingly demonstrated that circRNAs act as novel diagnostic biomarkers and promising therapeutic targets for numerous cancer types by interacting with other non-coding RNAs such as microRNAs (miRNAs).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Runt-related transcription factor 2 (RUNX2) is critical for the modulation of chondrocyte osteoblast differentiation and hypertrophy.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "It has been proven that a Klotho deficit may contribute to the development of various nervous system pathologies, such as behavioral disorders or neurodegeneration.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Research on the toxicity and pharmacokinetics of emodin can promote its clinical application.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Fat-soluble vitamins exert their therapeutic effects through multiple pathways, including regulation of matrix metalloproteinases' (MMPs) expression and enzymatic activity.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Accumulating evidence suggests that long noncoding RNAs (lncRNAs) have been linked to the cellular processes of myocardial I/R injury.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "One important protein in Aedes aegypti (Ae. aegypti) salivary glands is the D7 protein, which is known to inhibit platelet aggregation by binding to leukotriene A4 molecules upon blood-feeding.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Background: Epigenetic dysregulation has been implicated in the development and progression of a variety of human diseases, but epigenetic changes are reversible, and epigenetic enzymes and regulatory proteins can be targeted using small molecules.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The study hypothesized that NNMT knockdown would enhance drug sensitivity by modifying autophagic processes, providing a potential new therapeutic target for overcoming chemoresistance in lung cancer.",
+   "label": "non-claim",
+   "note": "hypothesis/aim"
+  },
+  {
+   "text": "Compared to the PEEK and 3D-printed Ti6Al4V Cages, the biomimetic porous Ti6Al4V Cage outperforms in terms of intervertebral fusion performance, achieving excellent intervertebral fusion without the need for bone grafting, thereby enhancing cervical vertebra stability.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Nanoparticles have the capability to effectively transport medications or gene fragments to tumor tissues via passive or active targeting processes, thus enhancing treatment outcomes while minimizing harm to healthy tissues.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Recent studies have revealed various mechanisms by which SARS-CoV-2 can influence oncogenic pathways, potentially promoting cancer development.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Although myelin can be regenerated spontaneously following injury, this process is often inadequate, potentially resulting in neurodegeneration and exacerbating neurological dysfunction.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "A hallmark of solid tumors, hypoxia drives significant metabolic adaptations in cancer cells, primarily mediated by hypoxia-inducible factor-1α (HIF-1α), a key transcription factor activated in low-oxygen conditions.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "While miR-106a-5p has been linked to inflammatory and metabolic regulation, its role in DR remains poorly characterized.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Our findings highlight that macrophages engulf apoptotic tumor cells, thereby impairing immune responses and promoting tumor progression.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Two simple additional treatments of the DNA, before transfection, produce a site-specific mutation frequency approaching 100%.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Our results suggest new potential directions to investigate the functions of the different PPAR subtypes.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "We found that the formation of autonomic nerve fibers in the prostate gland regulates prostate cancer development and dissemination in mouse models.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "These results highlight a new era in which genomic manipulation is no longer a bottleneck to experiments, paving the way toward fundamental discoveries in biology, with applications in all branches of biotechnology, as well as strategies for human therapeutics.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Although many studies have found an association between Helicobacter pylori infection and the development of gastric cancer, many aspects of this relation remain uncertain.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Fibroblasts from both bone marrow and spleen cultures are inducible to osteogenesis in diffusion chambers in the presence of transitional epithelium.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The \"catecholamine hypothesis of affective disorders\" proposes that some, if not all, depressions are associated with an absolute or relative decrease in catecholamines, particularly norepinephrine, available at central adrenergic receptor sites.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The rate of deposition of novel microRNAs and the number of researchers involved in their discovery continue to increase, driven largely by small RNA deep sequencing experiments.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In 115 of the 130 patients with SLE (88 percent), at least one SLE autoantibody tested was present before the diagnosis (up to 9.4 years earlier; mean, 3.3 years).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The TLR-induced inflammatory response is dependent on a common signaling pathway that is mediated by the adaptor molecule MyD88.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "TNF-alpha mediates both protective and detrimental manifestations of the host immune response.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In this study, we developed starBase v2.0 (http://starbase.sysu.edu.cn/) to systematically identify the RNA-RNA and protein-RNA interaction networks from 108 CLIP-Seq (PAR-CLIP, HITS-CLIP, iCLIP, CLASH) data sets generated by 37 independent studies.",
+   "label": "non-claim",
+   "note": "describes what the study did"
+  },
+  {
+   "text": "Although it has been generally assumed that most genetic information is transacted by proteins, recent evidence suggests that the majority of the genomes of mammals and other complex organisms is in fact transcribed into ncRNAs, many of which are alternatively spliced and/or processed into smaller products.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The codominant Lpsd allele of C3H/HeJ mice was shown to correspond to a missense mutation in the third exon of the Toll-like receptor-4 gene (Tlr4), predicted to replace proline with histidine at position 712 of the polypeptide chain.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "STI 571 (formerly known as CGP 57148B) is a known inhibitor of the c-abl, bcr-abl, and platelet-derived growth-factor receptor (PDGFR) tyrosine kinases.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Peroxisome proliferator-activated receptors (PPARs) alpha and gamma are key regulators of lipid homeostasis and are activated by a structurally diverse group of compounds including fatty acids, eicosanoids, and hypolipidemic drugs such as fibrates and thiazolidinediones.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "When compared with the 1971 criteria, the 1982 revised criteria showed gains in sensitivity and specificity.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The Early Manifest Glaucoma Trial is the first adequately powered randomized trial with an untreated control arm to evaluate the effects of IOP reduction in patients with open-angle glaucoma who have elevated and normal IOP.",
+   "label": "non-claim",
+   "note": "describes the trial design"
+  },
+  {
+   "text": "RESULT(S): There was a delay of 6.7 years, principally in primary care, between onset of symptoms and a surgical diagnosis of endometriosis, which was longer in centers where women received predominantly state-funded health care (8.3 vs. 5.5 years).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Previously, we have isolated and characterized an enhancer from the 5'-flanking region of the adipocyte P2 (aP2) gene that directs high-level adipocyte-specific gene expression in both cultured cells and transgenic mice.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "PROCESS: A task force (n = 19) with expertise in sepsis pathobiology, clinical trials, and epidemiology was convened by the Society of Critical Care Medicine and the European Society of Intensive Care Medicine.",
+   "label": "non-claim",
+   "note": "process description under a PROCESS: label"
+  },
+  {
+   "text": "We identified 28 552 citations and of these included 522 trials comprising 116 477 participants.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Larotrectinib had marked and durable antitumor activity in patients with TRK fusion-positive cancer, regardless of the age of the patient or of the tumor type.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Research has documented the essential role of Ash1l in stem cell fate decision such as hematopoietic stem cells and the progenitors of keratinocytes.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The target association of miR-223-3p-hsa_circ_0003159 and miR-223-3p-NDRG1 was explored by dual-luciferase reporter assay.",
+   "label": "non-claim",
+   "note": "methods: explored by assay"
+  },
+  {
+   "text": "Among the 149 patients, 99 (66.4%) had only one recurrence pattern, and 50 (33.6%) had multiple recurrence patterns.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In this study, we report downregulation of LINC01089 in non-small cell lung cancer (NSCLC) samples, relative to adjacent non-tumor tissues, and demonstrate its role in inhibition of proliferation, migration, and epithelial-mesenchymal transition (EMT) of NSCLC cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Eight herbs of Xiaoyaosan had 133 active ingredients which could regulate the 43 ferroptosis-related genes in depression.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In our experiment, it has been shown that blocking the H4 receptor leads to increased neuron cell viability and improvement in behavioral ability due to glutamate.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "SUMMARY ANSWER: The current guideline provides 109 recommendations on diagnosis, treatments for pain and infertility, management of disease recurrence, asymptomatic or extrapelvic disease, endometriosis in adolescents and postmenopausal women, prevention and the association with cancer.",
+   "label": "non-claim",
+   "note": "describes the guideline document"
+  },
+  {
+   "text": "In addition, the absence of circFTO could reduce ARPE-19 cells injury caused by HG by inhibiting oxidative stress and inflammation.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "B cells orchestrate autoimmune responses in patients with systemic lupus erythematosus (SLE), but broad-based B cell-directed therapies show only modest efficacy while blunting humoral immune responses to vaccines and inducing immunosuppression.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The level of hsa_circ_0020792 was remarkably increased in keloid patient-Exo and keloid fibroblasts compared with that in Healthy control-Exo and NFs, respectively.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Regulated cell death (RCD) contributes to reshaping the tumor immune microenvironment and participating in the progression of non-small cell lung cancer (NSCLC); however, related mechanisms have not been fully disclosed.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Breast cancer is the most common malignancy and ranks second among the causes of tumor-associated death in females.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In the mouse cardiac ischemia/reperfusion model, DEX pretreatment lowered the serum creatine kinase-MB isoenzyme (CK-MB) levels (2.47 ± 0.165 vs 1.55 ± 0.183; P < .0001), downregulated the inflammatory response ( P ≤ .0303), decreased 4-hydroxynonenal (4-HNE) production and cell apoptosis ( P = .0074), and promoted the phosphorylation of STAT3 (4.94 ± 0.690 vs 6.68 ± 0.710, P = .0001), which could be blunted by Yohimbine and Stattic.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Combination of RANKL and MC4exo increased osteoclast differentiation of BMMΦ in comparison to RANKL alone as analysed by TRAP staining.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Therefore, regulating oxidative stress pathways can not only intervene in CAG development but also prevent the occurrence and metastasis of GC and improve the prognosis of GC patients.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Growing evidence suggests that dysregulation and activation of non-coding RNAs are closely associated with tumor angiogenesis, a process essential for tumor growth and metastasis and a major contributor to cancer-related mortality.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Cervical cancer (CC) is the second most common malignancy in women, and identifying biomarkers of CC is crucial for prognosis prediction.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Proton-linked transportation of monocarboxylates can be promoted by the transporters MCT1, which the SLC16A1 gene family encodes.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Although all three materials demonstrate good biocompatibility and osseointegration properties, the biomimetic porous Ti6Al4V, with its excellent mechanical properties and a structure closely resembling bone trabecular tissue, exhibited superior bone ingrowth and osseointegration performance.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In this review, we describe common methods associated with gene methylation, including bisulfite sequencing PCR (BSP), pyrosequencing technology (PYR), methylation-specific polymerase chain reaction (MS-PCR/MSP), methylation-sensitive high-resolution melting (MS-HRM), methylation sensitive single nucleotide primer extension (MS-SnuPE), Epityper, Droplet digital PCR (ddPCR), methylation-sensitive restriction enzyme (MSRE) analysis, COBRA and PacBio SMRT sequencing.",
+   "label": "non-claim",
+   "note": "describes the review"
+  },
+  {
+   "text": "Our results suggest that the innate immune molecule NLRC5-mediated anti-inflammation participates in ERβ-mediated endometriosis development, and partly clarifies the pathological mechanism of endometriosis, expanding our knowledge of the specific molecules related to the inflammatory response involved in endometriosis and potentially providing a new therapeutic target for endometriosis.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In this study, we found that the decreased miR-181a-5p expression triggered by MF treatment plays a critical role in recovering the osteogenic ability of aging hBMSCs (derived from elderly individuals).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Among individuals of European ancestry, the IVW method results revealed a positive causal association between the gene expression of tumor necrosis factor ligand superfamily member 14 (TNFSF14), and TNF-related activation-induced cytokine (TRANCE) with DN.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Circular RNAs (circRNAs), constituting a novel class of endogenous non-coding RNAs generated through the reverse splicing of mRNA precursors, possess the capacity to regulate gene transcription and translation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Gene Ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG) and Protein-protein interaction (PPI) network analyses were applied to identify hub genes, with the expressions confirmed by dual immunofluorescence in 50 OS samples.",
+   "label": "non-claim",
+   "note": "methods"
+  },
+  {
+   "text": "Head and neck squamous cell carcinoma (HNSCC) is a prevalent malignant tumor globally, shows an unfavorable prognosis and has a five - year survival rate lower than 50%.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Focusing on angiogenesis as a central theme, this review systematically summarizes the mechanisms by which key molecules, including LOXL2, Sema3A, integrin αVβ3, ANGPT2, IL-6, TGF-β, the ACE D/D polymorphism, and YAP, mediate the coupling of angiogenesis and osteogenesis in OPLL.",
+   "label": "non-claim",
+   "note": "describes the review"
+  },
+  {
+   "text": "Exosomes are small membrane vesicles found in cell culture supernatants and in different biological fluids.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "More interestingly, insulin has been also faced as the potential missing link between diabetes and aging in CNS, with Alzheimer's disease (AD) considered as the \"brain-type diabetes.\" In fact, brain insulin has been shown to regulate both peripheral and central glucose metabolism, neurotransmission, learning, and memory and to be neuroprotective.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "PPARs, carcinogenesis, and control of the cell cycle IV.",
+   "label": "non-claim",
+   "note": "heading fragment ending in a roman numeral"
+  },
+  {
+   "text": "More recently, based on findings from translational research, lithium has also been regarded as a neuroprotective agent and a candidate drug for disease-modification in certain neurodegenerative disorders, namely, Alzheimer's disease (AD), amyotrophic lateral sclerosis (ALS), and, more recently, Parkinson's disease (PD).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "MyD88 is an essential signal transducer for TLRs in response to the microflora.",
+   "label": "source-error",
+   "note": "OpenAlex abstract belongs to a different paper (title is about Bonferroni adjustments)"
+  },
+  {
+   "text": "We show here that in a subset of these systems, the mature crRNA that is base-paired to trans-activating crRNA (tracrRNA) forms a two-RNA structure that directs the CRISPR-associated protein Cas9 to introduce double-stranded (ds) breaks in target DNA.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Anti-double-stranded DNA antibodies, with a mean onset 2.2 years before the diagnosis, were found later than antinuclear antibodies (P=0.06) and earlier than anti-nuclear ribonucleoprotein antibodies (P=0.005).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "As compared with gemcitabine alone, cisplatin plus gemcitabine was associated with a significant survival advantage without the addition of substantial toxicity.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "A numerical score and percent rating is calculated to allow for comparison of results.",
+   "label": "non-claim",
+   "note": "describes a scoring method"
+  },
+  {
+   "text": "During the course of the study, the mean +/- SD reduction in IOP in the medication group was 22.5% +/- 9.9%.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The MDS-UPDRS showed high internal consistency (Cronbach's alpha = 0.79-0.93 across parts) and correlated with the original UPDRS (rho = 0.96).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "However, pain symptoms suggestive of the disease can be treated without a definitive diagnosis using a therapeutic trial of a hormonal drug to reduce menstrual flow.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In contrast, the contributions of the mast cell to pathologic conditions come to mind much more readily than any role it may have in the maintenance of health.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The results demonstrated that emodin evidently inhibited HepaRG cell growth in a dose‑ and time‑dependent manner by blocking cell cycle progression in the S and G2/M phase and by inducing apoptosis.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Proinflammatory actions, which are well documented by many studies in isolated cells or leukocyte-derived cell lines, can be assumed to enhance the resistance against pathogens.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "An important point to consider is that ascribing a specific function to EVs in general, or to subtypes of EVs, requires reporting of specific information beyond mere description of function in a crude, potentially contaminated, and heterogeneous preparation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Melatonin is a ubiquitous hormone found in various organisms and highly affects the function of immune cells.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Following the International Genomics of Alzheimer's Project (IGAP), many disease-associated genes have been identified; however, we do not have enough knowledge about how those disease-associated genes affect gene expression and disease-related pathways.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Pharmacokinetic studies have demonstrated that emodin has poor oral bioavailability in rats because of its extensive glucuronidation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Recent studies have demonstrated that histone modification may occur in the human brain in response to severely stressful events, resulting in transcriptional changes and the development of MDD.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In vitro biological tests revealed that SWCNT-COOH-CDDP had a high cytotoxic effect, as shown by a time-dependent decrease in cell viability and the presence of a significant number of dead cells in MDA-MB-231 cultures at higher doses.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Hormonal therapy controls symptoms in some women; others require surgery, which may not be effective.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The nerve-cancer cell interaction brings about specific changes in the perineural niche, which not only affects the regular nerve functions, but also enhances the migratory, invasive, and adherent properties of the tumor cells.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The sensitivity of CSCs isolated from HCT116 cells to radiotherapy was reduced compared with the parental cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Over the last few decades, our understanding of the molecular mechanisms underlying tumor angiogenesis has advanced at a significant pace and the clinical translation of these mechanisms has benefited millions of patients.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Recently, several publications also indicated that circRNAs contribute to keloid development.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "TNF-α mediates both protective and detrimental manifestations of the host immune response.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "MiRNAs manage the gene expression in osteogenic differentiation by regulating multiple signalling cascades and essential transcription factors, including the transforming growth factor-beta (TGF-β)/bone morphogenic protein (BMP), Wingless/Int-1(Wnt)/β-catenin, Notch, and Hedgehog signalling pathways; the Runt-related transcription factor 2 (RUNX2); and osterix (Osx).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Here, in this study, decreased abundance of Am was observed in a PE mouse model.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Increasing evidence indicates that immune response underlies the pathology of type 2 diabetes (T2D).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Hematoxylin and eosin and/or periodic acid-Schiff staining revealed that NAS ameliorated the pathological damage in liver and kidney tissues of CLP-induced mice.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Recent studies have shown that miR-135b is a key regulatory factor in cardio-cerebrovascular diseases.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "NNMT catalyzes the methylation of nicotinamide (NAM) using S-adenosyl-methionine (SAM) as the donor methyl group, resulting in the formation of S-adenosyl-l-homocysteine (SAH) and methylnicotinamide (MNAM).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Advances in sequencing technology have revealed that in addition to genetic susceptibility, various epigenetic mechanisms including DNA methylation and histone modification play critical roles in disease development.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Dexpanthenol reduced corneal neovascularization, and the difference was significant compared with the no-treatment and sham groups ( P < 0.05).",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Carotenoids demonstrate a variety of health benefits, including the prevention of age-related macular degeneration, cancer, cognitive decline, metabolic disorders, and skin aging.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Osteoporosis is a systemic metabolic bone disease characterized by decreased bone mass, microstructural deterioration, and increased fracture risk.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The crucial role of extracellular vesicles (EVs) in the occurrence and development of osteoporosis has garnered attention, with vesicle-based treatments showing significant promise.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "5-FU caused a decrease in body weight and food intake, and an increase in diarrhea scores in rats.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Cancer remains the second leading cause of death worldwide.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Result CD8 + T cells, activated memory CD4 + T cells and plasma cells were positively correlated with the prognosis of OS.",
+   "label": "finding",
+   "note": "bare \"Result\" label"
+  },
+  {
+   "text": "Inflammatory cell infiltration of the lung was seen histologically in the Nx group, suggesting the existence of microaspiration.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Hb CS is characterized by complex molecular mechanisms and a broad clinical spectrum.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Previous studies have demonstrated that Nicotinamide N-methyltransferase (NNMT) plays a crucial role in cancer metastasis and apoptosis resistance.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Acting predominantly as competing endogenous RNAs (ceRNAs), circRNAs sequester tumor-suppressor microRNAs, thereby upregulating glycolytic enzymes, transporters, and key metabolic regulators.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "\"Pathology and Genetics of Tumours of Soft Tissue and Bone\" is the fifth volume in the new WHO series on histological and genetic typing of human tumours.",
+   "label": "non-claim",
+   "note": "describes a book volume"
+  },
+  {
+   "text": "Renin activity increased with Na restriction, was significantly higher on upright activity during both normal and restricted Na intake, and was most markedly elevated following the diuretic.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Among 548 employed respondents, 15% reported time lost from paid work and 45% reported reduced work productivity.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Available evidence suggests that sex-specific, hormone-based therapeutic agents hold particular promise for developing treatments with optimal efficacy in men and women.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "As a metabolic disorder depression has been associated with obesity, diabetes, insulin sensitivity, neuropeptide Y, glucose regulation, poor glycemic control, glucagone-like peptide-1, cholezystokinin, ghrelin, leptin, the endocannabinoid system, insulin-like growth factor and gastrin-releasing peptide.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "MyD88−/− CD4+ T cells showed decreased proliferation compared with WT CD4+ T cells both in vivo and in vitro.",
+   "label": "source-error",
+   "note": "OpenAlex abstract belongs to a different paper (title is about Bonferroni adjustments)"
+  },
+  {
+   "text": "Irreversible ischemic myocardial cell injury developes in an increasing number of cells as the duration of coronary occlusion is prolonged.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Gastric cancers developed in 36 (2.9 percent) of the infected and none of the uninfected patients.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The need for a standardized system of end result reporting of various surgical alternatives after limb salvaging and ablative procedures for musculoskeletal tumors was clearly recognized during the first International Symposium on Limb Salvage (ISOLS) in 1981.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The high affinity receptor for immunoglobulin E (designated Fc epsilon RI) is the member of the antigen (Ag) receptor superfamily responsible for linking pathogen-or allergen-specific IgEs with cellular immunologic effector functions.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "It was found by chromatography and passive transfer of serum from immunized rabbits that the antibody responsible for the LDHR was of IgE type.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Electron microscopic study of this poorly perfused tissue revealed severe capillary damage; endothelial cells with large intraluminal protrusions and decreased pinocytic vesicles were common.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "While several studies have demonstrated compelling biological and disease roles for individual examples, analytical and experimental approaches to investigate these genes have been hampered by the lack of comprehensive lncRNA annotation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "For over 50 years immunologists have based their thoughts, experiments, and clinical treatments on the idea that the immune system functions by making a distinction between self and nonself.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Ginseng is one of the most widely used herbal medicines and is reported to have a wide range of therapeutic and pharmacological applications.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Here we report that N 6 -methyladenosine (m 6 A), the most abundant base modification of RNA, promotes efficient initiation of protein translation from circRNAs in human cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Alterations in lncRNA expression and their mutations promote tumorigenesis and metastasis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Like CRISPR-Cas9, Cas12a can be used as a powerful genome editing tool based on its ability to induce genetic changes in cells at sites of double-stranded DNA (dsDNA) cuts.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "We searched Cochrane Central Register of Controlled Trials, CINAHL, Embase, LILACS database, MEDLINE, MEDLINE In-Process, PsycINFO, the websites of regulatory agencies, and international registers for published and unpublished, double-blind, randomised controlled trials from their inception to Jan 8, 2016.",
+   "label": "non-claim",
+   "note": "methods: database search list"
+  },
+  {
+   "text": "The study concluded that inhibition of NF-κB pathway induced cell apoptosis and suppressed proliferation and angiogenesis of RA-HFLS, which could serve as a novel target in the treatment of RA.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Because drug resistance has been widely reported in fibrotic tissue and cancer, developing a strategy to discover novel targets for targeted drug intervention is necessary for the effective treatment of fibrosis and cancer.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "These new classification criteria were developed using rigorous methodology with multidisciplinary and international input, and have excellent sensitivity and specificity.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Ginseng could be a valuable resource for future drug development; however, further higher quality evidence is required.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Furthermore, virtual screening studies indicated that emodin was a potent aryl hydrocarbon receptor (AhR) agonist in chemotherapy for breast cancer.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The results indicate that the HB CS mutant gene is effectively repaired by the CRISPR/Cas9 (D10A)system, which may enable truly personalized therapy for precise repair of α-thalassemia.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "In this study, we found that ZEB2 was significantly overexpressed in cervical cancer.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The author reviews environmental, genetic, epigenetic, and hormonal factors in systemic lupus erythematosus, its diverse organ manifestations, and the myriad immune abnormalities that characterize this autodestructive disease, which mainly affects women of childbearing age.",
+   "label": "non-claim",
+   "note": "describes the review"
+  },
+  {
+   "text": "This relationship was also found for many common diseases.When APACHE II scores are combined with an accurate description of disease, they can prognostically stratify acutely ill patients and assist investigators comparing the success of new or differing forms of therapy.",
+   "label": "finding",
+   "note": "two sentences glued together (\"diseases.When\")"
+  },
+  {
+   "text": "Consequently, the genetically unstable cells contribute to intratumoral genetic heterogeneity and phenotypic diversity of cancer.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "DEX pretreatment protects against myocardial IRI, presumably by promoting STAT3 phosphorylation via the α2-adrenoreceptor in vivo and in vitro.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "The emergence of immunotherapy has transformed the paradigm of treatment, focusing therapeutic strategies on the potential of immune checkpoint inhibitors.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Recent studies have shown that, compared to commonly used diabetes drugs, gastrodin has antidiabetic effects in multiple ways, with characteristics of low cost, high safety, less side effects, protection of β-cell function, relieving insulin resistance and alleviating multiple complications.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Modern research shows that it has a variety of pharmacological effects, including promoting lipid and glucose metabolism, osteogenesis, and anti-inflammatory and anti-autophagy effects.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Numerous studies have demonstrated the significant preventive and therapeutic effects of Rg3 on various liver diseases such as viral hepatitis, acute liver injury, nonalcoholic liver diseases (NAFLD), liver fibrosis and hepatocellular carcinoma (HCC).",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "ONFH has a very high disability rate, which is associated with a heavy burden to patients, families, and society.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "EVs can convey information through the cargo they carry and have been demonstrated to be a crucial medium for intercellular communication, playing a significant role in maintaining the homeostasis of the bone microenvironment.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "An in vitro cell model was established using lipopolysaccharide (LPS)-induced alveolar epithelial cells A549.",
+   "label": "non-claim",
+   "note": "methods: model established"
+  },
+  {
+   "text": "Many studies have demonstrated that metformin (MF) significantly protects against osteoporosis and reduces fracture risk.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In these diseases, circRNA primarily acts as a microRNA (miRNA) sponge, interacting with miRNA to regulate the expression levels of genes associated with signaling pathways, and there is abundant research on the effects of circRNAs on drug resistance, cell proliferation, invasion, apoptosis, and poor prognosis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In the tumor cell, these signal transduction pathways are abnormally active, indicating that the STAT3 signaling pathway mediated by miRs is involved in the progression of various cancer types.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Each component of the Notch signaling pathway has been demonstrated to be fundamental in osteoblast differentiation and bone formation.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The water content of brain tissue decreased significantly, and the value of relative average diffusion coefficient (rADC) of injured brain increased in the CIRI + Mel group as compared with the CIRI group.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Our findings revealed that circFTO was upregulated in the placenta of SA patients.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Although Cancer Stem Cells (CSCs) are rare in HNSCC tumors, they are key drivers of tumor relapses, as they evade apoptosis and survive current therapies through enhanced DNA repair and quiescence.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Hemoglobin Constant Spring (Hb CS) is an α-globin variant predominantly found in Southeast Asian populations.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Diagnostic criteria, pathological features and associated genetic alterations are described in a strictly disease-oriented manner.",
+   "label": "non-claim",
+   "note": "describes the document"
+  },
+  {
+   "text": "APACHE II uses a point score based upon initial values of 12 routine physiologic measurements, age, and previous health status to provide a general measure of severity of disease.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Our in silico docking analysis indicates that atropine has a roust virtual binding, with a stable binding energy, to two major signaling molecules involved in EMT regulation: E-cad and ZEB-2.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Recent studies in both preclinical and clinical settings have revealed that circRNAs, as a novel identified non-coding RNA can mediate intercellular communication and regulate the microenvironment within tumors after being selectively packaged, secreted, and transmitted via exosomes.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "This shows that miRNAs are essential in regulating diverse osteoblast cell functions.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Hormone replacement therapy (HRT), despite being the most effective treatment, it is associated with the risk of breast cancer and cardiovascular disorders.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "However, the most recent clinical trials show a slight improvement over the conventional polychemotherapy scheme.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In addition, it is confirmed that gastrodin can protect the function of lung and other organs, enhance antiviral activity via upregulating the type I interferon (IFN-I), and inhibit angiotensin II (AngII), a key factor in \"cytokine storm\" caused by COVID-19.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Today, it is well known that highly selective inhibition of only one of the pathways in a tumor cell often leads to a limited response and, subsequently, to the emergence of resistance.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "However, recent studies have emphasized that the use of mesenchymal stem cells (MSCs) to treat steroid-induced ONFH (SONFH) is a promising therapy.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In addition, the derivatives of GAS and biomaterials synthesized by GAS and PU suggested a broader application of GAS.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "We found that ABS improved the exosomal EGFR level of normal human esophageal epithelial cells, BE cells, and BE-associated adenocarcinoma cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "miR-629-5p serves as a diagnostic biomarker for children with PARDS and it is associated with poor prognosis.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "These factors complicate surgical procedures and hinder the effectiveness of chemoradiotherapy, leading to poor prognosis and reduced quality of life.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The study revealed a significant decrease in MiR-874 levels among NSCLC patients compared to controls.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "An in-depth molecular mechanistic strategy to modulate the Notch signaling pathway and its associated signaling pathway will be encouraged for consideration to trigger enhanced therapeutic approaches for bone disorders by defining Notch-regulating drugs for clinical use.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Compared with the control group, female mice exposed to cold environments exhibited a significant increase in body weight and elevated serum levels of AMH, E2, FSH, and LH.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Functionally, downregulating circFTO expression enhanced trophoblast cell proliferation, migration, and invasion.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Nicotinamide N-methyltransferase (NNMT) has recently emerged as a key metabolic regulator in CVD pathogenesis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Incubation is carried out in plasma in the presence of 3 metal binding reagents which serve to inhibit effectively proteolytic attack on angiotensin I.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "Among 5263 eligible women who agreed to participate, 773 (14.7%) reported chronic pelvic pain within the past 3 months.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "This review addresses the concept that sex differences in PD are determined, largely, by biological sex differences in the NSDA system which, in turn, arise from hormonal, genetic and environmental influences.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "Depression is a multicausal disorder and has been associated with the risk to develop cancer, dementia, diabetes, epilepsy and stroke.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Our findings indicate that the prevalence of fetal growth restriction (FGR) will vary markedly, depending on the fetal growth curve used.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "After we found an improvement in progression-free survival, the trial was extended to the phase 3 trial reported here.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "We developed a database and website, \"circBase,\" where merged and unified data sets of circRNAs and the evidence supporting their expression can be accessed, downloaded, and browsed within the genomic context. circBase also provides scripts to identify known and novel circRNAs in sequencing data.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "By analyzing millions of RNA-binding protein binding sites, we identified ∼9000 miRNA-circRNA, 16 000 miRNA-pseudogene and 285,000 protein-RNA regulatory relationships.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Here, we show that recently reported non-canonical sites do not mediate repression despite binding the miRNA, which indicates that the vast majority of functional sites are canonical.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Intravenous carbon black or thioflavin S (a fluorescent vital stain for endothelium) were used to demonstrate the distribution of coronary arterial flow in control and damaged myocardium.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "In several experimental cancer models, activation of the sympathetic nervous system promotes the metastasis of solid epithelial tumors and the dissemination of hematopoietic malignancies via β-adrenoreceptor-mediated activation of protein kinase A and exchange protein activated by adenylyl cyclase signaling pathways.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Thus, while chemicals may act directly on target cells resulting in toxicity, they may also act indirectly by recruiting and activating resident and inflammatory tissue macrophages.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Disease outcome is the result of the complex interplay between the host and the bacterium.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The body weight-reducing and energy balancing effects of melatonin have been reported in several studies, but to date, no investigations toward examining whether the beneficial effects of melatonin are associated with gut microbiota have been carried out.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Genome-wide association studies of tumor samples have identified a large number of lncRNAs associated with various types of cancer.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "These findings have clinical applications, as the dysregulated pathways described here can be targeted by existing and preclinical therapies.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Here we show that RNA-guided DNA binding unleashes robust, non-specific single-stranded DNA (ssDNA) cleavage activity in Cas12a sufficient to completely degrade both linear and circular ssDNA molecules within minutes.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Initially, we found that BAY11-7082 inhibited NF-κB expression in a concentration-dependent manner.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Subsequently, miR-27a mimic, miR-27a inhibitor, or siRNA against SFRP1 were introduced into cells (HOS and U2OS) to investigate their role in cell proliferation and invasion.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "3) Criteria definition and weighting based on criterion performance and on results of a multi-criteria decision analysis.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "Patients with the same pN stage, namely, the pT4a and pT4b groups, showed similar 5-year OS (P>0.05).Based on the survival data, we propose a simplified staging system.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "But efficacy degree of some nanomaterials to promote specific tissue formation is still not clear.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Long noncoding RNAs (lncRNAs) have emerged as regulators of gene expression, and play critical regulatory roles in diverse biological functions and diseases, including cancer.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Overall, 685 patients were randomly assigned to durvalumab (n=341) or placebo (n=344) with chemotherapy.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "Inhibition of the PI3K/Akt signaling pathway or exogenous lactate intervention reversed the effects of Rg3 and SFN combination therapy in HCC cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Activated STAT3, present as phosphorylated STAT3 (p‑STAT3), can be transported into the nucleus to regulate downstream genes, including VEGF, cyclin D1, Bcl‑xL, and matrix metalloproteinases (MMPs), to promote cancer cell proliferation and induce resistance to therapy.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "We found that the antidepressant effects of Xiaoyaosan are related to the effects of monoamine neurotransmitters, regulation of the hypothalamic-pituitary-adrenal axis, neuroplasticity, synaptic plasticity, inflammatory response, neuroprotection, brain-gut axis, regulation of intestinal microbiota, oxidative stress, and autophagy for reducing neuronal apoptosis.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Therefore, the identification of effective diagnostic and prognostic biomarkers for LSCC is crucial to guide disease management and improve clinical outcomes.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Additionally, miR-766 promotes therapeutic resistance pathways in various types of tumors.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In different types of cancer, such as liver cancer, microRNAs (miRNAs) have been shown to be dysregulated.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "RAAS signaling enhances cell proliferation in malignancy directly and indirectly by affecting tumor cells and modulating angiogenesis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Chrysin and sildenafil have ameliorative effects against ZnO-NPs-induced hepatotoxicity and hematotoxicity, their protective effect is either preventive with chrysin or curative with chrysin and sildenafil.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "β‐Sitosterol is a natural compound with demonstrated anti‐cancer properties against various cancers.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "These features indicate strong biomarker and therapeutic potential and have generated broad interest, as evidenced by the steady year-on-year increase in the numbers of scientific publications about EVs.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "Nanomedicine shows great potential for cancer diagnosis and treatment.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "METHODS Sedation/anesthesia scores and vital signs of streptozotocin (STZ)-induced diabetic mice under DEX sedation were observed.",
+   "label": "non-claim",
+   "note": null
+  },
+  {
+   "text": "Dysregulation of KLFs is associated with a range of diseases including cardiovascular disorders, metabolic diseases, autoimmune conditions, cancer, and neurodegenerative diseases.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "In previous studies, chemokine receptor 5 (CCR5) inhibitors were shown to exert unique anti-inflammatory effects.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The dynamic balance between bone resorption and formation is critical for maintaining healthy bone homeostasis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "During bone regeneration, bone tissue cells release factors that promote blood vessel growth.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "The results showed that HYP pre-treatment reversed H. pylori -induced cell apoptosis, inflammation, and oxidative stress in GES-1 cells.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "We found evidence for 28 positive and 20 negative causal effects between multiple sources of GM and T2DM using at least two MR methods.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "CircRNAs are just beginning to be acknowledged for their roles as microRNA sponges and protein scaffolds, their ability to regulate transcription and splicing, and their occasional use as templates for polypeptide synthesis.",
+   "label": "background",
+   "note": null
+  },
+  {
+   "text": "We created and verified a novel prognostic BMRGs signature for the prognosis of patients with HCC.",
+   "label": "finding",
+   "note": null
+  },
+  {
+   "text": "Across gastric, colorectal, esophageal, pancreatic, and hepatocellular carcinomas, oncogenic circRNAs converge to enhance glucose uptake, lactate production, and ATP generation, sustaining proliferation, metastasis, stemness, and therapy resistance.",
+   "label": "background",
+   "note": null
+  }
+ ]
+}

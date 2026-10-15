@@ -31,6 +31,8 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from data.science import claims
+
 CLAIMS_PER_PAPER = 2
 OA_PREFIX = "https://openalex.org/"
 
@@ -57,16 +59,29 @@ def abstract_text(inverted):
 
 
 def split_sentences(text):
-    return [s.strip() for s in _SENT.split(re.sub(r"\s+", " ", text).strip()) if s.strip()]
+    """Sentences, with splits after an abbreviation ("vs.", "et al.") glued back onto what follows."""
+    text = re.sub(r"([a-z]{3}[.!?])([A-Z][a-z])", lambda m: m.group(1) + " " + m.group(2), text)  # "diseases.When"
+    parts = [s.strip() for s in _SENT.split(re.sub(r"\s+", " ", text).strip()) if s.strip()]
+    out = []
+    for part in parts:
+        if out and claims._ABBREV_END.search(out[-1]):
+            out[-1] = out[-1] + " " + part
+        else:
+            out.append(part)
+    return out
 
 
 def pick_claims(text, n=CLAIMS_PER_PAPER):
-    """The n most result-like sentences, in reading order. Ties go to the earlier sentence."""
-    sents = split_sentences(text)
+    """The n most result-like *claims*, in reading order. Sentences that are not claims (author lists,
+    source lists, aims, methods, fragments; see data.science.claims) are dropped before ranking, and a
+    leading section label ("RESULTS:") is stripped. Ties go to the earlier sentence."""
     scored = []
-    for i, s in enumerate(sents):
+    for i, raw in enumerate(split_sentences(text)):
+        if claims.reject_reason(raw) is not None:
+            continue
+        s, label = claims.clean(raw)
         words = len(s.split())
-        score = (2 if _CUE.search(s) else 0) + (1 if 8 <= words <= 45 else 0) - (1 if words < 5 else 0)
+        score = (2 if _CUE.search(s) else 0) + (1 if 8 <= words <= 45 else 0)             + (2 if label in ("results", "result", "findings", "conclusion", "conclusions") else 0)
         scored.append((-score, i, s))
     best = sorted(scored)[:n]
     return [s for _, _, s in sorted(best, key=lambda t: t[1])]
