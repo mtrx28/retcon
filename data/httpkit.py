@@ -10,6 +10,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
 
+class Raw:
+    """A pre-encoded response body with an explicit content type (static files)."""
+
+    def __init__(self, data, content_type):
+        self.data, self.content_type = data, content_type
+
+
 class Request:
     def __init__(self, method, path, params, query, body):
         self.method, self.path, self.params, self.query, self.json = method, path, params, query, body
@@ -52,10 +59,15 @@ def serve(router, port=0, host="127.0.0.1"):
             self._send(*router.dispatch(method, self.path, body))
 
         def _send(self, status, body):
-            html = isinstance(body, str)
-            data = (body if html else json.dumps(body)).encode("utf8")
+            if isinstance(body, Raw):
+                data, ctype = body.data, body.content_type
+            else:
+                html = isinstance(body, str)
+                data = (body if html else json.dumps(body)).encode("utf8")
+                ctype = "text/html; charset=utf-8" if html else "application/json"
             self.send_response(status)
-            self.send_header("Content-Type", "text/html; charset=utf-8" if html else "application/json")
+            self.send_header("Content-Type", ctype)
+            self.send_header("Cache-Control", "no-cache")   # dev services: never serve a stale page or API reply
             self.send_header("Content-Length", str(len(data)))
             self.end_headers()
             self.wfile.write(data)

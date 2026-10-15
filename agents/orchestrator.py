@@ -11,7 +11,7 @@ Deterministic: FIFO queue, no clocks, no randomness. The tool-call log is `world
 """
 import copy
 import os
-import threading
+import time
 from collections import deque
 from dataclasses import dataclass, field
 
@@ -88,9 +88,10 @@ def build_world(spec, graph_name="b3_run", transport="local", embedder=None):
 
 
 class Orchestrator:
-    def __init__(self, world, brain=None, brains=None):
+    def __init__(self, world, brain=None, brains=None, pace=0.0):
         """`brain` is the default for every role; `brains` overrides per role (e.g. an LLM for payments)."""
         self.w = world
+        self.pace = pace          # seconds to sleep after each task (live demos only)
         self.brain = brain or RuleBrain()
         self.brains = brains or {}
         self.queue = deque()
@@ -113,6 +114,8 @@ class Orchestrator:
                 return None
             step = session.feed(self.w.toolbox.call(role, step.tool, step.args))
         self.results.append((role, task["type"], step.summary))
+        if self.pace:
+            time.sleep(self.pace)
         if step.data.get("ledger"):
             self.ledger[step.data["ledger"]["plan_id"]] = step.data["ledger"]
         for entry in step.data.get("ledgers", []):

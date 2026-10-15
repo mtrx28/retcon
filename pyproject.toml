@@ -9,7 +9,7 @@ dev = ["pytest", "hypothesis"]
 embed = ["sentence-transformers"]
 
 [tool.setuptools]
-packages = ["core", "mcp_server", "gate", "agents", "bench"]
+packages = ["core", "mcp_server", "gate", "agents", "bench", "ui"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
