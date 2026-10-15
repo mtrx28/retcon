@@ -12,6 +12,9 @@ from falkordb import FalkorDB
 
 SCHEMA = Path(__file__).resolve().parent.parent / "core" / "schema.cypher"
 FLOW_CAP = 1_000_000
+MTYPES = ("episodic", "semantic", "procedural")
+DOMAINS = ("ap", "science")
+SOURCE_OPTIONAL = ("retracted_at", "rw_reason")  # contract v1.1, science sources
 
 
 def epoch(iso):
@@ -23,8 +26,24 @@ def connect():
                     port=int(os.getenv("FALKORDB_PORT", "6379")))
 
 
+def validate_spec(spec, require_ground_truth=False):
+    """Check the optional contract v1.1 fields. Raises ValueError. Missing fields are fine."""
+    if spec.get("domain", "ap") not in DOMAINS:
+        raise ValueError(f"domain must be one of {DOMAINS}, got {spec['domain']!r}")
+    for d in spec.get("derivations", []):
+        m = d["conclusion"].get("mtype")
+        if m is not None and m not in MTYPES:
+            raise ValueError(f"mtype of {d['conclusion']['id']!r} must be one of {MTYPES}, got {m!r}")
+    if require_ground_truth:
+        gt = spec.get("ground_truth") or {}
+        for k in ("contaminated", "truly_supported"):
+            if k not in gt:
+                raise ValueError(f"ground_truth.{k} is required")
+
+
 def load(spec, db=None, graph_name=None):
     """Recreate the tenant graph from spec and return it."""
+    validate_spec(spec)
     db = db or connect()
     name = graph_name or f"tenant_{spec['tenant']}"
     try:
@@ -38,12 +57,15 @@ def load(spec, db=None, graph_name=None):
     q = g.query
 
     for s in spec["sources"]:
-        q("CREATE (:Source {id:$id, kind:$kind, trust:$trust})", s)
+        extra = {k: s[k] for k in SOURCE_OPTIONAL if s.get(k) is not None}
+        q("CREATE (src:Source {id:$id, kind:$kind, trust:$trust}) SET src += $extra",
+          {"id": s["id"], "kind": s["kind"], "trust": s["trust"], "extra": extra})
     for a in spec["agents"]:
         q("CREATE (:Agent {id:$id, role:$role, tenant:$t})", {**a, "t": spec["tenant"]})
     for o in spec["observations"]:
         q("MATCH (s:Source {id:$src}) "
-          "CREATE (o:Mem:Observation {id:$id, text:$text, status:'IN', observed_at:$at, agent:'intake'}) "
+          "CREATE (o:Mem:Observation {id:$id, text:$text, status:'IN', observed_at:$at, agent:'intake', "
+          "mtype:'episodic'}) "
           "CREATE (s)-[:SUPPORTS]->(o) "
           "CREATE (s)-[:FLOW {cap:1}]->(o) "
           "CREATE (o)-[:DEPENDS_ON]->(s)",
@@ -56,8 +78,11 @@ def load(spec, db=None, graph_name=None):
         c = d["conclusion"]
         if c["id"] not in created:
             label = "Plan" if c["kind"] == "plan" else "Belief"
-            q(f"CREATE (:Mem:{label} {{id:$id, text:$text, status:'IN', agent:$agent}})",
-              {"id": c["id"], "text": c["text"], "agent": d["agent"]})
+            mtype = c.get("mtype") or ("semantic" if label == "Belief" else None)
+            q(f"CREATE (m:Mem:{label} {{id:$id, text:$text, status:'IN', agent:$agent}}) "
+              "SET m += $extra",
+              {"id": c["id"], "text": c["text"], "agent": d["agent"],
+               "extra": {"mtype": mtype} if mtype else {}})
             created.add(c["id"])
     for a in spec["actions"]:
         q("CREATE (:Mem:Action {id:$id, tool:$tool, amount:$amount, executed:$ex, executed_at:$at, "
@@ -94,6 +119,7 @@ if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     path = Path(args[0]) if args else Path(__file__).parent / "fixtures" / "ap_tiny.json"
     spec = json.loads(path.read_text(encoding="utf8"))
+    validate_spec(spec, require_ground_truth=True)
     g = load(spec)
     n = g.query("MATCH (m:Mem) RETURN count(m)").result_set[0][0]
     print(f"loaded tenant_{spec['tenant']}: {n} Mem nodes")

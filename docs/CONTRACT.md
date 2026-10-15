@@ -1,6 +1,6 @@
 # CONTRACT: the seam between Lane A and Lane B
 
-**Status: FROZEN (task 0.2, 2026-10-15).** Both team members agreed the three open decisions below. Changes now need both people's agreement in a PR.
+**Status: FROZEN (task 0.2, 2026-10-15).** Both team members agreed the three open decisions below. Changes now need both people's agreement in a PR. **v1.1 (2026-10-15) adds three optional fields, see the last section.**
 
 ## 1. Tenancy
 
@@ -106,3 +106,20 @@ Note for the demo: under this rule the $41,250 payment (one portal behind it, fr
 ```
 
 Required fixture coverage: one poisoned source with a time window, one claim laundered through several agents, one belief with independent contract-PDF support, one executed and one pending payment, one circular support pair.
+
+## v1.1 (Oct 15): additive, backward-compatible
+
+Nothing from v1 is renamed or removed. `ap_tiny.json`, A1/A2, B1/B2/B4a and every existing test keep working unchanged.
+
+- `:Mem.mtype` (optional): `"episodic" | "semantic" | "procedural"`
+  - Observation = episodic (always)
+  - Belief = semantic (default)
+  - learned rule ("verify bank changes by callback") = procedural
+- Scenario JSON: optional top-level `"domain": "ap" | "science"` (missing = `"ap"`)
+- Science sources (optional fields): `"retracted_at": "YYYY-MM-DD"`, `"rw_reason": "<string from dataset>"`
+- Ground-truth labels `contaminated` / `truly_supported` stay required for every domain
+
+Notes:
+- In a fixture, a derivation's `conclusion` may carry an optional `"mtype"`. Without it, the loader tags `semantic` for beliefs and leaves plans/actions untagged.
+- No `schema.cypher` change: FalkorDB does not require declared properties. Add `CREATE INDEX FOR (m:Mem) ON (m.mtype)` only if a query filters by type.
+- Describe retractions only through the dataset's own reason field (`rw_reason`); never characterise authors.
