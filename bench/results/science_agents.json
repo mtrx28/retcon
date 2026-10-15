@@ -2,28 +2,38 @@
   "domain": "science",
   "retracted_papers": 40,
   "papers": 537,
-  "tasks": 1066,
-  "claims_synthesized": 1126,
+  "tasks": 1052,
+  "claims_synthesized": 1112,
   "topic_claims": 60,
-  "ingest_s": 15.3,
-  "retract_s": 4.8,
-  "distrust_p50_ms": 18.33,
-  "distrust_p95_ms": 26.18,
+  "ingest_s": 15.8,
+  "retract_s": 4.2,
+  "distrust_p50_ms": 16.45,
+  "distrust_p95_ms": 29.21,
   "before_retraction": {
     "residual_contamination": 1.0,
     "collateral_loss": 0.0,
     "action_recall": null,
     "action_precision": null,
     "blocked_recall": null,
+    "wrongly_flagged_actions": {
+      "count": 0,
+      "executed": 0,
+      "pending": 0,
+      "amount": 0,
+      "executed_amount": 0,
+      "rate": null,
+      "legit_total": 0,
+      "ids": []
+    },
     "counts": {
-      "contaminated": 501,
-      "truly_supported": 1691,
+      "contaminated": 500,
+      "truly_supported": 1664,
       "out": 0,
       "executed_contaminated": 0,
       "pending_contaminated": 0
     },
     "unmapped_nodes": 0,
-    "disagreements": 501
+    "disagreements": 500
   },
   "after_retraction": {
     "residual_contamination": 0.0,
@@ -31,18 +41,30 @@
     "action_recall": null,
     "action_precision": null,
     "blocked_recall": null,
+    "wrongly_flagged_actions": {
+      "count": 0,
+      "executed": 0,
+      "pending": 0,
+      "amount": 0,
+      "executed_amount": 0,
+      "rate": null,
+      "legit_total": 0,
+      "ids": []
+    },
     "counts": {
-      "contaminated": 501,
-      "truly_supported": 1691,
-      "out": 501,
+      "contaminated": 500,
+      "truly_supported": 1664,
+      "out": 500,
       "executed_contaminated": 0,
       "pending_contaminated": 0
     },
     "unmapped_nodes": 0,
     "disagreements": 0
   },
-  "topics_withdrawn": 37,
-  "topics_that_stood": 89,
+  "topics_final_in": 24,
+  "topics_final_out": 36,
+  "topics_withdrawn": 36,
+  "topics_that_stood": 92,
   "per_retraction": [
     {
       "source": "W2968241016",
@@ -56,7 +78,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 23.21,
+      "latency_ms": 19.91,
       "topics_withdrawn": 1,
       "topics_standing": 3,
       "min_independent_sources": 1
@@ -73,9 +95,9 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 16.7,
-      "topics_withdrawn": 2,
-      "topics_standing": 2,
+      "latency_ms": 29.21,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
       "min_independent_sources": 2
     },
     {
@@ -90,7 +112,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 33.16,
+      "latency_ms": 22.82,
       "topics_withdrawn": 1,
       "topics_standing": 3,
       "min_independent_sources": 5
@@ -102,14 +124,14 @@
       "retraction_id": "ret_0004",
       "flipped": {
         "observations": 2,
-        "beliefs": 13,
+        "beliefs": 12,
         "plans": 0,
         "actions": 0
       },
-      "survived": 3,
-      "latency_ms": 18.33,
-      "topics_withdrawn": 1,
-      "topics_standing": 3,
+      "survived": 4,
+      "latency_ms": 15.34,
+      "topics_withdrawn": 0,
+      "topics_standing": 4,
       "min_independent_sources": 1
     },
     {
@@ -124,7 +146,7 @@
         "actions": 0
       },
       "survived": 4,
-      "latency_ms": 20.1,
+      "latency_ms": 24.83,
       "topics_withdrawn": 0,
       "topics_standing": 4,
       "min_independent_sources": 1
@@ -141,7 +163,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 16.52,
+      "latency_ms": 14.27,
       "topics_withdrawn": 0,
       "topics_standing": 2,
       "min_independent_sources": 1
@@ -158,7 +180,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 19.58,
+      "latency_ms": 23.13,
       "topics_withdrawn": 0,
       "topics_standing": 2,
       "min_independent_sources": 17
@@ -175,7 +197,7 @@
         "actions": 0
       },
       "survived": 4,
-      "latency_ms": 20.46,
+      "latency_ms": 20.17,
       "topics_withdrawn": 1,
       "topics_standing": 4,
       "min_independent_sources": 1
@@ -192,7 +214,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 10.39,
+      "latency_ms": 12.58,
       "topics_withdrawn": 0,
       "topics_standing": 1,
       "min_independent_sources": 8
@@ -209,7 +231,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 16.32,
+      "latency_ms": 30.27,
       "topics_withdrawn": 1,
       "topics_standing": 3,
       "min_independent_sources": 1
@@ -226,10 +248,10 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 13.56,
+      "latency_ms": 14.96,
       "topics_withdrawn": 0,
       "topics_standing": 1,
-      "min_independent_sources": 9
+      "min_independent_sources": 7
     },
     {
       "source": "W4403892587",
@@ -243,7 +265,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 17.4,
+      "latency_ms": 9.7,
       "topics_withdrawn": 0,
       "topics_standing": 1,
       "min_independent_sources": 10
@@ -260,7 +282,7 @@
         "actions": 0
       },
       "survived": 4,
-      "latency_ms": 21.53,
+      "latency_ms": 19.08,
       "topics_withdrawn": 0,
       "topics_standing": 4,
       "min_independent_sources": 1
@@ -277,7 +299,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 18.28,
+      "latency_ms": 21.57,
       "topics_withdrawn": 1,
       "topics_standing": 3,
       "min_independent_sources": 3
@@ -294,7 +316,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 23.89,
+      "latency_ms": 15.36,
       "topics_withdrawn": 1,
       "topics_standing": 2,
       "min_independent_sources": 1
@@ -311,7 +333,7 @@
         "actions": 0
       },
       "survived": 5,
-      "latency_ms": 19.22,
+      "latency_ms": 17.79,
       "topics_withdrawn": 0,
       "topics_standing": 5,
       "min_independent_sources": 1
@@ -328,7 +350,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 16.93,
+      "latency_ms": 17.38,
       "topics_withdrawn": 0,
       "topics_standing": 2,
       "min_independent_sources": 2
@@ -345,7 +367,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 21.12,
+      "latency_ms": 20.04,
       "topics_withdrawn": 0,
       "topics_standing": 3,
       "min_independent_sources": 2
@@ -362,7 +384,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 12.92,
+      "latency_ms": 10.67,
       "topics_withdrawn": 0,
       "topics_standing": 1,
       "min_independent_sources": 14
@@ -378,10 +400,10 @@
         "plans": 0,
         "actions": 0
       },
-      "survived": 3,
-      "latency_ms": 18.02,
+      "survived": 4,
+      "latency_ms": 18.98,
       "topics_withdrawn": 1,
-      "topics_standing": 3,
+      "topics_standing": 4,
       "min_independent_sources": 1
     },
     {
@@ -391,12 +413,12 @@
       "retraction_id": "ret_0021",
       "flipped": {
         "observations": 2,
-        "beliefs": 10,
+        "beliefs": 9,
         "plans": 0,
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 11.98,
+      "latency_ms": 13.32,
       "topics_withdrawn": 1,
       "topics_standing": 2,
       "min_independent_sources": 1
@@ -413,7 +435,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 17.21,
+      "latency_ms": 14.43,
       "topics_withdrawn": 1,
       "topics_standing": 2,
       "min_independent_sources": 1
@@ -430,7 +452,7 @@
         "actions": 0
       },
       "survived": 4,
-      "latency_ms": 20.14,
+      "latency_ms": 17.9,
       "topics_withdrawn": 0,
       "topics_standing": 4,
       "min_independent_sources": 2
@@ -447,7 +469,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 21.11,
+      "latency_ms": 17.2,
       "topics_withdrawn": 1,
       "topics_standing": 2,
       "min_independent_sources": 1
@@ -464,7 +486,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 25.67,
+      "latency_ms": 19.7,
       "topics_withdrawn": 2,
       "topics_standing": 3,
       "min_independent_sources": 1
@@ -481,7 +503,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 18.61,
+      "latency_ms": 10.66,
       "topics_withdrawn": 1,
       "topics_standing": 1,
       "min_independent_sources": 11
@@ -498,7 +520,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 21.58,
+      "latency_ms": 13.13,
       "topics_withdrawn": 0,
       "topics_standing": 2,
       "min_independent_sources": 11
@@ -515,7 +537,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 16.38,
+      "latency_ms": 13.74,
       "topics_withdrawn": 2,
       "topics_standing": 1,
       "min_independent_sources": 11
@@ -532,7 +554,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 20.72,
+      "latency_ms": 19.74,
       "topics_withdrawn": 3,
       "topics_standing": 3,
       "min_independent_sources": 8
@@ -549,7 +571,7 @@
         "actions": 0
       },
       "survived": 4,
-      "latency_ms": 15.13,
+      "latency_ms": 13.28,
       "topics_withdrawn": 1,
       "topics_standing": 4,
       "min_independent_sources": 7
@@ -566,7 +588,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 11.81,
+      "latency_ms": 8.78,
       "topics_withdrawn": 0,
       "topics_standing": 1,
       "min_independent_sources": 8
@@ -583,7 +605,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 19.33,
+      "latency_ms": 16.49,
       "topics_withdrawn": 1,
       "topics_standing": 1,
       "min_independent_sources": 9
@@ -600,10 +622,10 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 17.3,
+      "latency_ms": 12.93,
       "topics_withdrawn": 3,
       "topics_standing": 1,
-      "min_independent_sources": 8
+      "min_independent_sources": 6
     },
     {
       "source": "W4282005808",
@@ -617,7 +639,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 12.57,
+      "latency_ms": 10.55,
       "topics_withdrawn": 0,
       "topics_standing": 1,
       "min_independent_sources": 8
@@ -634,7 +656,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 26.18,
+      "latency_ms": 19.63,
       "topics_withdrawn": 5,
       "topics_standing": 1,
       "min_independent_sources": 8
@@ -651,7 +673,7 @@
         "actions": 0
       },
       "survived": 2,
-      "latency_ms": 19.89,
+      "latency_ms": 16.45,
       "topics_withdrawn": 3,
       "topics_standing": 2,
       "min_independent_sources": 1
@@ -663,13 +685,13 @@
       "retraction_id": "ret_0037",
       "flipped": {
         "observations": 2,
-        "beliefs": 8,
+        "beliefs": 9,
         "plans": 0,
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 13.91,
-      "topics_withdrawn": 1,
+      "latency_ms": 10.49,
+      "topics_withdrawn": 2,
       "topics_standing": 1,
       "min_independent_sources": 8
     },
@@ -685,7 +707,7 @@
         "actions": 0
       },
       "survived": 3,
-      "latency_ms": 16.52,
+      "latency_ms": 10.41,
       "topics_withdrawn": 0,
       "topics_standing": 3,
       "min_independent_sources": 8
@@ -702,7 +724,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 14.05,
+      "latency_ms": 13.4,
       "topics_withdrawn": 1,
       "topics_standing": 1,
       "min_independent_sources": 8
@@ -719,7 +741,7 @@
         "actions": 0
       },
       "survived": 1,
-      "latency_ms": 25.61,
+      "latency_ms": 11.77,
       "topics_withdrawn": 1,
       "topics_standing": 1,
       "min_independent_sources": 8

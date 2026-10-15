@@ -15,7 +15,7 @@ import math
 import time
 from pathlib import Path
 
-from bench.api import STRATEGY_NAMES, RetractionResult, Window, metrics, record
+from bench.api import STRATEGY_NAMES, RetractionResult, Window, layers, metrics, metrics_by_layer, record
 from bench.harness.loader import load_batched
 from core.db import connect
 
@@ -108,7 +108,9 @@ def run_scenario(scenario, strategies, repeats=3, db=None, prefix="bench", keep_
                 continue
             res = RetractionResult(outs[0], engine, dict(notes))
             m = metrics(scenario.spec["ground_truth"], outs[0], scenario.spec["actions"])
-            row = record(scenario.info, name, res, m, elapsed_ms=round(stats(samples)["p50"], 3), error=None)
+            by_layer = metrics_by_layer(scenario.spec["ground_truth"], outs[0], layers(scenario.spec))
+            row = record(scenario.info, name, res, m, elapsed_ms=round(stats(samples)["p50"], 3), error=None,
+                         by_layer=by_layer)
             row["latency_ms"] = stats(samples)
             if len(scenario.windows) > 1:
                 row["latency_per_window_ms"] = stats(walls)
@@ -145,13 +147,16 @@ def table(rows):
     """Plain-text results table (scenario x strategy), for the terminal and the README."""
     def f(x, pct=True):
         return "  n/a" if x is None else (f"{x * 100:5.1f}%" if pct else f"{x:7.1f}")
-    head = f"{'scenario':<14}{'strategy':<19}{'residual':>9}{'collateral':>11}{'act.recall':>11}{'blocked':>9}{'p50 ms':>9}{'p95 ms':>9}"
+    head = (f"{'scenario':<14}{'strategy':<19}{'residual':>9}{'collateral':>11}{'act.recall':>11}{'blocked':>9}"
+            f"{'wrong acts':>11}{'wrong $':>10}{'p50 ms':>9}{'p95 ms':>9}")
     out = [head, "-" * len(head)]
     for r in rows:
         m, lat = r.get("metrics"), r.get("latency_ms") or {}
         if r.get("error"):
             out.append(f"{r['scenario']:<14}{r['strategy']:<19}ERROR {r['error'][:60]}")
             continue
+        w = m.get("wrongly_flagged_actions") or {}
         out.append(f"{r['scenario']:<14}{r['strategy']:<19}{f(m['residual_contamination']):>9}{f(m['collateral_loss']):>11}"
-                   f"{f(m['action_recall']):>11}{f(m['blocked_recall']):>9}{f(lat.get('p50'), False):>9}{f(lat.get('p95'), False):>9}")
+                   f"{f(m['action_recall']):>11}{f(m['blocked_recall']):>9}"
+                   f"{w.get('count', 0):>11}{w.get('amount', 0):>10,}{f(lat.get('p50'), False):>9}{f(lat.get('p95'), False):>9}")
     return "\n".join(out)

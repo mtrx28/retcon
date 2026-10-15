@@ -195,7 +195,12 @@ call already reports the accumulated result).
 | `action_recall` | executed contaminated actions in `out_ids` / executed contaminated actions | higher |
 | `action_precision` | flagged executed actions that were contaminated / flagged executed actions | higher |
 | `blocked_recall` | pending contaminated actions in `out_ids` / pending contaminated actions | higher |
+| `wrongly_flagged_actions` | legitimate (not contaminated) actions the strategy flagged: `{count, executed, pending, amount, executed_amount, rate, legit_total, ids}`. The business cost of imprecision (payments wrongly recalled or blocked) | lower |
 | `counts` | `contaminated, truly_supported, out, executed_contaminated, pending_contaminated` | |
+
+`bench.api.layers(spec)` maps node ids to `observation | belief | plan | action` (science splits beliefs into
+`claim` and `topic`); `metrics_by_layer(ground_truth, out_ids, layers)` repeats residual / collateral per layer
+and `record(..., by_layer=)` carries it in the results row (`by_layer`).
 
 `ground_truth` keys: `contaminated`, `truly_supported` (required, both domains); `recall_list`, `blocked`
 (optional; derived from `actions[].executed` when absent). Laundering resistance and cascade latency are

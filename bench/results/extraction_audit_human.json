@@ -1,0 +1,455 @@
+{
+ "instructions": "Fill in `human_label` for each row: finding | background | non-claim | source-error. Leave a row null if you did not review it. Then run: python -m bench.extraction_audit --apply-human <this file>",
+ "rows": [
+  {
+   "id": "obs_W1907219612_1",
+   "paper": "W1907219612",
+   "title": "Understanding Adipocyte Differentiation",
+   "claim": "Adipose tissue growth involves an increase in adipocyte size and the formation of new adipocytes from precursor cells.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W1967502057_1",
+   "paper": "W1967502057",
+   "title": "Bone Resorption by Osteoclasts",
+   "claim": "Reflecting integrin-mediated signals, the osteoclast develops a specialized cytoskeleton that permits it to establish an isolated microenvironment between itself and bone, wherein matrix degradation occurs by a process involving proton transport.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2000755721_0",
+   "paper": "W2000755721",
+   "title": "Minireview: Nanoparticles and the Immune System",
+   "claim": "Today nanotechnology is finding growing applications in industry, biology, and medicine.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2050480410_0",
+   "paper": "W2050480410",
+   "title": "The new frontier of genome engineering with CRISPR-Cas9",
+   "claim": "The advent of facile genome engineering using the bacterial RNA-guided CRISPR-Cas9 system in animals and plants is transforming biology.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2078610240_1",
+   "paper": "W2078610240",
+   "title": "Development of Autoantibodies before the Clinical Onset of Systemic Lupus Erythematosus",
+   "claim": "Anti-double-stranded DNA antibodies, with a mean onset 2.2 years before the diagnosis, were found later than antinuclear antibodies (P=0.06) and earlier than anti-nuclear ribonucleoprotein antibodies (P=0.005).",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2102572922_1",
+   "paper": "W2102572922",
+   "title": "Diagnosis and management of dementia with Lewy bodies",
+   "claim": "REM sleep behavior disorder, severe neuroleptic sensitivity, and reduced striatal dopamine transporter activity on functional neuroimaging are given greater diagnostic weighting as features suggestive of a DLB diagnosis.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2109334244_0",
+   "paper": "W2109334244",
+   "title": "A Randomized Trial of an N-methyl-D-aspartate Antagonist in Treatment-Resistant Major Depr",
+   "claim": "Subjects receiving ketamine showed significant improvement in depression compared with subjects receiving placebo within 110 minutes after injection, which remained significant throughout the following week.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2120711134_1",
+   "paper": "W2120711134",
+   "title": "The Ocular Hypertension Treatment Study",
+   "claim": "In univariate analyses, baseline factors that predicted the development of POAG included older age, race (African American), sex (male), larger vertical cup-disc ratio, larger horizontal cup-disc ratio, higher intraocular pressure, greater Humphrey visual field pattern standard deviation, heart disease, and thinner central corneal measurement.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2129651548_1",
+   "paper": "W2129651548",
+   "title": "osteoprotegerin-deficient mice develop early onset osteoporosis and arterial calcification",
+   "claim": "Adolescent and adult OPG-/- mice exhibit a decrease in total bone density characterized by severe trabecular and cortical bone porosity, marked thinning of the parietal bones of the skull, and a high incidence of fractures.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2142820105_0",
+   "paper": "W2142820105",
+   "title": "Birth and Death of Bone Cells: Basic Regulatory Mechanisms and Implications for the Pathog",
+   "claim": "The adult skeleton regenerates by temporary cellular structures that comprise teams of juxtaposed osteoclasts and osteoblasts and replace periodically old bone with new.A considerable body of evidence accumulated during the last decade has shown that the rate of genesis of these two highly specialized cell types, as well as the prevalence of their apoptosis, is essential for the maintenance of bone homeostasis; and that common metabolic bone disorders such as osteoporosis result largely from a derangement in the birth or death of these cells.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2511609099_1",
+   "paper": "W2511609099",
+   "title": "Role of ginsenosides, the main active components of Panax ginseng , in inflammatory respon",
+   "claim": "Interestingly, a number of studies have reported that ginsenosides and their metabolites/derivatives-including ginsenoside (G)-Rb1, compound K, G-Rb2, G-Rd, G-Re, G-Rg1, G-Rg3, G-Rg5, G-Rh1, G-Rh2, and G-Rp1-exert anti-inflammatory activities in inflammatory responses by suppressing the production of proinflammatory cytokines and regulating the activities of inflammatory signaling pathways, such as nuclear factor-κB and activator protein-1.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2944555616_0",
+   "paper": "W2944555616",
+   "title": "Silencing microRNA-27a inhibits proliferation and invasion of human osteosarcoma cells thr",
+   "claim": "The expression of miR-27a and SFRP1 in osteosarcoma tissues and cells was detected, followed by identification of their relations.",
+   "model_label": "non-claim",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2947379553_1",
+   "paper": "W2947379553",
+   "title": "Small molecule inhibitors of epithelial‐mesenchymal transition for the treatment of cancer",
+   "claim": "Although many factors lead to fibrosis and cancer, pathophysiological analysis has demonstrated that tissue fibrosis and cancer share a common process of epithelial-mesenchymal transition (EMT).",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W2952127461_0",
+   "paper": "W2952127461",
+   "title": "Prediction of Alzheimer’s Disease-Associated Genes by Integration of GWAS Summary Data and",
+   "claim": "With high genetic heritability (79%), finding the disease's causal genes is a crucial step in finding a treatment for AD.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W301622561_0",
+   "paper": "W301622561",
+   "title": "Hypertension in Pregnancy",
+   "claim": "The information in Hypertension in Pregnancy should not be viewed as a body of rigid rules.",
+   "model_label": "non-claim",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W3036320358_1",
+   "paper": "W3036320358",
+   "title": "RETRACTED ARTICLE: The microRNA-130a-5p/RUNX2/STK32A network modulates tumor invasive and ",
+   "claim": "miR-130a-5p diminished the growth and EMT of NSCLC cells by regulating the RUNX2/STK32A/NF-κB p65 axis, offering possible targets for the treatment for NSCLC.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W3038740941_0",
+   "paper": "W3038740941",
+   "title": "Advances in the occurrence and biotherapy of osteoporosis",
+   "claim": "Osteoporosis (OP) is a bone metabolic disease, is characterized by degeneration of bone structure and decreased bone mass.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W3040931367_1",
+   "paper": "W3040931367",
+   "title": "MicroRNA-27a-3p Reverses Adriamycin Resistance by Targeting BTG2 and Activating PI3K/Akt P",
+   "claim": "The down-regulation of miR-27a-3p in MCF-7/ADR enhanced the sensitivity of cancer cells to adriamycin treatment, decreased multidrug resistance gene 1/P-glycoprotein (MDR1/P-gp) expression, enhanced the apoptosis-related proteins expression, increased adriamycin-induced apoptosis, and inhibited cell proliferation as compared to NC groups ( P < 0.05).",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W3082581448_1",
+   "paper": "W3082581448",
+   "title": "The effect of carbon nanotubes on osteogenic functions of adipose-derived mesenchymal stem",
+   "claim": "In vitro culture of human adipose-derived mesenchymal stem cells (HASCs) on the MCNTs and nHA demonstrated that although there was no significant difference in the cell adhesion amount between on the MCNTs and nHA, the cell attachment strength and proliferation on the MCNTs were better.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W3121155202_0",
+   "paper": "W3121155202",
+   "title": "Emodin Inhibits the Proliferation of MCF-7 Human Breast Cancer Cells Through Activation of",
+   "claim": "The results showed that emodin (50-100 μmol/L) could significantly inhibit the proliferation of MCF-7 cells in a time and dose-dependent manner.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W3164333037_1",
+   "paper": "W3164333037",
+   "title": "Damage-Associated Molecular Patterns Modulation by microRNA: Relevance on Immunogenic Cell",
+   "claim": "The expression of DAMPs is often constitutive in tumor cells, but it is the initiating stressor, called ICD-inducer, which finally triggers the intracellular response that determines the kinetics and intensity of their release.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4206351478_1",
+   "paper": "W4206351478",
+   "title": "Expression Analysis of MicroRNAs, miR-20a, miR-30a, miR-210, and miR-874 in Helicobacter p",
+   "claim": "The miR-20a, miR-30a, miR-210, and miR-874 exhibited higher overexpression in H. pylori-infected GC patients than healthy persons (P=0.004, 0.033, 0.023, 0.024).",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4234317413_0",
+   "paper": "W4234317413",
+   "title": "Lipopolysaccharide Endotoxins",
+   "claim": "Key genes for lipid A biosynthesis have unexpectedly also been found in higher plants, indicating that eukaryotic lipid A-like molecules may exist.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4281630496_0",
+   "paper": "W4281630496",
+   "title": "Durvalumab plus Gemcitabine and Cisplatin in Advanced Biliary Tract Cancer",
+   "claim": "Patients with advanced biliary tract cancer have a poor prognosis, and first-line standard of care (gemcitabine plus cisplatin) has remained unchanged for more than 10 years.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4300089512_1",
+   "paper": "W4300089512",
+   "title": "The m6A-methylated mRNA pattern and the activation of the Wnt signaling pathway under the ",
+   "claim": "The fibroblasts in the keloid were under a cellular hyper-m6A-methylated condition, and the hyper-m6A-modified highly expressed Wnt/β-catenin pathway in the dermal fibroblasts might promote the pathogenesis of keloid.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4313594830_0",
+   "paper": "W4313594830",
+   "title": "Progress in targeting PTEN/PI3K/Akt axis in glioblastoma therapy: Revisiting molecular int",
+   "claim": "PTEN is a tumor-suppressor operator in cancer that inhibits PI3K/Akt/mTOR axis in diminishing growth, metastasis and drug resistance.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4376133184_0",
+   "paper": "W4376133184",
+   "title": "Extracellular vesicles derived from Akkermansia muciniphila promote placentation and mitig",
+   "claim": "Previous data showed that the abundance of Akkermansia muciniphila (Am) was lower in patients with PE than in normotensive pregnant women.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4380200767_1",
+   "paper": "W4380200767",
+   "title": "Exploring the potential of treating chronic liver disease targeting the PI3K/Akt pathway a",
+   "claim": "Studies have demonstrated that inhibiting M1-type macrophage polarization or promoting M2-type polarization can effectively combat chronic liver diseases such as alcoholic liver disease, non-alcoholic fatty liver disease, and liver fibrosis.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4380362522_0",
+   "paper": "W4380362522",
+   "title": "The lncRNA HOTAIR: a pleiotropic regulator of epithelial cell plasticity",
+   "claim": "The epithelial-to-mesenchymal transition (EMT) is a trans-differentiation process that endows epithelial cells with mesenchymal properties, including motility and invasion capacity; therefore, its aberrant reactivation in cancerous cells represents a critical step to gain a metastatic phenotype.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4386019447_0",
+   "paper": "W4386019447",
+   "title": "Research progress of circRNA in malignant tumour metabolic reprogramming",
+   "claim": "Metabolic reprogramming, one of the important signs of malignant tumours, provides necessary nutrition for tumorigenesis and cancer development; thus, it has recently become a research hot spot, even though the metabolic mechanism is quite intricate.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4387973572_1",
+   "paper": "W4387973572",
+   "title": "The renin-angiotensin-aldosterone system (RAAS) signaling pathways and cancer: foes versus",
+   "claim": "Evidence suggests that inhibitors of the RAAS, which are conventionally used to treat cardiovascular diseases, may be beneficial in cancer therapies.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4388007490_1",
+   "paper": "W4388007490",
+   "title": "A review: Mechanism and prospect of gastrodin in prevention and treatment of T2DM and COVI",
+   "claim": "In addition, it is confirmed that gastrodin can protect the function of lung and other organs, enhance antiviral activity via upregulating the type I interferon (IFN-I), and inhibit angiotensin II (AngII), a key factor in \"cytokine storm\" caused by COVID-19.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4389137594_1",
+   "paper": "W4389137594",
+   "title": "Endocrine nuclear receptors and long non‑coding RNAs reciprocal regulation in cancer (Revi",
+   "claim": "Their deregulation is associated with aberrant expression, gene mutations and/or epigenetic alterations that can be related to the pathogenesis of various human diseases, and especially in cancer.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4390498242_0",
+   "paper": "W4390498242",
+   "title": "Gastrodin: a comprehensive pharmacological review",
+   "claim": "GAS has significant anti-inflammatory, antioxidant, neuroprotective, vascular protective, blood sugar lowering, lipid-regulating, analgesic, anticancer, and antiviral effects.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4391649568_1",
+   "paper": "W4391649568",
+   "title": "Minimal information for studies of extracellular vesicles (MISEV2023): From basic to advan",
+   "claim": "These features indicate strong biomarker and therapeutic potential and have generated broad interest, as evidenced by the steady year-on-year increase in the numbers of scientific publications about EVs.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4394718086_0",
+   "paper": "W4394718086",
+   "title": "The differential expression of AFF3 in cervical cancer and its correlation with clinicopat",
+   "claim": "Cervical cancer (CC) is the second most common malignancy in women, and identifying biomarkers of CC is crucial for prognosis prediction.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4397008085_1",
+   "paper": "W4397008085",
+   "title": "Classical and nonclassical effects of angiotensin-converting enzyme: How increased ACE enh",
+   "claim": "In contrast, ACE inhibitors reduce neutrophil killing of bacteria in mice and humans.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4398205521_0",
+   "paper": "W4398205521",
+   "title": "LncRNA GAS5 Modulates the Progression of Glioma Through Repressing miR-135b-5p and Upregul",
+   "claim": "GAS5 showed low expression in glioma cells and tissues, and up-regulation of GAS5 could depress the invasion, proliferation, and metastasis of glioma.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4400830833_0",
+   "paper": "W4400830833",
+   "title": "Biomimetic Porous Ti6Al4V Implants: A Novel Interbody Fusion Cage via Gel‐Casting Techniqu",
+   "claim": "Although all three materials demonstrate good biocompatibility and osseointegration properties, the biomimetic porous Ti6Al4V, with its excellent mechanical properties and a structure closely resembling bone trabecular tissue, exhibited superior bone ingrowth and osseointegration performance.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4401872054_0",
+   "paper": "W4401872054",
+   "title": "MiR-629-5p May serve as a biomarker for pediatric acute respiratory distress syndrome and ",
+   "claim": "The cell proliferation, apoptosis, and inflammatory factors were assessed using cell counting kit-8 (CCK-8), flow cytometry, and enzyme-linked immunosorbent assay (ELISA). miR-629-5p target genes were identified in the database and validated using the dual-luciferase report assay.",
+   "model_label": "non-claim",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4401925531_0",
+   "paper": "W4401925531",
+   "title": "Dexmedetomidine ameliorates diabetic intestinal injury by promoting the polarization of M2",
+   "claim": "MMP23B protein levels in the intestinal tissue of STZ-induced diabetic mice were significantly higher than those in the intestinal tissue of control mice, with the DEX group displaying decreased MMP23B levels.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4402930804_0",
+   "paper": "W4402930804",
+   "title": "Protein Kinase C and Matrix Metalloproteinases Expression Using Phorbol Myristate Acetate ",
+   "claim": "Protein kinase C (PKC), an intermediate of the non-canonical Wnt pathway stimulated by phorbol myristate acetate (PMA), possibly prevents NP cell senescence, although not yet demonstrated in human-based studies.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4403961547_0",
+   "paper": "W4403961547",
+   "title": "Protective effect of baicalin on oxidative stress injury in retinal ganglion cells through",
+   "claim": "In vitro experiments demonstrated that the survival rate of R28 cells after glutamate treatment dropped to 33.4%, while 10 μM baicalin significantly inhibited glutamate-induced damage in RGCs ( P < 0.001) and enhanced cell viability through decreasing ROS levels, increasing antioxidant enzyme activity, and suppressing the expression of inflammatory factors iNOS, TNF-α, IL-6, and IL-1β ( P < 0.001).",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4405515822_1",
+   "paper": "W4405515822",
+   "title": "Receptor Activator of Nuclear Factor Kappa-B-Expressing Mesenchymal Stem Cells-Derived Ext",
+   "claim": "However, the receptor activator of the nuclear factor B ligand (RANKL) primarily stimulates mature osteoclasts to resorb bone, and its upregulation leads to osteoporosis in patients.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4410280781_0",
+   "paper": "W4410280781",
+   "title": "Significance and mechanisms of perineural invasion in malignant tumors",
+   "claim": "Cancer remains the second leading cause of death worldwide.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4410361416_0",
+   "paper": "W4410361416",
+   "title": "Nicotinamide N-Methyltransferase (NNMT) and Liver Cancer: From Metabolic Networks to Thera",
+   "claim": "Nicotinamide N-methyltransferase (NNMT), a metabolic enzyme central to NAD+ and methionine cycles, has emerged as a critical regulator of tumorigenesis across cancers.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4410361416_1",
+   "paper": "W4410361416",
+   "title": "Nicotinamide N-Methyltransferase (NNMT) and Liver Cancer: From Metabolic Networks to Thera",
+   "claim": "This review systematically synthesizes current evidence on NNMT’s dual role in HCC: (1) driving NAD+ depletion and homocysteine (Hcy) accumulation via metabolic dysregulation, (2) promoting malignant phenotypes (proliferation, invasion, metastasis, and drug resistance), and (3) serving as a prognostic biomarker and therapeutic target.",
+   "model_label": "non-claim",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4411162765_0",
+   "paper": "W4411162765",
+   "title": "The tumor microenvironment in hepatocellular carcinoma: mechanistic insights and therapeut",
+   "claim": "The HCC TME comprises a complex network of cellular components, including cancer-associated fibroblasts, tumor-associated macrophages, and infiltrating immune cells, alongside non-cellular factors such as extracellular matrix proteins, cytokines, and angiogenic mediators.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4413990550_0",
+   "paper": "W4413990550",
+   "title": "In Silico Analyzing 37 kDa Salivary Protein D7 and Discovering Vaccine Candidate and Diagn",
+   "claim": "Current vector control strategies rely heavily on insecticides, which face challenges due to increased resistance.",
+   "model_label": "background",
+   "human_label": null,
+   "note": null
+  },
+  {
+   "id": "obs_W4417534926_1",
+   "paper": "W4417534926",
+   "title": "Macrophage efferocytosis mediated by the TP63-RAC2 pathway promotes immunosuppressive remo",
+   "claim": "Our findings highlight that macrophages engulf apoptotic tumor cells, thereby impairing immune responses and promoting tumor progression.",
+   "model_label": "finding",
+   "human_label": null,
+   "note": null
+  }
+ ]
+}

@@ -1,0 +1,242 @@
+{
+ "reviewer": "Claude (model); a human spot check of bench/results/extraction_audit.md is still advised",
+ "labels": {
+  "obs_W1907219612_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W1967502057_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W2000755721_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W2050480410_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W2078610240_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W2102572922_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W2109334244_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W2120711134_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W2129651548_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W2142820105_0": {
+   "label": "background",
+   "note": "two sentences glued (\"new.A considerable\")"
+  },
+  "obs_W2511609099_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W2944555616_0": {
+   "label": "non-claim",
+   "note": "methods: detected, followed by identification"
+  },
+  "obs_W2947379553_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W2952127461_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W301622561_0": {
+   "label": "non-claim",
+   "note": "statement about the document"
+  },
+  "obs_W3036320358_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W3038740941_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W3040931367_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W3082581448_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W3121155202_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W3164333037_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4206351478_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4234317413_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4281630496_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4300089512_1": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4313594830_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4376133184_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4380200767_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4380362522_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4386019447_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4387973572_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4388007490_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4389137594_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4390498242_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4391649568_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4394718086_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4397008085_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4398205521_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4400830833_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4401872054_0": {
+   "label": "non-claim",
+   "note": "methods: assays used"
+  },
+  "obs_W4401925531_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4402930804_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4403961547_0": {
+   "label": "finding",
+   "note": null
+  },
+  "obs_W4405515822_1": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4410280781_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4410361416_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4410361416_1": {
+   "label": "non-claim",
+   "note": "describes the review (\"synthesizes\")"
+  },
+  "obs_W4411162765_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4413990550_0": {
+   "label": "background",
+   "note": null
+  },
+  "obs_W4417534926_1": {
+   "label": "finding",
+   "note": null
+  }
+ },
+ "summary": {
+  "n": 50,
+  "finding": 16,
+  "background": 30,
+  "non_claim": 4,
+  "source_error": 0,
+  "truncated": 0,
+  "substantive_assertion_rate": 0.92,
+  "finding_rate": 0.32,
+  "non_claim_rate": 0.08
+ },
+ "history": [
+  {
+   "sample": "original extractor (seed 7)",
+   "non_claim_rate": 0.18,
+   "finding_rate": 0.26,
+   "note": "no filter"
+  },
+  {
+   "sample": "held-out, seed 11",
+   "non_claim_rate": 0.06,
+   "finding_rate": 0.32,
+   "note": "after the first rule set; rules then extended from its misses"
+  },
+  {
+   "sample": "held-out, seed 23",
+   "non_claim_rate": 0.18,
+   "finding_rate": 0.28,
+   "note": "after more rules; misses were procedure statements, so a methods rule was added"
+  },
+  {
+   "sample": "held-out, seed 101 (final rules, no tuning)",
+   "non_claim_rate": 0.08,
+   "finding_rate": 0.32,
+   "note": "the reported figure: 4 of 50, interval roughly 2-19%"
+  }
+ ]
+}
