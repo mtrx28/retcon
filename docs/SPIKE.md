@@ -28,3 +28,7 @@ Engine: `falkordb/falkordb:latest`, graph module `ver 60002`. Probe script: `scr
 - A: Q5 loop on a cycle (`b_circ_a` / `b_circ_b` in `ap_tiny.json`) stays OUT. Done in A1/A2.
 - B: confirm `GRAPH.PROFILE` output is parseable for the latency badge. (Embedding decided: 384-dim MiniLM, see CONTRACT.md.)
 - ~~Pin the FalkorDB image digest~~ done in `docker-compose.yml`.
+
+## Addendum (B5): max-flow vs poisoning cost
+
+`algo.maxFlow` over the FLOW projection counts every justification as an OR of its premises, and counts per `Source->Observation` gate over the whole graph (OUT nodes included). On `ap_tiny`: `act_pay_2` = 3 (erp, po-system, portal), `b_addr` = 2, `b_bank_new` = 1. The true poisoning cost of `act_pay_2` is 1 (any one of the three claims failing kills the AND). So max-flow is an **upper bound**, exact only for single-premise chains. `core/fragility/q7.py` computes the exact cost from the JTMS fixpoint and keeps max-flow as `flow_upper_bound`. See `docs/FRAGILITY.md`.

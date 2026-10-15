@@ -27,11 +27,18 @@ class MemoryService:
         self.capture.record(agent, [h["id"] for h in hits])
         return hits
 
-    def remember(self, text, kind, agent, rule=None):
+    def remember(self, text, kind, agent, rule=None, mtype=None):
         vec = self.embedder.embed([text])[0]
-        r = q1.write_justified(self.g, text=text, kind=kind, agent=agent,
-                               premise_ids=self.capture.context(agent), rule=rule, embedding=vec)
+        r = q1.write_justified(self.g, text=text, kind=kind, agent=agent, premise_ids=self.capture.context(agent),
+                               rule=rule, embedding=vec, mtype=mtype)
         return r
+
+    def learn_rule(self, text, agent, episode_ids):
+        """Store a procedural rule justified by the episode(s) it was learned from (B1+).
+        The episodes become the agent's context, so the write goes through the same capture path."""
+        self.capture.begin_turn(agent)
+        self.capture.record(agent, episode_ids)
+        return self.remember(text, "belief", agent, rule="infer", mtype="procedural")
 
     def begin_turn(self, agent):
         self.capture.begin_turn(agent)
