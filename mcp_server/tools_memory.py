@@ -31,8 +31,24 @@ def remember(text, kind, agent, mtype=None):
     return _guard(run)
 
 
-def recall(query, agent, k=8):
-    return _guard(lambda: _service.recall(query, agent, k))
+def observe(source, text, observed_at, agent="intake"):
+    """Additive (B3): ingest one observation from a Source. `observed_at` is ISO 8601 or epoch seconds.
+    The observation lands in the agent's context, so the next `remember` is justified by it."""
+    return _guard(lambda: _service.observe(source, text, observed_at, agent))
+
+
+def begin_turn(agent):
+    """Additive (B3): start a fresh turn; the agent's captured context is cleared."""
+    def run():
+        _service.begin_turn(agent)
+        return {"ok": True}
+    return _guard(run)
+
+
+def recall(query, agent, k=8, contains=None):
+    """`contains` (additive, B3): keep only memories whose text includes this substring, so an agent
+    can scope retrieval to one entity (a vendor) before anything is captured as a premise."""
+    return _guard(lambda: _service.recall(query, agent, k, contains))
 
 
 def fragility(node_id):

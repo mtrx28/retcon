@@ -4,6 +4,7 @@
   fixture             load data/fixtures/ap_tiny.json into tenant_<RETCON_TENANT>
   gen [args]          generate a seeded scenario: gen --vendors 3 -o data/fixtures/ap_gen.json (see data/generator)
   sandbox [spec]      run fake portal + mock bank + inbox on :8100
+  demo [args]         the seeded agent day as a transcript (python -m agents.demo; --transport mcp for real MCP)
   embed               create the vector index and embed every Mem of tenant_<RETCON_TENANT>
   test                run the full pytest suite
   accept <ID>         acceptance check for one task, e.g. accept A4 (runs tests marked/named for it)
@@ -33,6 +34,8 @@ def main(argv):
         run(py, "-m", "data.generator", *rest)
     elif t == "sandbox":
         run(py, "-m", "data.sandbox", *rest)
+    elif t == "demo":
+        run(py, "-m", "agents.demo", *rest)
     elif t == "embed":
         run(py, "-m", "core.retrieve.embed_cli", *rest)
     elif t == "test":
