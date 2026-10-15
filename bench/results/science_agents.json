@@ -1,0 +1,728 @@
+{
+  "domain": "science",
+  "retracted_papers": 40,
+  "papers": 537,
+  "tasks": 1066,
+  "claims_synthesized": 1126,
+  "topic_claims": 60,
+  "ingest_s": 15.3,
+  "retract_s": 4.8,
+  "distrust_p50_ms": 18.33,
+  "distrust_p95_ms": 26.18,
+  "before_retraction": {
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "action_recall": null,
+    "action_precision": null,
+    "blocked_recall": null,
+    "counts": {
+      "contaminated": 501,
+      "truly_supported": 1691,
+      "out": 0,
+      "executed_contaminated": 0,
+      "pending_contaminated": 0
+    },
+    "unmapped_nodes": 0,
+    "disagreements": 501
+  },
+  "after_retraction": {
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "action_recall": null,
+    "action_precision": null,
+    "blocked_recall": null,
+    "counts": {
+      "contaminated": 501,
+      "truly_supported": 1691,
+      "out": 501,
+      "executed_contaminated": 0,
+      "pending_contaminated": 0
+    },
+    "unmapped_nodes": 0,
+    "disagreements": 0
+  },
+  "topics_withdrawn": 37,
+  "topics_that_stood": 89,
+  "per_retraction": [
+    {
+      "source": "W2968241016",
+      "retracted_at": "2025-01-16",
+      "reason": "Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Objections by Author(s);Unreliable Data",
+      "retraction_id": "ret_0001",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 23.21,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W2158821314",
+      "retracted_at": "2025-01-25",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Investigation by Third Party;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0002",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 16.7,
+      "topics_withdrawn": 2,
+      "topics_standing": 2,
+      "min_independent_sources": 2
+    },
+    {
+      "source": "W2991137867",
+      "retracted_at": "2025-03-14",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Investigation by Third Party;Lack of IRB/IACUC Approval and/or Compliance",
+      "retraction_id": "ret_0003",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 33.16,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
+      "min_independent_sources": 5
+    },
+    {
+      "source": "W2102580320",
+      "retracted_at": "2025-05-15",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Investigation by Third Party;Unreliable Data",
+      "retraction_id": "ret_0004",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 18.33,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W3036320358",
+      "retracted_at": "2025-07-22",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Image;Concerns/Issues about Third Party Involvement;Contamination of Cell Lines/Tissues;Euphemisms for Plagiarism;Investigation by Journal/Publisher;Investigation by Third Party;Plagiarism of Image;Unreliable Data",
+      "retraction_id": "ret_0005",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 4,
+      "latency_ms": 20.1,
+      "topics_withdrawn": 0,
+      "topics_standing": 4,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4402118736",
+      "retracted_at": "2025-09-20",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Original Data and/or Images not Provided and/or not Available;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0006",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 10,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 16.52,
+      "topics_withdrawn": 0,
+      "topics_standing": 2,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4223455752",
+      "retracted_at": "2025-10-21",
+      "reason": "Euphemisms for Plagiarism;Investigation by Third Party;Paper Mill;Plagiarism of Image;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0007",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 10,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 19.58,
+      "topics_withdrawn": 0,
+      "topics_standing": 2,
+      "min_independent_sources": 17
+    },
+    {
+      "source": "W3033439743",
+      "retracted_at": "2025-10-27",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Euphemisms for Plagiarism;Investigation by Journal/Publisher;Investigation by Third Party;Manipulation of Images;Original Data and/or Images not Provided and/or not Available;Plagiarism of Image;Unreliable Data;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0008",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 4,
+      "latency_ms": 20.46,
+      "topics_withdrawn": 1,
+      "topics_standing": 4,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4388490709",
+      "retracted_at": "2025-11-18",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Original Data and/or Images not Provided and/or not Available;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0009",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 2,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 10.39,
+      "topics_withdrawn": 0,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W2498501382",
+      "retracted_at": "2025-11-19",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Original Data and/or Images not Provided and/or not Available",
+      "retraction_id": "ret_0010",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 16.32,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4403981911",
+      "retracted_at": "2025-11-26",
+      "reason": "Concerns/Issues about Authorship/Affiliation;Concerns/Issues about Data;Concerns/Issues about Methods;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher;Investigation by Third Party",
+      "retraction_id": "ret_0011",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 3,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 13.56,
+      "topics_withdrawn": 0,
+      "topics_standing": 1,
+      "min_independent_sources": 9
+    },
+    {
+      "source": "W4403892587",
+      "retracted_at": "2025-12-19",
+      "reason": "Concerns/Issues about Image;Duplication of/in Image;Euphemisms for Duplication;Investigation by Journal/Publisher;Investigation by Third Party;Objections by Author(s);Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0012",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 3,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 17.4,
+      "topics_withdrawn": 0,
+      "topics_standing": 1,
+      "min_independent_sources": 10
+    },
+    {
+      "source": "W1925909433",
+      "retracted_at": "2026-04-14",
+      "reason": "Duplication of Data;Duplication of/in Image;Investigation by Journal/Publisher;Investigation by Third Party;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0013",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 4,
+      "latency_ms": 21.53,
+      "topics_withdrawn": 0,
+      "topics_standing": 4,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W2899809561",
+      "retracted_at": "2026-04-20",
+      "reason": "Duplication of/in Image;Euphemisms for Duplication;Euphemisms for Plagiarism;Plagiarism of Image;Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0014",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 18.28,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
+      "min_independent_sources": 3
+    },
+    {
+      "source": "W2153244109",
+      "retracted_at": "2026-04-29",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Methods;Investigation by Journal/Publisher;Investigation by Third Party;Objections by Author(s);Unreliable Results and/or Conclusions;Upgrade/Update of Prior Notice(s)",
+      "retraction_id": "ret_0015",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 23.89,
+      "topics_withdrawn": 1,
+      "topics_standing": 2,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W2944555616",
+      "retracted_at": "2026-05-18",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Image;Euphemisms for Plagiarism;Investigation by Journal/Publisher;Investigation by Third Party;Plagiarism of Data;Plagiarism of Image",
+      "retraction_id": "ret_0016",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 5,
+      "latency_ms": 19.22,
+      "topics_withdrawn": 0,
+      "topics_standing": 5,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W2799312540",
+      "retracted_at": "2026-05-20",
+      "reason": "Duplication of Data;Duplication of/in Image;Investigation by Journal/Publisher;Investigation by Third Party;Objections by Author(s);Unreliable Results and/or Conclusions",
+      "retraction_id": "ret_0017",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 16.93,
+      "topics_withdrawn": 0,
+      "topics_standing": 2,
+      "min_independent_sources": 2
+    },
+    {
+      "source": "W4225294442",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Image;Euphemisms for Plagiarism;Investigation by Journal/Publisher;Plagiarism of Image",
+      "retraction_id": "ret_0018",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 21.12,
+      "topics_withdrawn": 0,
+      "topics_standing": 3,
+      "min_independent_sources": 2
+    },
+    {
+      "source": "W4225411297",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0019",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 4,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 12.92,
+      "topics_withdrawn": 0,
+      "topics_standing": 1,
+      "min_independent_sources": 14
+    },
+    {
+      "source": "W4225411352",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0020",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 18.02,
+      "topics_withdrawn": 1,
+      "topics_standing": 3,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4228999256",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0021",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 10,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 11.98,
+      "topics_withdrawn": 1,
+      "topics_standing": 2,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4229031019",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0022",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 17.21,
+      "topics_withdrawn": 1,
+      "topics_standing": 2,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4280512987",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0023",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 11,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 4,
+      "latency_ms": 20.14,
+      "topics_withdrawn": 0,
+      "topics_standing": 4,
+      "min_independent_sources": 2
+    },
+    {
+      "source": "W4280546844",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher;Original Data and/or Images not Provided and/or not Available",
+      "retraction_id": "ret_0024",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 13,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 21.11,
+      "topics_withdrawn": 1,
+      "topics_standing": 2,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4281252536",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0025",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 14,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 25.67,
+      "topics_withdrawn": 2,
+      "topics_standing": 3,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4281255530",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Third Party",
+      "retraction_id": "ret_0026",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 8,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 18.61,
+      "topics_withdrawn": 1,
+      "topics_standing": 1,
+      "min_independent_sources": 11
+    },
+    {
+      "source": "W4281476117",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher;Objections by Author(s)",
+      "retraction_id": "ret_0027",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 10,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 21.58,
+      "topics_withdrawn": 0,
+      "topics_standing": 2,
+      "min_independent_sources": 11
+    },
+    {
+      "source": "W4281477692",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0028",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 8,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 16.38,
+      "topics_withdrawn": 2,
+      "topics_standing": 1,
+      "min_independent_sources": 11
+    },
+    {
+      "source": "W4281483334",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Original Data and/or Images not Provided and/or not Available",
+      "retraction_id": "ret_0029",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 15,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 20.72,
+      "topics_withdrawn": 3,
+      "topics_standing": 3,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4281484625",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0030",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 8,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 4,
+      "latency_ms": 15.13,
+      "topics_withdrawn": 1,
+      "topics_standing": 4,
+      "min_independent_sources": 7
+    },
+    {
+      "source": "W4281633287",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher;Original Data and/or Images not Provided and/or not Available",
+      "retraction_id": "ret_0031",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 5,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 11.81,
+      "topics_withdrawn": 0,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4281812726",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0032",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 12,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 19.33,
+      "topics_withdrawn": 1,
+      "topics_standing": 1,
+      "min_independent_sources": 9
+    },
+    {
+      "source": "W4281939113",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0033",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 14,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 17.3,
+      "topics_withdrawn": 3,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4282005808",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0034",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 9,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 12.57,
+      "topics_withdrawn": 0,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4282927613",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0035",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 17,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 26.18,
+      "topics_withdrawn": 5,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4283204427",
+      "retracted_at": "2026-10-01",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0036",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 15,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 2,
+      "latency_ms": 19.89,
+      "topics_withdrawn": 3,
+      "topics_standing": 2,
+      "min_independent_sources": 1
+    },
+    {
+      "source": "W4283382903",
+      "retracted_at": "2026-10-01",
+      "reason": "Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher;Objections by Author(s)",
+      "retraction_id": "ret_0037",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 8,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 13.91,
+      "topics_withdrawn": 1,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4280571069",
+      "retracted_at": "2026-10-02",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0038",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 7,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 3,
+      "latency_ms": 16.52,
+      "topics_withdrawn": 0,
+      "topics_standing": 3,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4281480916",
+      "retracted_at": "2026-10-02",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0039",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 8,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 14.05,
+      "topics_withdrawn": 1,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    },
+    {
+      "source": "W4282965377",
+      "retracted_at": "2026-10-02",
+      "reason": "Author Unresponsive;Concerns/Issues about Data;Concerns/Issues about Results and/or Conclusions;Investigation by Journal/Publisher",
+      "retraction_id": "ret_0040",
+      "flipped": {
+        "observations": 2,
+        "beliefs": 9,
+        "plans": 0,
+        "actions": 0
+      },
+      "survived": 1,
+      "latency_ms": 25.61,
+      "topics_withdrawn": 1,
+      "topics_standing": 1,
+      "min_independent_sources": 8
+    }
+  ]
+}
