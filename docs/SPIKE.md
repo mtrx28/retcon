@@ -32,3 +32,18 @@ Engine: `falkordb/falkordb:latest`, graph module `ver 60002`. Probe script: `scr
 ## Addendum (B5): max-flow vs poisoning cost
 
 `algo.maxFlow` over the FLOW projection counts every justification as an OR of its premises, and counts per `Source->Observation` gate over the whole graph (OUT nodes included). On `ap_tiny`: `act_pay_2` = 3 (erp, po-system, portal), `b_addr` = 2, `b_bank_new` = 1. The true poisoning cost of `act_pay_2` is 1 (any one of the three claims failing kills the AND). So max-flow is an **upper bound**, exact only for single-premise chains. `core/fragility/q7.py` computes the exact cost from the JTMS fixpoint and keeps max-flow as `flow_upper_bound`. See `docs/FRAGILITY.md`.
+
+## Addendum (B7/B11): server limits that silently or loudly change results
+
+Read from `GRAPH.CONFIG GET` on the pinned image, found by running at 10k nodes:
+
+| Setting | Default | What it does | What we do |
+|---|---|---|---|
+| `RESULTSET_SIZE` | **10000** | A query returning more rows is **silently truncated**: no error, no warning. | `core.db.fetch_all(g, cypher, params, order_by=...)` pages with `SKIP/LIMIT`. Use it for any read that can exceed 10k rows. |
+| `MAX_QUEUED_QUERIES` | **25** | The 26th pending query gets `ResponseError: Max pending queries exceeded`: loud, nothing is lost. | Clients back off and retry (`bench/harness/concurrency._call`). At 50 concurrent writers 4 of 1,000 operations were rejected once and succeeded on retry. |
+| `TIMEOUT` | **1000 ms** | Reads and writes are aborted after 1 s. | Not hit in any run so far (a 10k-node cascade is ~50 ms); keep an eye on it at 100k. |
+
+How it was found: a consistency checker that read all justifications reported 1,076 "stale" nodes at 10k that
+were not stale: it had received exactly 10,000 of 11,076 rows. Paging fixed the checker; the cascade was right.
+Places to check for the same hazard (Lane A, not changed here): `core/retract/cascade._report` (flipped nodes),
+`core/recall/recall_list`, the Remediator's action scan, and any strategy's `out_ids` query in `bench/baselines`.

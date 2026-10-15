@@ -26,12 +26,16 @@ def ensure_vector_index(g):
 def embed_graph(g, embedder, batch=64):
     """Embed every Mem that has no embedding yet (fixtures are loaded without vectors)."""
     ensure_vector_index(g)
-    rows = g.query("MATCH (m:Mem) WHERE m.embedding IS NULL RETURN m.id, m.text").result_set
-    for i in range(0, len(rows), batch):
-        chunk = rows[i:i + batch]
-        for (mid, _), vec in zip(chunk, embedder.embed([r[1] or "" for r in chunk])):
-            g.query("MATCH (m:Mem {id:$id}) SET m.embedding = vecf32($v)", {"id": mid, "v": vec})
-    return len(rows)
+    done = 0
+    while True:   # each pass embeds up to the server's result cap; repeat until nothing is left
+        rows = g.query("MATCH (m:Mem) WHERE m.embedding IS NULL RETURN m.id, m.text LIMIT $n", {"n": 5000}).result_set
+        if not rows:
+            return done
+        for i in range(0, len(rows), batch):
+            chunk = rows[i:i + batch]
+            for (mid, _), vec in zip(chunk, embedder.embed([r[1] or "" for r in chunk])):
+                g.query("MATCH (m:Mem {id:$id}) SET m.embedding = vecf32($v)", {"id": mid, "v": vec})
+        done += len(rows)
 
 
 def search(g, vec, k, contains=None):

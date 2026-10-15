@@ -127,6 +127,11 @@ def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=N
         f"ON CREATE SET m.text=$text, m.status='OUT', m.agent=$agent, m.created_at=$now, m.mtype=$mtype, "
         f"             m.embedding=CASE WHEN $emb IS NULL THEN null ELSE vecf32($emb) END "
         f"SET m.status = CASE WHEN m.status = 'IN' OR live THEN 'IN' ELSE 'OUT' END "
+        # A premise carrying a cascade `run` tag is mid-retraction (tentatively OUT). Inherit the tag so the
+        # cascade's re-derivation also revisits this node; without it a supported claim written in that
+        # window would stay OUT forever (found by bench/harness/concurrency, B11).
+        f"SET m.run = CASE WHEN size([x IN ps WHERE x.run IS NOT NULL | x.run]) > 0 "
+        f"                 THEN [x IN ps WHERE x.run IS NOT NULL | x.run][0] ELSE m.run END "
         f"MERGE (j:Justification {{id:$jid}}) "
         f"ON CREATE SET j.rule=$rule, j.agent=$agent, j.at=$now "
         f"MERGE (j)-[:JUSTIFIES]->(m) "

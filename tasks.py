@@ -6,6 +6,7 @@
   sandbox [spec]      run fake portal + mock bank + inbox on :8100
   demo [args]         the seeded agent day as a transcript (python -m agents.demo; --transport mcp for real MCP)
   ui [--port 8200]    the graph canvas (open the printed URL); pair with `demo --live` to watch it grow
+  bench [args]        RetconBench: python -m bench.harness --scenarios ap_tiny,ap_1k,ap_prec_1k --launder --ablation --concurrency --charts auto
   science [args]      build data/fixtures/science.json from data/science/raw (python -m data.science.ingest)
   embed               create the vector index and embed every Mem of tenant_<RETCON_TENANT>
   test                run the full pytest suite
@@ -40,6 +41,8 @@ def main(argv):
         run(py, "-m", "agents.demo", *rest)
     elif t == "ui":
         run(py, "-m", "ui.shell.server", *rest)
+    elif t == "bench":
+        run(py, "-m", "bench.harness", *rest)
     elif t == "science":
         run(py, "-m", "data.science.ingest", *rest)
     elif t == "embed":
