@@ -19,7 +19,7 @@ LIST_TOOLS = {"recall", "recall_list", "list_remediations"}
 
 
 # wall-clock values: real, but not part of the deterministic transcript
-VOLATILE_KEYS = {"latency_ms", "executed_at"}
+VOLATILE_KEYS = {"latency_ms", "executed_at", "profile"}   # profile: GRAPH.PROFILE timings (A6)
 
 
 def _scrub(x):

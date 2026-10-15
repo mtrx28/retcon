@@ -6,6 +6,7 @@
   sandbox [spec]      run fake portal + mock bank + inbox on :8100
   demo [args]         the seeded agent day as a transcript (python -m agents.demo; --transport mcp for real MCP)
   ui [--port 8200]    the graph canvas (open the printed URL); pair with `demo --live` to watch it grow
+  science [args]      build data/fixtures/science.json from data/science/raw (python -m data.science.ingest)
   embed               create the vector index and embed every Mem of tenant_<RETCON_TENANT>
   test                run the full pytest suite
   accept <ID>         acceptance check for one task, e.g. accept A4 (runs tests marked/named for it)
@@ -39,6 +40,8 @@ def main(argv):
         run(py, "-m", "agents.demo", *rest)
     elif t == "ui":
         run(py, "-m", "ui.shell.server", *rest)
+    elif t == "science":
+        run(py, "-m", "data.science.ingest", *rest)
     elif t == "embed":
         run(py, "-m", "core.retrieve.embed_cli", *rest)
     elif t == "test":

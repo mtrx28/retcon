@@ -14,7 +14,7 @@ SCHEMA = Path(__file__).resolve().parent.parent / "core" / "schema.cypher"
 FLOW_CAP = 1_000_000
 MTYPES = ("episodic", "semantic", "procedural")
 DOMAINS = ("ap", "science")
-SOURCE_OPTIONAL = ("retracted_at", "rw_reason")  # contract v1.1, science sources
+SOURCE_OPTIONAL = ("retracted_at", "rw_reason", "title", "doi")  # contract v1.1 science sources (+ display fields)
 
 
 def epoch(iso):

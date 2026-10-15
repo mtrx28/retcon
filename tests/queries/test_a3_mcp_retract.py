@@ -116,8 +116,6 @@ def test_recall_list_tool(graph):
      "INVALID_ARGUMENT"),
     ("distrust", {"source": "coastal-portal", "from_": "2026-10-01T00:00:00Z", "to": "2026-10-09T00:00:00Z",
                   "mode": "dryrun"}, "INVALID_ARGUMENT"),
-    ("distrust", {"source": "coastal-portal", "from_": "2026-10-01T00:00:00Z", "to": "2026-10-09T00:00:00Z",
-                  "mode": "preview"}, "NOT_IMPLEMENTED"),
     ("reinstate", {"retraction_id": "ret_9999"}, "NOT_FOUND"),
     ("why", {"node_id": "ghost"}, "NOT_FOUND"),
     ("recall_list", {"run": "ret_9999"}, "NOT_FOUND"),

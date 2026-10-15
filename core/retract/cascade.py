@@ -8,6 +8,7 @@ is brought back, looped to a fixpoint. Circular support between two OUT nodes ca
 Nothing is deleted. Flipped nodes are linked from a :Retraction node so reinstate can reverse it.
 Verified syntax and gotchas: docs/SPIKE.md.
 """
+import re
 import time
 from datetime import datetime
 
@@ -41,9 +42,9 @@ def _next_retraction_id(g) -> str:
     return f"ret_{n + 1:04d}"
 
 
-def _rederive(g, run: str) -> int:
-    """Q5 to a fixpoint. Returns how many nodes came back IN."""
-    back = 0
+def _rederive(g, run: str) -> list[str]:
+    """Q5 to a fixpoint. Returns the ids that came back IN (independently supported)."""
+    back: list[str] = []
     while True:
         rows = g.query(
             "MATCH (j:Justification)-[:JUSTIFIES]->(b:Mem {status:'OUT', run:$run}) "
@@ -55,7 +56,7 @@ def _rederive(g, run: str) -> int:
             {"run": run}).result_set
         if not rows:
             return back
-        back += len(rows)
+        back += [r[0] for r in rows]
 
 
 def distrust(g, source: str, t_from, t_to, mode: str = "commit",
@@ -66,7 +67,7 @@ def distrust(g, source: str, t_from, t_to, mode: str = "commit",
     ids grouped by cascade depth, which the UI animates.
     """
     if mode != "commit":
-        raise RetconError("NOT_IMPLEMENTED", "mode='preview' is task A5 (GRAPH.COPY fork)", {"mode": mode})
+        raise RetconError("NOT_IMPLEMENTED", "preview runs through core.preview.preview (GRAPH.COPY fork)", {"mode": mode})
     if not g.query("MATCH (s:Source {id:$s}) RETURN s.id", {"s": source}).result_set:
         raise NotFound(f"source {source!r}", {"source": source})
     started = time.perf_counter()
@@ -105,7 +106,7 @@ def distrust(g, source: str, t_from, t_to, mode: str = "commit",
         {"run": rid})
 
     # Q5: well-founded re-derivation. Independently supported nodes come back IN.
-    _rederive(g, rid)
+    survived = _rederive(g, rid)
 
     # Audit trail: link the Retraction to every derived node that stayed OUT, then clear scratch tags.
     g.query(
@@ -115,10 +116,10 @@ def distrust(g, source: str, t_from, t_to, mode: str = "commit",
         {"rid": rid})
     g.query("MATCH (x:Mem {run:$rid}) SET x.run = null, x.hop = null", {"rid": rid})
 
-    return _report(g, rid, (time.perf_counter() - started) * 1000)
+    return _report(g, rid, (time.perf_counter() - started) * 1000, survived)
 
 
-def _report(g, rid: str, latency_ms: float) -> dict:
+def _report(g, rid: str, latency_ms: float, survived=()) -> dict:
     from core.recall.recall_list import blocked_actions, recall_list  # local: avoid import cycle
 
     rows = g.query(
@@ -138,8 +139,33 @@ def _report(g, rid: str, latency_ms: float) -> dict:
         "hops": hops,
         "blocked_action_ids": blocked_actions(g, rid),
         "recall_list": recall_list(g, rid),
+        "survived_ids": sorted(survived),   # downstream of the source, kept by independent support
         "latency_ms": round(latency_ms, 2),
+        "profile": profile_cascade(g, rid),
     }
+
+
+_RID = re.compile(r"^[A-Za-z0-9_]+$")
+_TIME = re.compile(r"Execution time: ([0-9.]+) ms")
+
+
+def profile_cascade(g, rid: str) -> dict:
+    """GRAPH.PROFILE of the Q4 traversal from this retraction's seed observations (read-only form of
+    the cascade query), so the UI can show the engine's own number next to our wall clock."""
+    if not _RID.match(rid):
+        return {}
+    q = (f"CYPHER rid='{rid}' MATCH (:Retraction {{id:$rid}})-[e:RETRACTED]->(o:Observation) "
+         f"WHERE e.flipped = true "
+         f"MATCH p = (o)-[:PREMISE_OF|JUSTIFIES*1..{MAX_PATH_EDGES}]->(x:Mem) "
+         f"RETURN x.id, min(length(p)) AS d")
+    try:
+        lines = g.client.connection.execute_command("GRAPH.PROFILE", g.name, q)
+    except Exception:  # noqa: BLE001 - profiling is informational, never fatal
+        return {}
+    lines = [l.decode() if isinstance(l, bytes) else str(l) for l in lines]
+    times = [float(m.group(1)) for l in lines if (m := _TIME.search(l))]
+    return {"query": "Q4 cascade traversal (read-only form)", "execution_ms": max(times) if times else None,
+            "plan": [l.strip() for l in lines]}
 
 
 def reinstate(g, retraction_id: str) -> dict:

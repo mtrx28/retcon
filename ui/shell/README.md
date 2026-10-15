@@ -30,6 +30,14 @@ Open `http://127.0.0.1:8200/#graph=<name>`; the selector lists every graph (`ten
 
 Errors are the contract shape `{"error": {code, message, details}}`.
 
+## Fragility radar (B6b)
+`ui/radar/radar.js`, served at `/static/radar.js`, registers a panel through the same extension API. One
+spoke per live plan/action (or claim), distance from the centre = poisoning cost (`fragility`); the dashed ring
+is the gate's minimum. `GET /api/fragility?graph=&kinds=plan,action|belief&limit=40` returns
+`{items:[{id, kind, label, independent_sources, bound, cut_set, live_sources, justifications}], policy:{min, over_amount}}`
+(cached per graph version, so polling is free while the graph is quiet). The radar shrinks to the survivors
+after a retraction.
+
 ## Extending it (A6: cascade / preview / recall; B6b: fragility radar)
 `window.RETCON` is available after the `ready` event:
 
@@ -54,3 +62,9 @@ shell already shows the final state through the delta feed.
 ## Tests
 `python tasks.py accept B6A` (API + static files) and `node --test tests/ui` (layout + store logic).
 The canvas rendering itself is checked by eye in a browser (see STATUS for the manual script).
+
+## Operator console (A6, `ui/ops/`)
+Three panels (Operator, Recall list and compensations, Retractions) and a header badge, added through the
+extension API above. They talk to `/api/ops/*` (token-guarded writes: preview, commit, reinstate, approve /
+reject). See `ui/ops/__init__.py` for the routes. Set `RETCON_SANDBOX_URL` so approved recalls reach the
+sandbox bank; without it an approval is recorded and nothing is sent.
