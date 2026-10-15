@@ -9,6 +9,8 @@ import threading
 import time
 from collections import deque
 
+from core.db import fetch_all
+
 MEM_FIELDS = ("m.id", "labels(m)", "m.text", "m.status", "m.mtype", "m.agent", "m.run", "m.amount",
               "m.executed", "m.observed_at", "m.created_at", "m.gate_state", "m.tool", "m.args")
 KIND_ORDER = ("Observation", "Belief", "Plan", "Action")
@@ -59,19 +61,20 @@ def snapshot(g, limit=3000):
             "MATCH (s:Source) RETURN s.id, s.trust, s.kind, s.retracted_at").result_set:
         nodes[sid] = {"id": sid, "kind": "source", "label": sid, "trust": trust, "skind": skind,
                       "retracted_at": retracted or ("distrusted" if sid in distrusted else None), "status": None}
-    for sid, oid in g.query("MATCH (s:Source)-[:SUPPORTS]->(o:Observation) WHERE o.id IN $ids "
-                            "RETURN s.id, o.id", {"ids": ids}).result_set:
+    for sid, oid in fetch_all(g, "MATCH (s:Source)-[:SUPPORTS]->(o:Observation) WHERE o.id IN $ids "
+                                 "RETURN s.id AS s, o.id AS o", {"ids": ids}, order_by="s, o"):
         edges.append({"s": sid, "t": oid, "type": "SUPPORTS"})
     for jid, rule, agent in g.query(
             "MATCH (j:Justification)-[:JUSTIFIES]->(m:Mem) WHERE m.id IN $ids RETURN DISTINCT j.id, j.rule, j.agent",
             {"ids": ids}).result_set:
         nodes[jid] = {"id": jid, "kind": "justification", "label": jid, "rule": rule, "agent": agent,
                       "status": None}
-    for jid, mid in g.query("MATCH (j:Justification)-[:JUSTIFIES]->(m:Mem) WHERE m.id IN $ids "
-                            "RETURN j.id, m.id", {"ids": ids}).result_set:
+    for jid, mid in fetch_all(g, "MATCH (j:Justification)-[:JUSTIFIES]->(m:Mem) WHERE m.id IN $ids "
+                                 "RETURN j.id AS j, m.id AS m", {"ids": ids}, order_by="j, m"):
         edges.append({"s": jid, "t": mid, "type": "JUSTIFIES"})
-    for pid, jid in g.query("MATCH (p:Mem)-[:PREMISE_OF]->(j:Justification)-[:JUSTIFIES]->(m:Mem) "
-                            "WHERE m.id IN $ids AND p.id IN $ids RETURN p.id, j.id", {"ids": ids}).result_set:
+    for pid, jid in fetch_all(g, "MATCH (p:Mem)-[:PREMISE_OF]->(j:Justification)-[:JUSTIFIES]->(m:Mem) "
+                                 "WHERE m.id IN $ids AND p.id IN $ids RETURN p.id AS p, j.id AS j",
+                              {"ids": ids}, order_by="p, j"):
         edges.append({"s": pid, "t": jid, "type": "PREMISE_OF"})
     counts = {"mem": total, "shown": len(ids)}
     for st in ("IN", "OUT"):

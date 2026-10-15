@@ -1,0 +1,227 @@
+[
+ {
+  "scenario": "ap_tiny",
+  "domain": "ap",
+  "nodes": 24,
+  "seed": null,
+  "strategy": "retcon",
+  "out_count": 11,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "counts": {
+    "contaminated": 11,
+    "truly_supported": 13,
+    "out": 11,
+    "executed_contaminated": 1,
+    "pending_contaminated": 1
+   }
+  },
+  "elapsed_ms": 32.75,
+  "engine_ms": 23.99,
+  "notes": {
+   "source": "harness stand-in"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 3,
+   "p50": 32.75,
+   "p95": 40.083,
+   "min": 24.527,
+   "max": 40.083,
+   "mean": 32.453
+  },
+  "load_ms": 24.0
+ },
+ {
+  "scenario": "ap_1k",
+  "domain": "ap",
+  "nodes": 1024,
+  "seed": 7,
+  "strategy": "retcon",
+  "out_count": 31,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 993,
+    "out": 31,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "elapsed_ms": 20.617,
+  "engine_ms": 15.76,
+  "notes": {
+   "source": "harness stand-in"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 3,
+   "p50": 20.617,
+   "p95": 25.041,
+   "min": 20.581,
+   "max": 25.041,
+   "mean": 22.08
+  },
+  "load_ms": 659.3
+ },
+ {
+  "scenario": "ap_10k",
+  "domain": "ap",
+  "nodes": 9984,
+  "seed": 7,
+  "strategy": "retcon",
+  "out_count": 31,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 9953,
+    "out": 31,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "elapsed_ms": 33.434,
+  "engine_ms": 26.33,
+  "notes": {
+   "source": "harness stand-in"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 3,
+   "p50": 33.434,
+   "p95": 38.34,
+   "min": 24.785,
+   "max": 38.34,
+   "mean": 32.186
+  },
+  "load_ms": 5388.3
+ },
+ {
+  "scenario": "ap_prec_1k",
+  "domain": "ap",
+  "nodes": 1025,
+  "seed": 7,
+  "strategy": "retcon",
+  "out_count": 76,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "counts": {
+    "contaminated": 76,
+    "truly_supported": 949,
+    "out": 76,
+    "executed_contaminated": 12,
+    "pending_contaminated": 12
+   }
+  },
+  "elapsed_ms": 94.222,
+  "engine_ms": 64.00999999999999,
+  "notes": {
+   "source": "harness stand-in"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 3,
+   "p50": 94.222,
+   "p95": 144.003,
+   "min": 82.958,
+   "max": 144.003,
+   "mean": 107.061
+  },
+  "latency_per_window_ms": {
+   "n": 15,
+   "p50": 18.622,
+   "p95": 31.575,
+   "min": 13.789,
+   "max": 31.575,
+   "mean": 21.412
+  },
+  "windows": 5,
+  "load_ms": 794.4,
+  "profile": {
+   "poisoned_vendors": 5,
+   "distinct_windows": 5,
+   "touched_beliefs": 30,
+   "corroborated_beliefs": 12,
+   "corroborated_share": 0.4,
+   "touched_actions": 60,
+   "legit_payments": 36,
+   "legit_executed": 18,
+   "legit_pending": 18
+  }
+ },
+ {
+  "scenario": "ap_prec_10k",
+  "domain": "ap",
+  "nodes": 9986,
+  "seed": 7,
+  "strategy": "retcon",
+  "out_count": 152,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "counts": {
+    "contaminated": 152,
+    "truly_supported": 9834,
+    "out": 152,
+    "executed_contaminated": 24,
+    "pending_contaminated": 24
+   }
+  },
+  "elapsed_ms": 232.581,
+  "engine_ms": 163.6,
+  "notes": {
+   "source": "harness stand-in"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 3,
+   "p50": 232.581,
+   "p95": 307.563,
+   "min": 224.362,
+   "max": 307.563,
+   "mean": 254.835
+  },
+  "latency_per_window_ms": {
+   "n": 30,
+   "p50": 23.821,
+   "p95": 36.915,
+   "min": 15.819,
+   "max": 39.833,
+   "mean": 25.484
+  },
+  "windows": 10,
+  "load_ms": 5574.7,
+  "profile": {
+   "poisoned_vendors": 10,
+   "distinct_windows": 10,
+   "touched_beliefs": 60,
+   "corroborated_beliefs": 24,
+   "corroborated_share": 0.4,
+   "touched_actions": 120,
+   "legit_payments": 72,
+   "legit_executed": 36,
+   "legit_pending": 36
+  }
+ }
+]
