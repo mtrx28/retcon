@@ -31,6 +31,15 @@ class Window:
         return cls(w["source"], w["from"], w["to"])
 
 
+def windows(spec: dict) -> list[Window]:
+    """The distrust windows of a scenario, in order. AP: the one `window`. Science: one per retracted
+    paper (`retractions`, chronological). The harness calls `retract()` once per window on the SAME
+    graph and takes the union of `out_ids`; for RETCON the last call already reports everything OUT."""
+    if spec.get("retractions"):
+        return [Window(r["source"], r["from"], r["to"]) for r in spec["retractions"]]
+    return [Window.from_spec(spec)]
+
+
 @dataclass
 class RetractionResult:
     """What a strategy believes is no longer usable after retracting the window.

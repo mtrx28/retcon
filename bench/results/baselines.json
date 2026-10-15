@@ -1,0 +1,274 @@
+[
+  {
+    "scenario": "ap_1k",
+    "domain": "ap",
+    "nodes": 1008,
+    "seed": 7,
+    "strategy": "delete_source",
+    "out_count": 2,
+    "metrics": {
+      "residual_contamination": 0.8181818181818182,
+      "collateral_loss": 0.0,
+      "action_recall": 0.0,
+      "action_precision": null,
+      "blocked_recall": 0.0,
+      "counts": {
+        "contaminated": 11,
+        "truly_supported": 997,
+        "out": 2,
+        "executed_contaminated": 1,
+        "pending_contaminated": 1
+      }
+    },
+    "elapsed_ms": 1.1,
+    "engine_ms": null,
+    "notes": {},
+    "error": null
+  },
+  {
+    "scenario": "ap_1k",
+    "domain": "ap",
+    "nodes": 1008,
+    "seed": 7,
+    "strategy": "vector_only",
+    "out_count": 3,
+    "metrics": {
+      "residual_contamination": 0.8181818181818182,
+      "collateral_loss": 0.0010030090270812437,
+      "action_recall": 0.0,
+      "action_precision": null,
+      "blocked_recall": 0.0,
+      "counts": {
+        "contaminated": 11,
+        "truly_supported": 997,
+        "out": 3,
+        "executed_contaminated": 1,
+        "pending_contaminated": 1
+      }
+    },
+    "elapsed_ms": 300.5,
+    "engine_ms": 299.37129999962053,
+    "notes": {
+      "threshold": 0.75,
+      "embedder": "hash"
+    },
+    "error": null
+  },
+  {
+    "scenario": "ap_1k",
+    "domain": "ap",
+    "nodes": 1008,
+    "seed": 7,
+    "strategy": "edge_invalidation",
+    "out_count": 5,
+    "metrics": {
+      "residual_contamination": 0.6363636363636364,
+      "collateral_loss": 0.0010030090270812437,
+      "action_recall": 0.0,
+      "action_precision": null,
+      "blocked_recall": 0.0,
+      "counts": {
+        "contaminated": 11,
+        "truly_supported": 997,
+        "out": 5,
+        "executed_contaminated": 1,
+        "pending_contaminated": 1
+      }
+    },
+    "elapsed_ms": 1.5,
+    "engine_ms": null,
+    "notes": {},
+    "error": null
+  },
+  {
+    "scenario": "ap_1k",
+    "domain": "ap",
+    "nodes": 1008,
+    "seed": 7,
+    "strategy": "coarse_taint",
+    "out_count": 12,
+    "metrics": {
+      "residual_contamination": 0.0,
+      "collateral_loss": 0.0010030090270812437,
+      "action_recall": 1.0,
+      "action_precision": 1.0,
+      "blocked_recall": 1.0,
+      "counts": {
+        "contaminated": 11,
+        "truly_supported": 997,
+        "out": 12,
+        "executed_contaminated": 1,
+        "pending_contaminated": 1
+      }
+    },
+    "elapsed_ms": 2.5,
+    "engine_ms": null,
+    "notes": {},
+    "error": null
+  },
+  {
+    "scenario": "ap_1k",
+    "domain": "ap",
+    "nodes": 1008,
+    "seed": 7,
+    "strategy": "retcon",
+    "out_count": 11,
+    "metrics": {
+      "residual_contamination": 0.0,
+      "collateral_loss": 0.0,
+      "action_recall": 1.0,
+      "action_precision": 1.0,
+      "blocked_recall": 1.0,
+      "counts": {
+        "contaminated": 11,
+        "truly_supported": 997,
+        "out": 11,
+        "executed_contaminated": 1,
+        "pending_contaminated": 1
+      }
+    },
+    "elapsed_ms": 69.3,
+    "engine_ms": 0.089067,
+    "notes": {
+      "retraction_id": "ret_0001",
+      "survived": 1
+    },
+    "error": null
+  },
+  {
+    "scenario": "science",
+    "domain": "science",
+    "nodes": 2192,
+    "seed": null,
+    "strategy": "delete_source",
+    "out_count": 80,
+    "metrics": {
+      "residual_contamination": 0.8403193612774451,
+      "collateral_loss": 0.0,
+      "action_recall": null,
+      "action_precision": null,
+      "blocked_recall": null,
+      "counts": {
+        "contaminated": 501,
+        "truly_supported": 1691,
+        "out": 80,
+        "executed_contaminated": 0,
+        "pending_contaminated": 0
+      }
+    },
+    "elapsed_ms": 27.6,
+    "engine_ms": null,
+    "notes": {},
+    "error": null
+  },
+  {
+    "scenario": "science",
+    "domain": "science",
+    "nodes": 2192,
+    "seed": null,
+    "strategy": "vector_only",
+    "out_count": 160,
+    "metrics": {
+      "residual_contamination": 0.6806387225548902,
+      "collateral_loss": 0.0,
+      "action_recall": null,
+      "action_precision": null,
+      "blocked_recall": null,
+      "counts": {
+        "contaminated": 501,
+        "truly_supported": 1691,
+        "out": 160,
+        "executed_contaminated": 0,
+        "pending_contaminated": 0
+      }
+    },
+    "elapsed_ms": 9367.9,
+    "engine_ms": 9272.02700000089,
+    "notes": {
+      "threshold": 0.75,
+      "embedder": "hash"
+    },
+    "error": null
+  },
+  {
+    "scenario": "science",
+    "domain": "science",
+    "nodes": 2192,
+    "seed": null,
+    "strategy": "edge_invalidation",
+    "out_count": 465,
+    "metrics": {
+      "residual_contamination": 0.0718562874251497,
+      "collateral_loss": 0.0,
+      "action_recall": null,
+      "action_precision": null,
+      "blocked_recall": null,
+      "counts": {
+        "contaminated": 501,
+        "truly_supported": 1691,
+        "out": 465,
+        "executed_contaminated": 0,
+        "pending_contaminated": 0
+      }
+    },
+    "elapsed_ms": 58.9,
+    "engine_ms": null,
+    "notes": {},
+    "error": null
+  },
+  {
+    "scenario": "science",
+    "domain": "science",
+    "nodes": 2192,
+    "seed": null,
+    "strategy": "coarse_taint",
+    "out_count": 525,
+    "metrics": {
+      "residual_contamination": 0.0,
+      "collateral_loss": 0.014192785334121822,
+      "action_recall": null,
+      "action_precision": null,
+      "blocked_recall": null,
+      "counts": {
+        "contaminated": 501,
+        "truly_supported": 1691,
+        "out": 525,
+        "executed_contaminated": 0,
+        "pending_contaminated": 0
+      }
+    },
+    "elapsed_ms": 56.5,
+    "engine_ms": null,
+    "notes": {},
+    "error": null
+  },
+  {
+    "scenario": "science",
+    "domain": "science",
+    "nodes": 2192,
+    "seed": null,
+    "strategy": "retcon",
+    "out_count": 501,
+    "metrics": {
+      "residual_contamination": 0.0,
+      "collateral_loss": 0.0,
+      "action_recall": null,
+      "action_precision": null,
+      "blocked_recall": null,
+      "counts": {
+        "contaminated": 501,
+        "truly_supported": 1691,
+        "out": 501,
+        "executed_contaminated": 0,
+        "pending_contaminated": 0
+      }
+    },
+    "elapsed_ms": 2388.3,
+    "engine_ms": 12.815512,
+    "notes": {
+      "retraction_id": "ret_0040",
+      "survived": 1
+    },
+    "error": null
+  }
+]

@@ -171,6 +171,11 @@ Rules:
   `core.retrieve.embed.get_embedder()` (default `hash` for CI) on `Mem.text`.
 - Errors: raise; the harness records `error` for that (scenario, strategy) and carries on.
 
+**Windows.** `bench.api.windows(spec)`: AP scenarios have the single `window`; science scenarios have one
+window per retracted paper (`retractions`, chronological). The harness calls `retract()` once per window on
+the **same** graph and takes the union of `out_ids` (for `retcon`, `out_ids` is every OUT node, so the last
+call already reports the accumulated result).
+
 **Strategies (what each one means, so expectations are shared):**
 
 | name | out_ids | expected shape |
