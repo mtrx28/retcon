@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RETCON graph</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>RETCON</div>
+    <label class="field">Graph
+      <select id="graph-select" aria-label="Graph"></select>
+    </label>
+    <div class="chips" id="chips" aria-live="polite"></div>
+    <div class="spacer"></div>
+    <button id="btn-live" class="btn" aria-pressed="true" title="Pause or resume live updates">
+      <span class="dot" id="live-dot"></span><span id="live-text">Live</span>
+    </button>
+    <button id="btn-fit" class="btn" title="Fit the graph to the window">Fit</button>
+    <button id="btn-layout" class="btn" aria-pressed="true" title="Columns: sources on the left, actions on the right">Columns</button>
+  </header>
+  <main class="stage">
+    <section class="canvas-wrap" aria-label="Memory graph">
+      <canvas id="canvas" tabindex="0" aria-label="Memory graph canvas. Click a node for details."></canvas>
+      <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+      <div id="banner" class="banner" hidden></div>
+      <div id="empty" class="empty" hidden>
+        <strong>Nothing in this graph yet.</strong>
+        <span>Start the agents (<code>python tasks.py demo --live</code>) and it will grow here.</span>
+      </div>
+    </section>
+    <aside class="side" id="side" aria-label="Details"></aside>
+  </main>
+  <script src="/static/store.js"></script>
+  <script src="/static/layout.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
