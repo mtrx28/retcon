@@ -57,6 +57,8 @@ Edge names confirmed against the live engine in `docs/SPIKE.md`. Timestamps (`ob
 | `why` | A | `node_id` | Justification tree (nested JSON) |
 | `recall_list` | A | `run` | `[{action_id, tool, amount, executed_at, agent}]` ordered by amount |
 
+**Python keyword note (A3):** `from` is a Python keyword, so the MCP argument of `distrust` is spelled `from_` (`to` unchanged). Extra codes in use: `NOT_IMPLEMENTED` (`mode=preview` until A5), `NOT_CONFIGURED`. A tool that returns a list (`recall_list`) is delivered by MCP as one text content item per element; an empty list is no content.
+
 **Error shape (decision):** every MCP tool returns either its normal payload or exactly:
 
 ```json

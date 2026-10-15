@@ -11,6 +11,18 @@ Verified syntax and gotchas: docs/SPIKE.md.
 import time
 from datetime import datetime
 
+from core.errors import RetconError
+
+
+class NotFound(RetconError, LookupError):
+    def __init__(self, message, details=None):
+        super().__init__("NOT_FOUND", message, details)
+
+
+class InvalidArgument(RetconError, ValueError):
+    def __init__(self, message, details=None):
+        super().__init__("INVALID_ARGUMENT", message, details)
+
 # Longest dependency chain followed, in edges. Each derivation is 2 edges (PREMISE_OF + JUSTIFIES).
 MAX_PATH_EDGES = 40
 
@@ -54,13 +66,13 @@ def distrust(g, source: str, t_from, t_to, mode: str = "commit",
     ids grouped by cascade depth, which the UI animates.
     """
     if mode != "commit":
-        raise NotImplementedError("mode='preview' is task A5 (GRAPH.COPY fork)")
+        raise RetconError("NOT_IMPLEMENTED", "mode='preview' is task A5 (GRAPH.COPY fork)", {"mode": mode})
     if not g.query("MATCH (s:Source {id:$s}) RETURN s.id", {"s": source}).result_set:
-        raise LookupError(f"NOT_FOUND: source {source!r}")
+        raise NotFound(f"source {source!r}", {"source": source})
     started = time.perf_counter()
     f, t = to_epoch(t_from), to_epoch(t_to)
     if f > t:
-        raise ValueError("INVALID_ARGUMENT: window start is after window end")
+        raise InvalidArgument("window start is after window end", {"from": str(t_from), "to": str(t_to)})
     rid = _next_retraction_id(g)
     reason = reason or f"Source {source} distrusted {t_from}..{t_to}"
 
@@ -139,9 +151,9 @@ def reinstate(g, retraction_id: str) -> dict:
     """
     row = g.query("MATCH (r:Retraction {id:$rid}) RETURN r.reinstated", {"rid": retraction_id}).result_set
     if not row:
-        raise LookupError(f"NOT_FOUND: retraction {retraction_id!r}")
+        raise NotFound(f"retraction {retraction_id!r}", {"retraction_id": retraction_id})
     if row[0][0]:
-        raise ValueError("INVALID_ARGUMENT: retraction already reinstated")
+        raise InvalidArgument("retraction already reinstated", {"retraction_id": retraction_id})
     run = f"{retraction_id}_undo"
     g.query("MATCH (r:Retraction {id:$rid}) SET r.reinstated = true, r.reinstated_at = $now",
             {"rid": retraction_id, "now": int(time.time())})
