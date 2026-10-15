@@ -34,9 +34,9 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 | Order | Id | Task | Est | State | Last commit | Next step / gotchas |
 |---|---|---|---|---|---|---|
-| 1 | B1 | Q1 justified write + automatic premise-capture middleware | 4 h | todo | | |
-| 2 | B2 | Q2 vector retrieval, IN-only, support summary | 3 h | todo | | |
-| 2 | B4a | Generator v1 (seeded AP scenario) + fake portal + mock bank + sandbox inbox | 4 h | todo | | |
+| 1 | B1 | Q1 justified write + automatic premise-capture middleware | 4 h | done | uncommitted | `python tasks.py accept B1` (7 tests). Code: `core/write/{q1,capture}.py`, `core/memory.py`. Ids are content-hashed, so re-asserting a claim from new premises adds a 2nd Justification (OR). Status is decided by the graph rule (IN iff all premises IN). Capture context persists within a turn; `begin_turn(agent)` clears it. Only `remember`/`recall` wrappers exist in `mcp_server/tools_memory.py` (not yet registered with a server). |
+| 2 | B2 | Q2 vector retrieval, IN-only, support summary | 3 h | done | uncommitted | `python tasks.py accept B2` (8 tests). Code: `core/retrieve/{q2,embed}.py`. `score` is cosine **distance** (lower = closer). Support is an exact least-fixpoint over live justifications (cycles cannot self-ground), depth 12. Fixture graphs need `python tasks.py embed` before `recall` works. Embedder: `RETCON_EMBEDDER=minilm` (needs `pip install -e .[embed]`) or `hash` (offline, tests). Do not mix the two in one graph. |
+| 2 | B4a | Generator v1 (seeded AP scenario) + fake portal + mock bank + sandbox inbox | 4 h | done | uncommitted | `python tasks.py accept B4A` (10 tests). `python tasks.py gen --vendors 3 -o f.json`, `--nodes 10000` for scale; `python tasks.py sandbox` serves /portal /bank /mail on :8100. Vendor 0 is Coastal Produce, sources `coastal-portal` / `coastal-contract`; other vendors `v001`.. Ground truth comes from an independent in-memory JTMS (`reference_labels`) and is tested equal to FalkorDB's Q3-Q5. Portal replays by clock (`?as_of=`). Bank ids are sequential, recall via `POST /payments/<id>/recall`. Output carries extra keys (`vendors`, `meta`) the loader ignores. Loading 100k nodes through `load_fixture` is one query per row: B7 will need a batched loader. |
 | 3 | B3 | Agent loop, four agents, handoff edges, re-plan on retraction event | 7 h | todo | | |
 | 4 | B6a | UI shell: graph canvas, live growth, status colours | 3 h | todo | | |
 | 5 | B5 | FLOW edges + Q7 min-cut + `fragility` MCP + gate policy hook | 3 h | todo | | |
@@ -60,4 +60,5 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_
 
 ## Open questions / decisions log
 
-- _none yet_
+- 2026-10-15 (B): fixed `data/load_fixture.py` forward-reference bug: premises derived later in the list (the circular pair) were silently dropped, so `b_circ_a/b_circ_b` were not actually circular in the graph. Loader now creates all conclusions first. Lane A: your cycle test is meaningful now.
+- 2026-10-15 (B): host port 6379 was taken by another local Redis, so FalkorDB for dev runs as container `retcon-falkordb` on 6380 (`FALKORDB_PORT=6380`). `docker-compose.yml` is unchanged.

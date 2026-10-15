@@ -6,10 +6,34 @@ dependencies = ["falkordb", "mcp", "numpy"]
 
 [project.optional-dependencies]
 dev = ["pytest", "hypothesis"]
+embed = ["sentence-transformers"]
 
 [tool.setuptools]
 packages = ["core", "mcp_server", "gate", "agents", "bench"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["a1: acceptance tests for task A1", "a2: acceptance tests for task A2", "a3: acceptance tests for task A3", "a4: acceptance tests for task A4", "a5: acceptance tests for task A5", "a6: acceptance tests for task A6", "a7: acceptance tests for task A7", "a8: acceptance tests for task A8", "a9: acceptance tests for task A9", "b1: acceptance tests for task B1", "b2: acceptance tests for task B2", "b3: acceptance tests for task B3", "b4: acceptance tests for task B4", "b5: acceptance tests for task B5", "b6: acceptance tests for task B6", "b7: acceptance tests for task B7", "b8: acceptance tests for task B8", "b9: acceptance tests for task B9"]
+markers = [
+    "a1",
+    "a2",
+    "a3",
+    "a4",
+    "a5",
+    "a6",
+    "a7",
+    "a8",
+    "a9",
+    "b1",
+    "b2",
+    "b3",
+    "b4",
+    "b4a",
+    "b5",
+    "b5b",
+    "b6",
+    "b6a",
+    "b6b",
+    "b7",
+    "b8",
+    "b9",
+]
