@@ -31,8 +31,14 @@ def vendors_for_nodes(target, invoices=2, launder_depth=2):
     return max(1, round(target / per))
 
 
-def generate(seed=7, vendors=3, invoices=2, launder_depth=2, poisoned=1, tenant="northwind"):
-    """Build a scenario. The first `poisoned` vendors have a compromised portal (window WINDOW)."""
+def generate(seed=7, vendors=3, invoices=2, launder_depth=2, poisoned=1, tenant="northwind",
+             audit_incident=False):
+    """Build a scenario. The first `poisoned` vendors have a compromised portal (window WINDOW).
+
+    audit_incident=True adds one episode from a trusted audit log (a past bank-change fraud caught by
+    callback) and the procedural rule Intake learned from it, so all three mtypes exist (B1+). The rule
+    rests on that episode, not on any portal, so it survives the cascade. Off by default: node counts
+    of existing scenarios do not change."""
     if not (1 <= poisoned <= vendors):
         raise ValueError("need 1 <= poisoned <= vendors")
     rnd = random.Random(seed)
@@ -51,8 +57,26 @@ def generate(seed=7, vendors=3, invoices=2, launder_depth=2, poisoned=1, tenant=
     }
     for i in range(vendors):
         _vendor(spec, rnd, i, invoices, launder_depth, compromised=i < poisoned)
+    if audit_incident:
+        _audit_incident(spec)
     spec["ground_truth"] = _ground_truth(spec)
     return spec
+
+
+RULE_ID = "rule_verify_bank"
+EPISODE_ID = "audit_o_incident"
+RULE_TEXT = "Verify bank-detail changes by callback to the number on the signed contract before paying."
+
+
+def _audit_incident(spec):
+    spec["sources"].append({"id": "audit-log", "kind": "user", "trust": 0.95})
+    spec["observations"].append({
+        "id": EPISODE_ID, "source": "audit-log", "observed_at": "2026-09-12T09:00:00Z",
+        "text": "Audit log: an attempted bank-detail change was caught by callback verification; no funds lost."})
+    spec["derivations"].append({
+        "id": "audit_d_rule", "rule": "infer", "agent": "intake", "premises": [EPISODE_ID],
+        "conclusion": {"id": RULE_ID, "kind": "belief", "mtype": "procedural", "text": RULE_TEXT}})
+    spec["meta"]["audit_incident"] = True
 
 
 def _vendor(spec, rnd, i, invoices, depth, compromised):

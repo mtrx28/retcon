@@ -19,6 +19,7 @@ from core.errors import RetconError
 
 FLOW_CAP = 1_000_000
 KINDS = {"belief": "Belief", "plan": "Plan"}
+MTYPES = ("episodic", "semantic", "procedural")  # contract v1.1
 
 
 def _norm(text):
@@ -52,7 +53,7 @@ def write_observation(g, *, source, text, observed_at, agent="intake", obs_id=No
         "MATCH (s:Source {id:$src}), (a:Agent {id:$agent}) "
         "MERGE (o:Mem:Observation {id:$id}) "
         "ON CREATE SET o.text=$text, o.status='IN', o.observed_at=$at, o.agent=$agent, "
-        "              o.created_at=$now, o.embedding=CASE WHEN $emb IS NULL THEN null ELSE vecf32($emb) END "
+        "              o.created_at=$now, o.mtype='episodic', o.embedding=CASE WHEN $emb IS NULL THEN null ELSE vecf32($emb) END "
         "MERGE (s)-[:SUPPORTS]->(o) "
         "MERGE (s)-[f:FLOW]->(o) SET f.cap=1 "
         "MERGE (o)-[:DEPENDS_ON]->(s) "
@@ -62,26 +63,39 @@ def write_observation(g, *, source, text, observed_at, agent="intake", obs_id=No
     return {"node_id": oid, "source": source}
 
 
-def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=None, now=None):
+def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=None, now=None, mtype=None):
     """Write a belief/plan justified by `premise_ids` (all AND-ed in one Justification).
 
     Status is decided by the graph rule, not by the caller: IN iff every premise is IN right now
     (or the node was already IN). Returns {node_id, premise_ids, justification_id, status, created}.
+
+    `mtype` (contract v1.1): beliefs default to "semantic", plans are untagged. A "procedural" rule
+    must rest on at least one episodic premise (an Observation or an episodic node): a learned rule
+    always points back at the episode it was learned from, so retracting the episode retracts it.
     """
     if kind not in KINDS:
         raise RetconError("INVALID_ARGUMENT", f"kind must be belief or plan, got {kind!r}", {"kind": kind})
     if not text or not text.strip():
         raise RetconError("INVALID_ARGUMENT", "text is empty", {})
+    if mtype is not None and mtype not in MTYPES:
+        raise RetconError("INVALID_ARGUMENT", f"mtype must be one of {MTYPES}, got {mtype!r}", {"mtype": mtype})
+    if mtype is None and kind == "belief":
+        mtype = "semantic"
     premises = sorted(set(premise_ids))
     if not premises:
         raise RetconError("INVALID_ARGUMENT",
                           "no premises: recall something first, or write an observation from a source",
                           {"agent": agent})
 
-    found = {r[0] for r in g.query("MATCH (p:Mem) WHERE p.id IN $ids RETURN p.id", {"ids": premises}).result_set}
+    rows = g.query("MATCH (p:Mem) WHERE p.id IN $ids RETURN p.id, p.mtype, labels(p)", {"ids": premises}).result_set
+    found = {r[0] for r in rows}
     missing = [p for p in premises if p not in found]
     if missing:
         raise RetconError("NOT_FOUND", f"unknown premise ids: {missing}", {"missing_ids": missing})
+    if mtype == "procedural" and not any(r[1] == "episodic" or "Observation" in r[2] for r in rows):
+        raise RetconError("INVALID_ARGUMENT",
+                          "a procedural rule must be justified by at least one episodic premise",
+                          {"premise_ids": premises})
 
     nid = node_id(kind, text)
     if nid in premises:
@@ -96,7 +110,7 @@ def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=N
         f"MATCH (p:Mem) WHERE p.id IN $premises "
         f"WITH a, collect(p) AS ps, all(x IN collect(p) WHERE x.status = 'IN') AS live "
         f"MERGE (m:Mem:{KINDS[kind]} {{id:$nid}}) "
-        f"ON CREATE SET m.text=$text, m.status='OUT', m.agent=$agent, m.created_at=$now, "
+        f"ON CREATE SET m.text=$text, m.status='OUT', m.agent=$agent, m.created_at=$now, m.mtype=$mtype, "
         f"             m.embedding=CASE WHEN $emb IS NULL THEN null ELSE vecf32($emb) END "
         f"SET m.status = CASE WHEN m.status = 'IN' OR live THEN 'IN' ELSE 'OUT' END "
         f"MERGE (j:Justification {{id:$jid}}) "
@@ -109,8 +123,8 @@ def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=N
         f"MERGE (p)-[f:FLOW]->(m) SET f.cap=$cap "
         f"MERGE (m)-[:DEPENDS_ON]->(p)",
         {"agent": agent, "premises": premises, "nid": nid, "text": text, "now": int(now or time.time()),
-         "emb": embedding, "jid": jid, "rule": rule, "cap": FLOW_CAP})
+         "emb": embedding, "jid": jid, "rule": rule, "cap": FLOW_CAP, "mtype": mtype})
 
     status = g.query("MATCH (m:Mem {id:$id}) RETURN m.status", {"id": nid}).result_set[0][0]
     return {"node_id": nid, "premise_ids": premises, "justification_id": jid,
-            "status": status, "created": not existed}
+            "status": status, "created": not existed, "mtype": mtype}

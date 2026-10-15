@@ -53,18 +53,18 @@ def search(g, vec, k):
         n = min(n * 4, MAX_FETCH)
 
 
-def support(g, node_id):
-    """Sources a node currently rests on, honouring AND-of-premises and ignoring circular support.
+def ancestry(g, node_id):
+    """Live structure under a node: (status, base, justs).
 
-    Least fixpoint over *live* justifications (every premise IN), seeded by IN Observations, so a
-    cycle contributes sources only if some member is grounded from outside it.
-    Returns {source_id: trust}.
+    status: {mem_id: 'IN'|'OUT'} for the node and its ancestors (depth MAX_DEPTH)
+    base:   {observation_id: (source_id, trust)} for IN observations
+    justs:  {justification_id: (conclusion_id, [premise_ids])}
     """
     anc = [r[0] for r in g.query(
         f"MATCH (n:Mem {{id:$id}})-[:DEPENDS_ON*0..{MAX_DEPTH}]->(a:Mem) RETURN DISTINCT a.id",
         {"id": node_id}).result_set]
     if not anc:
-        return {}
+        return {}, {}, {}
     status = {r[0]: r[1] for r in g.query(
         "MATCH (a:Mem) WHERE a.id IN $ids RETURN a.id, a.status", {"ids": anc}).result_set}
     base = {}
@@ -72,15 +72,27 @@ def support(g, node_id):
             "MATCH (s:Source)-[:SUPPORTS]->(o:Observation) WHERE o.id IN $ids RETURN o.id, s.id, s.trust",
             {"ids": anc}).result_set:
         if status.get(oid) == "IN":
-            base.setdefault(oid, {})[sid] = trust
-    justs = {}  # justification id -> (conclusion, [premises])
+            base[oid] = (sid, trust)
+    justs = {}
     for jid, concl, pid in g.query(
             "MATCH (j:Justification)-[:JUSTIFIES]->(c:Mem) WHERE c.id IN $ids "
             "OPTIONAL MATCH (p:Mem)-[:PREMISE_OF]->(j) RETURN j.id, c.id, p.id",
             {"ids": anc}).result_set:
         justs.setdefault(jid, (concl, []))[1].append(pid)
+    return status, base, justs
 
-    src = {i: dict(base.get(i, {})) for i in anc}
+
+def support(g, node_id):
+    """Sources a node currently rests on, honouring AND-of-premises and ignoring circular support.
+
+    Least fixpoint over *live* justifications (every premise IN), seeded by IN Observations, so a
+    cycle contributes sources only if some member is grounded from outside it.
+    Returns {source_id: trust}.
+    """
+    status, base, justs = ancestry(g, node_id)
+    if not status:
+        return {}
+    src = {i: ({base[i][0]: base[i][1]} if i in base else {}) for i in status}
     changed = True
     while changed:
         changed = False
