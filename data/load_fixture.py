@@ -49,6 +49,8 @@ def load(spec, db=None, graph_name=None):
           "CREATE (o)-[:DEPENDS_ON]->(s)",
           {"src": o["source"], "id": o["id"], "text": o["text"], "at": epoch(o["observed_at"])})
 
+    # Create every conclusion first: a premise may be derived later in the list (circular support),
+    # and a MATCH on a missing node would silently drop that PREMISE_OF edge.
     seen = set()
     for d in spec["derivations"]:
         c = d["conclusion"]
@@ -57,6 +59,8 @@ def load(spec, db=None, graph_name=None):
             q(f"CREATE (:Mem:{label} {{id:$id, text:$text, status:'IN', agent:$agent}})",
               {"id": c["id"], "text": c["text"], "agent": d["agent"]})
             seen.add(c["id"])
+    for d in spec["derivations"]:
+        c = d["conclusion"]
         _justify(q, d["id"], d["rule"], d["agent"], d["premises"], c["id"])
         q("MATCH (a:Agent {id:$a}), (m:Mem {id:$m}) MERGE (a)-[:HOLDS]->(m)",
           {"a": d["agent"], "m": c["id"]})
