@@ -55,13 +55,19 @@ Lane A person: _TBD_  ·  Lane B person: _TBD_  ·  Dev FalkorDB port: B uses 63
 
 `distrust(Coastal portal, Oct 2–9)` -> cascade -> $41,250 payment blocked -> $18,400 on recall list with drafted recall -> address belief survives via contract PDF -> Payments agent re-plans to the verified account. Needs A3, A4, B1+, B3.
 
-| Check | State |
-|---|---|
-| Cascade marks expected nodes OUT | todo |
-| Pending payment blocked | todo |
-| Executed payment on recall list with drafted recall | todo |
-| Independently supported belief stays IN | todo |
-| Agents re-plan from surviving memory | todo |
+| Check | State | Evidence |
+|---|---|---|
+| G1 Cascade marks expected nodes OUT | **done** | Independent least-fixpoint oracle over the live agent-built graph agrees exactly (both local and real-MCP transport) |
+| G2 Pending payment blocked, with reason | **done** | Before retraction: `INSUFFICIENT_INDEPENDENT_SOURCES` (1 < 2 over $10k). After: `PREMISE_RETRACTED` naming `ret_0001`. Never reaches the bank |
+| G3 Executed payment on recall list with drafted recall | **done** | $6,000 INV-COASTAL-1 listed, `bank_recall` draft with `pay_0001`; approving it flips the bank payment to `recalled` |
+| G4 Independently supported belief stays IN | **done** | Address belief survives via `coastal-contract`; portal copy OUT |
+| G5 Agents re-plan from surviving memory | **done** | Payments re-plans INV-COASTAL-2 to the contract account (SYN-1000), still held for callback (cost 1 < 2); no payment to the attacker IBAN after retraction |
+
+Run it: `python tasks.py accept GATE` (`tests/e2e/test_gate.py`, 10 tests: 5 checks x {local, mcp}; G2 is local-only).
+
+**Found by the gate and fixed:** executed actions with no amount (emails) sorted first in the recall list and remediation list, because Cypher puts nulls first under `DESC`; all ordering now uses `coalesce(amount, 0)`.
+
+**Scenario note:** the generated AP day differs slightly from the spec's narrative. The big invoice (34,500) is never paid because B3+ holds it for callback verification (cost 1); the executed fraud payment is the 6,000 INV-COASTAL-1.
 
 ## Open questions / decisions log
 

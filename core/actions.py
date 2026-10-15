@@ -100,5 +100,5 @@ class ActionService:
     def pending(self):
         """Pending (not executed) actions with their current gate decision, for dashboards."""
         ids = [r[0] for r in self.g.query(
-            "MATCH (a:Mem:Action {executed:false}) RETURN a.id ORDER BY a.amount DESC").result_set]
+            "MATCH (a:Mem:Action {executed:false}) RETURN a.id ORDER BY coalesce(a.amount, 0) DESC").result_set]
         return [{"action_id": i, **gate_mod.check(self.g, i, self.fragility_fn)} for i in ids]

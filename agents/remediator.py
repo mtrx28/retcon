@@ -114,7 +114,7 @@ def list_remediations(g, status=None):
                    "OPTIONAL MATCH (m)-[:COMPENSATES]->(x:Mem) "
                    "RETURN m.id, m.kind, m.status, m.title, m.payload, m.amount, m.reason, "
                    "       m.retraction_id, m.approved_by, m.approved_at, m.result, m.error, x.id "
-                   "ORDER BY m.amount DESC, m.id", {"st": status}).result_set
+                   "ORDER BY coalesce(m.amount, 0) DESC, m.id", {"st": status}).result_set
     return [_row_to_dict(r[:-1], r[-1]) for r in rows]
 
 
