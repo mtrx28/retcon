@@ -49,14 +49,20 @@ def _survives(target, base, justs, removed):
 
 
 def _exact(target, base, justs, sources):
+    """Smallest cut. Among equal-size cuts the least trusted wins (the weakest link is the one an
+    attacker would go for), then alphabetical, so the result is deterministic."""
+    trust = {s: t for s, t in base.values()}
     total = 0
     for k in range(1, len(sources) + 1):
-        for n_combo, combo in enumerate(combinations(sources, k)):
+        found = []
+        for combo in combinations(sources, k):
             total += 1
             if total > EXACT_MAX_SUBSETS:
                 return None
             if not _survives(target, base, justs, set(combo)):
-                return list(combo)
+                found.append(combo)
+        if found:
+            return list(min(found, key=lambda c: (sum(trust.get(s, 1.0) for s in c), c)))
     return list(sources)
 
 

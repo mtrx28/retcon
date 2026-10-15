@@ -34,16 +34,18 @@ def embed_graph(g, embedder, batch=64):
     return len(rows)
 
 
-def search(g, vec, k):
-    """Top-k IN memories nearest to `vec`: [(id, text, labels, distance)]."""
+def search(g, vec, k, contains=None):
+    """Top-k IN memories nearest to `vec`: [(id, text, labels, distance)].
+    `contains` keeps only memories whose text includes that substring (case-insensitive), applied
+    before top-k so the caller still gets k hits when they exist."""
     total = None
     n = max(k * 4, 16)
     while True:
         rows = g.query(
             "CALL db.idx.vector.queryNodes('Mem','embedding',$n,vecf32($v)) YIELD node, score "
-            "WHERE node.status = 'IN' "
+            "WHERE node.status = 'IN' AND ($c IS NULL OR toLower(node.text) CONTAINS toLower($c)) "
             "RETURN node.id, node.text, labels(node), score ORDER BY score",
-            {"n": n, "v": vec}).result_set
+            {"n": n, "v": vec, "c": contains}).result_set
         if len(rows) >= k or n >= MAX_FETCH:
             return rows[:k]
         if total is None:
@@ -107,10 +109,10 @@ def support(g, node_id):
     return src.get(node_id, {})
 
 
-def recall(g, vec, k=8):
+def recall(g, vec, k=8, contains=None):
     """Contract shape: [{id, text, score, sources, weakest_trust}], IN only, nearest first."""
     out = []
-    for nid, text, _labels, dist in search(g, vec, k):
+    for nid, text, _labels, dist in search(g, vec, k, contains):
         s = support(g, nid)
         out.append({"id": nid, "text": text, "score": dist, "sources": sorted(s),
                     "weakest_trust": min(s.values()) if s else None})

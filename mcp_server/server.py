@@ -49,7 +49,7 @@ def _register_memory_tools(server, g, executor=None):
         return
     memory = MemoryService(g, get_embedder())
     tools_memory.configure(memory)
-    for name in ("remember", "recall", "fragility"):
+    for name in ("remember", "recall", "fragility", "observe", "begin_turn"):
         fn = getattr(tools_memory, name, None)
         if fn is not None:
             server.add_tool(fn)

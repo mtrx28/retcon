@@ -17,14 +17,20 @@ class MemoryService:
 
     def observe(self, source, text, observed_at, agent="intake"):
         vec = self.embedder.embed([text])[0]
-        return q1.write_observation(self.g, source=source, text=text, observed_at=observed_at,
-                                    agent=agent, embedding=vec)
+        r = q1.write_observation(self.g, source=source, text=text, observed_at=observed_at,
+                                 agent=agent, embedding=vec)
+        self.capture.record(agent, [r["node_id"]])  # what the agent just read is in its context
+        return r
 
-    def recall(self, query, agent, k=8):
+    def recall(self, query, agent, k=8, contains=None):
         if k < 1:
             raise RetconError("INVALID_ARGUMENT", "k must be >= 1", {"k": k})
-        hits = q2.recall(self.g, self.embedder.embed([query])[0], k)
+        hits = q2.recall(self.g, self.embedder.embed([query])[0], k, contains)
         self.capture.record(agent, [h["id"] for h in hits])
+        if hits:  # the agent now holds these in memory: retraction events are routed by HOLDS
+            q1.ensure_agent(self.g, agent)
+            self.g.query("MATCH (a:Agent {id:$a}), (m:Mem) WHERE m.id IN $ids MERGE (a)-[:HOLDS]->(m)",
+                         {"a": agent, "ids": [h["id"] for h in hits]})
         return hits
 
     def remember(self, text, kind, agent, rule=None, mtype=None):

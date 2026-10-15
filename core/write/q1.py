@@ -14,6 +14,7 @@ OR-of-ANDs: independent corroboration).
 import hashlib
 import re
 import time
+from datetime import datetime
 
 from core.errors import RetconError
 
@@ -38,6 +39,13 @@ def justification_id(nid, premise_ids):
     return "j_" + _digest(nid, *sorted(premise_ids))
 
 
+def to_epoch(t):
+    """Epoch seconds from an int/float or an ISO 8601 string."""
+    if isinstance(t, (int, float)):
+        return int(t)
+    return int(datetime.fromisoformat(str(t).replace("Z", "+00:00")).timestamp())
+
+
 def ensure_agent(g, agent):
     g.query("MERGE (a:Agent {id:$a}) ON CREATE SET a.role=$a", {"a": agent})
 
@@ -47,7 +55,7 @@ def write_observation(g, *, source, text, observed_at, agent="intake", obs_id=No
     Status follows the contract: IN iff its source is known (trust windows are applied by Q3)."""
     if not g.query("MATCH (s:Source {id:$s}) RETURN s.id", {"s": source}).result_set:
         raise RetconError("NOT_FOUND", f"unknown source {source!r}", {"source": source})
-    oid = obs_id or "obs_" + _digest(source, str(observed_at), _norm(text))
+    oid = obs_id or "obs_" + _digest(source, str(to_epoch(observed_at)), _norm(text))
     ensure_agent(g, agent)
     g.query(
         "MATCH (s:Source {id:$src}), (a:Agent {id:$agent}) "
@@ -58,7 +66,7 @@ def write_observation(g, *, source, text, observed_at, agent="intake", obs_id=No
         "MERGE (s)-[f:FLOW]->(o) SET f.cap=1 "
         "MERGE (o)-[:DEPENDS_ON]->(s) "
         "MERGE (a)-[:HOLDS]->(o)",
-        {"src": source, "agent": agent, "id": oid, "text": text, "at": int(observed_at),
+        {"src": source, "agent": agent, "id": oid, "text": text, "at": to_epoch(observed_at),
          "now": int(time.time()), "emb": embedding})
     return {"node_id": oid, "source": source}
 
@@ -87,7 +95,8 @@ def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=N
                           "no premises: recall something first, or write an observation from a source",
                           {"agent": agent})
 
-    rows = g.query("MATCH (p:Mem) WHERE p.id IN $ids RETURN p.id, p.mtype, labels(p)", {"ids": premises}).result_set
+    rows = g.query("MATCH (p:Mem) WHERE p.id IN $ids RETURN p.id, p.mtype, labels(p), p.agent",
+                   {"ids": premises}).result_set
     found = {r[0] for r in rows}
     missing = [p for p in premises if p not in found]
     if missing:
@@ -101,7 +110,12 @@ def write_justified(g, *, text, kind, agent, premise_ids, rule=None, embedding=N
     if nid in premises:
         raise RetconError("INVALID_ARGUMENT", "a node cannot be its own premise", {"node_id": nid})
     jid = justification_id(nid, premises)
-    rule = rule or ("combine" if len(premises) > 1 else "infer")
+    if rule is None:
+        # a derivation built only from what other agents wrote is a handoff edge (shared state)
+        if all(r[3] and r[3] != agent for r in rows):
+            rule = "handoff"
+        else:
+            rule = "combine" if len(premises) > 1 else "infer"
     ensure_agent(g, agent)
     existed = bool(g.query("MATCH (m:Mem {id:$id}) RETURN m.id", {"id": nid}).result_set)
 
