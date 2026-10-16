@@ -7,6 +7,7 @@ dependencies = ["falkordb", "mcp", "numpy"]
 [project.optional-dependencies]
 dev = ["pytest", "hypothesis"]
 embed = ["sentence-transformers"]
+llm = ["google-genai"]   # only to record a new Payments transcript; replaying the committed one needs nothing
 
 [tool.setuptools]
 packages = ["core", "mcp_server", "gate", "agents", "bench", "ui"]
@@ -39,4 +40,5 @@ markers = [
     "a10", "a12", "a13", "b1plus", "b10", "b11",
     "gate",
     "bench",
+    "report", "guide", "home", "llm",
 ]
