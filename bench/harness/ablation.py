@@ -35,8 +35,24 @@ def _cos(a, b):
 
 
 def vector_retract(graph, source, t_from, t_to, threshold=THRESHOLD):
-    """Mark OUT the window's observations of `source` and every Mem whose stored embedding is within
-    `threshold` cosine of one of them. Returns the set of ids made OUT. No graph traversal."""
+    """Mark OUT the window's observations of `source` and every Mem within `threshold` cosine of one of them.
+    Returns the set of ids made OUT. No graph traversal.
+
+    The rule IS Lane A's `vector_only` baseline (CONTRACT v1.4: "the graph-off ablation's retraction rule"),
+    so the ablation and the benchmark cannot drift apart. The local copy below is only a fallback for a
+    checkout without bench/baselines."""
+    try:
+        from bench.api import Window
+        from bench.baselines.vector_only import VectorOnly
+    except ImportError:
+        return _local_vector_retract(graph, source, t_from, t_to, threshold)
+    out = set(VectorOnly(threshold=threshold).retract(graph, Window(source, t_from, t_to)).out_ids)
+    if out:
+        graph.query("MATCH (m:Mem) WHERE m.id IN $ids SET m.status = 'OUT'", {"ids": sorted(out)})
+    return out
+
+
+def _local_vector_retract(graph, source, t_from, t_to, threshold=THRESHOLD):
     from core.retract.cascade import to_epoch
     seeds = {r[0] for r in graph.query(
         "MATCH (:Source {id:$s})-[:SUPPORTS]->(o:Observation) WHERE o.observed_at >= $f AND o.observed_at <= $t "
