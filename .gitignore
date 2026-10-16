@@ -9,3 +9,6 @@ dist/
 falkordb-data/
 *.egg-info/
 data/science/raw/
+
+.taste-skill/inspect/
+ui_server.log

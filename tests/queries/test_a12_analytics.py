@@ -172,5 +172,5 @@ def test_ops_api_routes():
     assert st == 200 and body["clusters"][0]["size"] == 2
     st, js = router.dispatch("GET", "/ops/keystone.js")
     assert st == 200 and "Keystone" in js.data.decode()
-    st, page = router.dispatch("GET", "/")
+    st, page = router.dispatch("GET", "/graph")
     assert "/ops/keystone.js" in page.data.decode()

@@ -1,0 +1,2 @@
+f624f37
+https://github.com/Leonxlnx/taste-skill (skills/taste-skill), MIT, copied unmodified on 2026-10-16 after reading SKILL.md, install.sh and scripts/. Needs Node 22+ for scripts/inspect.mjs.

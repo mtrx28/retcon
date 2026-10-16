@@ -1,0 +1,20 @@
+/* Guided demo card: floats over the graph canvas, bottom left, out of the way of the side panels. */
+.guide { position: fixed; left: 16px; bottom: 16px; z-index: 20; width: min(380px, calc(100vw - 32px)); background: var(--panel);
+         border: 1px solid var(--line); border-radius: 2px; padding: 16px 18px 14px; color: var(--ink); }
+.guide[hidden] { display: none; }
+.guide-eyebrow { margin: 0 0 6px; font: 12px var(--mono); color: var(--muted); }
+.guide h2 { margin: 0 0 6px; font: 600 18px/1.2 var(--head); letter-spacing: .02em; }
+.guide p { margin: 0 0 10px; font-size: 14px; line-height: 1.5; }
+.guide .guide-result { margin: 0 0 10px; padding: 8px 10px; border-left: 3px solid var(--accent); background: var(--grid); font: 12.5px/1.45 var(--mono); }
+.guide .guide-result.good { border-color: var(--in); }
+.guide .guide-result.bad { border-color: var(--out); }
+.guide-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.guide .btn { border-radius: 2px; }
+.guide .btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.guide .btn[disabled] { opacity: .55; cursor: wait; }
+.guide-x { margin-left: auto; background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; padding: 4px; }
+.guide-dots { display: flex; gap: 5px; margin: 0 0 10px; }
+.guide-dots i { flex: 1; height: 3px; background: var(--line); border-radius: 2px; }
+.guide-dots i.done { background: var(--accent); }
+.guide-reopen { position: fixed; left: 16px; bottom: 16px; z-index: 19; }
+.guide-reopen[hidden] { display: none; }

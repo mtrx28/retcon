@@ -137,7 +137,7 @@ def test_static_files_and_page_wiring(api):
     assert st == 200 and "RETCON" in js.data.decode()
     assert api.get("/ops/ops_logic.js")[0] == 200 and api.get("/ops/ops.css")[0] == 200
     assert api.get("/ops/nothing.js")[0] == 404
-    st, page = api.get("/")
+    st, page = api.get("/graph")
     html = page.data.decode()
     assert "/ops/ops.js" in html and "/ops/ops_logic.js" in html and "/ops/ops.css" in html
     assert html.index("/static/app.js") < html.index("/ops/ops.js")  # panels load after the shell

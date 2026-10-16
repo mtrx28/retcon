@@ -109,10 +109,11 @@
     $("ops-result").className = "ops-result";
     $("ops-result").innerHTML = `
       <h3><span class="pill ${isPrev ? "prev" : "in"}">${isPrev ? "PREVIEW" : "COMMITTED"}</span> <code>${esc(res.retraction_id)}</code></h3>
+      <p class="ops-clock">${isPrev ? "preview on a copy" : "committed " + new Date().toISOString().slice(11, 19) + "Z"} · T+ is the replay clock, one hop every ${STEP_MS / 1000}s</p>
       <div class="ops-line" id="ops-line">${esc(L.cascadeLine(res))}</div>
       <div class="ops-sub">${esc(L.consequenceLine(res))}</div>
       <ol class="ops-hops" id="ops-hops" aria-label="Cascade by hop">
-        ${groups.map((g) => `<li data-hop="${g.hop}"><strong>hop ${g.hop}</strong><span class="ids">${idButtons(g.ids)}</span></li>`).join("")}
+        ${groups.map((g, i) => `<li data-hop="${g.hop}"${isPrev ? "" : ' class="queued"'}><span class="t">T+${(i * STEP_MS / 1000).toFixed(1)}s</span><strong>hop ${g.hop}</strong><span class="ids">${idButtons(g.ids)}</span></li>`).join("")}
       </ol>
       ${kept.length ? `<div class="ops-sub">Stays IN: independent support</div><div class="ids" style="display:flex;flex-wrap:wrap;gap:4px">${idButtons(kept, "kept")}</div>` : ""}
       ${isPrev ? `<div class="row" style="margin-top:10px"><button class="btn danger" id="ops-commit-prev">Commit this retraction</button><button class="btn" id="ops-dismiss">Dismiss</button></div>
@@ -126,7 +127,7 @@
       R.flash(s.ids, "out");
       const li = document.querySelector(`#ops-hops li[data-hop="${s.hop}"]`);
       document.querySelectorAll("#ops-hops li.active").forEach((x) => x.classList.remove("active"));
-      if (li) { li.classList.add("active"); li.scrollIntoView && li.scrollIntoView({ block: "nearest" }); }
+      if (li) { li.classList.remove("queued"); li.classList.add("active"); li.scrollIntoView && li.scrollIntoView({ block: "nearest" }); }
     }, s.at)));
     animTimers.push(setTimeout(() => {
       R.highlight(res.flipped_ids, null);
@@ -214,7 +215,9 @@
       <li><div class="top"><code>${esc(r.id)}</code>
         <span class="pill ${r.reinstated ? "withdrawn" : "out"}">${r.reinstated ? "reinstated" : "active"}</span></div>
         <div class="ops-sub">${esc(r.source)} · ${esc(L.epochToLocal(r.from).replace("T", " "))} → ${esc(L.epochToLocal(r.to).replace("T", " "))}</div>
-        ${r.reinstated ? "" : `<div class="acts"><button class="btn" data-reinstate="${esc(r.id)}">Reinstate</button></div>`}</li>`).join("")}</ul>`;
+        <div class="acts">${r.reinstated ? "" : `<button class="btn" data-reinstate="${esc(r.id)}">Reinstate</button>`}
+          <a class="btn" target="_blank" rel="noopener" href="/api/report?graph=${encodeURIComponent(R.graph())}&retraction=${encodeURIComponent(r.id)}&format=html">Incident report</a>
+          <a class="btn" href="/api/report?graph=${encodeURIComponent(R.graph())}&retraction=${encodeURIComponent(r.id)}&format=md" download="incident-${esc(r.id)}.md">Markdown</a></div></li>`).join("")}</ul>`;
   }
 
   // ---- boot -----------------------------------------------------------------------------------

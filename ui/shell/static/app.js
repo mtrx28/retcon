@@ -438,6 +438,7 @@
         <span><i class="sw" style="background:var(--in)"></i>IN: supported</span>
         <span><i class="sw" style="background:var(--out)"></i>OUT: retracted ✕</span>
         <span><i class="sw" style="background:var(--tent)"></i>tentative (mid-cascade)</span>
+        <span><i class="sw" style="background:var(--recall)"></i>recall: already executed</span>
         <span><i class="sw" style="background:var(--src)"></i>source (square)</span>
         <span><i class="sw" style="background:none;border:3px solid var(--ep);border-radius:50%"></i>episodic</span>
         <span><i class="sw" style="background:none;border:3px solid var(--se);border-radius:50%"></i>semantic</span>

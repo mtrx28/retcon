@@ -9,7 +9,10 @@ python tasks.py ui                 # prints http://127.0.0.1:8200
 python tasks.py demo --live        # agents work and the graph grows; after a pause the portal is distrusted
 ```
 
-Open `http://127.0.0.1:8200/#graph=<name>`; the selector lists every graph (`tenant_*` first).
+`http://127.0.0.1:8200/` is the front page (`ui/home`). The graph itself is at
+`http://127.0.0.1:8200/graph#graph=<name>`; the selector lists every graph (`tenant_*` first). Add `?guide=1`
+(the front page's "Run the demo" does) to open the guided demo card (`ui/guide`), which runs the agents, a
+retraction, the incident report and the graph-off comparison from the browser.
 
 ## What you see
 - Left to right: **sources → observations → justifications → beliefs → plans → actions** (Columns toggle).

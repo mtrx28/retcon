@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RETCON: retract the lie, keep the rest</title>
+  <meta name="description" content="RETCON remembers why an AI agent believes each fact, so one compromised source can be retracted without losing everything else.">
+  <meta name="color-scheme" content="dark">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=boska@400,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home/home.css">
+  <script>
+    // entrance animations hide content until they run; if the page script never loads, show everything anyway
+    document.documentElement.classList.add("js");
+    setTimeout(function () { if (!window.__retconReady) document.documentElement.classList.remove("js"); }, 4000);
+  </script>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="field field-top" aria-hidden="true"></div>
+  <div class="field field-bottom" aria-hidden="true"></div>
+
+  <a class="wordmark" href="/" aria-label="RETCON, home">RETCON</a>
+  <a class="btn btn-top" href="/graph?guide=1">Run the demo</a>
+
+  <h1 class="headline lines" aria-label="Retract the lie">
+    <span class="layer layer-up" aria-hidden="true">
+      <span class="block"><span class="line"><span data-line style="--i:0">RETRACT</span></span><span class="line"><span data-line style="--i:1">THE LIE</span></span></span>
+    </span>
+    <span class="layer layer-down" aria-hidden="true">
+      <span class="block"><span class="line"><span data-line style="--i:0">RETRACT</span></span><span class="line"><span data-line style="--i:1">THE LIE</span></span></span>
+    </span>
+  </h1>
+
+  <p class="support" data-fade>RETCON remembers why your AI agent believes each fact, so one bad source can be retracted without losing the rest.</p>
+</header>
+
+<main>
+
+  <section class="live" id="live" aria-labelledby="live-h">
+    <div class="wrap">
+      <h2 id="live-h" data-reveal>Five ways to forget</h2>
+      <p class="note" data-reveal>One graph from an accounts-payable agent, one bad source, five rules for what to retract. Pick a rule and see what it gets wrong.</p>
+    </div>
+
+    <div class="ui-frame" data-reveal>
+      <div class="ui" data-ui id="compare" aria-live="polite">
+        <div class="rules" role="radiogroup" aria-label="Retraction rule" id="rules"></div>
+        <p class="rule-says" id="rule-says"></p>
+        <div class="stage">
+          <svg id="graph" role="img" aria-label="The memory graph: sources, observations, beliefs, plans and payments" tabindex="-1"></svg>
+          <div class="inspect" id="inspect"><p class="muted">Hover or focus a memory to read it.</p></div>
+        </div>
+        <ul class="key" id="key">
+          <li><i class="dot kept"></i>kept</li>
+          <li><i class="dot ring"></i>should be retracted</li>
+          <li><i class="dot out"></i>retracted</li>
+          <li><i class="dot lost"></i>retracted by mistake</li>
+        </ul>
+        <p class="verdict" id="verdict"></p>
+        <p class="fallback" id="compare-fallback" hidden>The live comparison runs on the server's database. Start it with <code>python tasks.py up</code> and reload.</p>
+      </div>
+      <p class="fine">Delete lookalikes, Invalidate one hop and Taint everything downstream are our reimplementations of how other systems retract, written for this benchmark, not their code. <span id="embedder-note"></span></p>
+    </div>
+  </section>
+
+  <figure class="relief relief-photo" data-reveal>
+    <img src="/home/assets/palimpsest.jpg" width="1024" height="671" alt="Two researchers lean over a conservation table, studying a page of the Archimedes Palimpsest under glass." loading="lazy">
+    <figcaption>A page of the Archimedes Palimpsest: a prayer book written over scraped-off mathematics. Someone always has to work out what was underneath.</figcaption>
+  </figure>
+
+  <section class="how" aria-label="How it works">
+    <ol class="steps">
+      <li class="step" style="--c:1" data-reveal>
+        <p class="step-line">First it writes down why.</p>
+        <p class="step-note">Every fact is stored with the evidence behind it: which sources said it, and which agents repeated it.</p>
+      </li>
+      <li class="step" style="--c:3" data-reveal>
+        <p class="step-line">Then a source goes bad.</p>
+        <p class="step-note">You distrust one source for a window of time. Everything resting on it becomes tentative.</p>
+      </li>
+      <li class="step" style="--c:5" data-reveal>
+        <p class="step-line">It keeps what still stands.</p>
+        <p class="step-note">A fact that another source also supports comes straight back. A fact that only repeats itself does not.</p>
+      </li>
+      <li class="step step-last" style="--c:7" data-reveal>
+        <p class="step-line">And it can undo itself.</p>
+        <p class="step-note">Nothing is deleted. Preview on a copy, commit, reinstate: the graph returns to exactly where it was.</p>
+      </li>
+    </ol>
+  </section>
+
+  <figure class="relief relief-chart" data-reveal>
+    <img src="/home/assets/accounts-chart.jpg" width="1536" height="809" alt="A 1919 chart of factory ledger controlling accounts, drawn as brackets showing which accounts control which." loading="lazy">
+    <figcaption>Accountants drew dependency charts a century before graph databases. This one is from 1919.</figcaption>
+  </figure>
+
+  <section class="stats" id="receipt" aria-labelledby="stats-h">
+    <div class="stats-left">
+      <h2 id="stats-h" data-reveal>Forgetting too much</h2>
+      <p class="note" data-reveal id="receipt-note">A rule that taints everything downstream of a bad source also flags payments that are still correct.</p>
+      <div class="total" data-reveal>
+        <p class="total-fig" id="total-fig" aria-live="polite">&nbsp;</p>
+        <p class="total-cap" id="total-cap"></p>
+      </div>
+    </div>
+    <aside class="slip-wrap" data-reveal aria-label="Itemised list of correct payments that taint-everything flags">
+      <div class="slip" id="slip"><p class="muted">Run <code>python -m bench.harness.receipt</code> to itemise this.</p></div>
+    </aside>
+  </section>
+
+  <section class="ledger" aria-label="Why it matters">
+    <img src="/home/assets/ledger.jpg" width="1100" height="1467" alt="A worn account book with a marbled cover and a handwritten name, closed on a grey table." loading="lazy" data-reveal>
+    <div class="ledger-text">
+      <p data-reveal>Every payment is a line somebody has to reconcile later. A rule that cannot tell a bad belief from a correct one makes that job bigger, not smaller.</p>
+      <p data-reveal>RETCON asks one question of each memory: does anything independent still hold it up?</p>
+    </div>
+  </section>
+
+  <section class="measured" id="measured" aria-labelledby="measured-h">
+    <h2 id="measured-h" data-reveal>Measured, not claimed</h2>
+    <ul class="facts" id="facts">
+      <li class="fact fact-a" data-reveal><p class="fact-line">Retracting takes milliseconds, not minutes.</p><p class="fact-note">Time to retract one source, from a graph of a few dozen memories to ten thousand.</p></li>
+      <li class="fact fact-b" data-reveal><p class="fact-line">Real retractions, nothing left behind.</p><p class="fact-note">Retracted papers from the Retraction Watch database, replayed on their real dates.</p></li>
+      <li class="fact fact-c" data-reveal><p class="fact-line">Writers pile on. Answers stay right.</p><p class="fact-note">Many agents writing while a retraction runs, then every status checked against an independent recomputation.</p></li>
+      <li class="fact fact-d" data-reveal><p class="fact-line">Take the graph away and it pays the attacker.</p><p class="fact-note">The same agents, the same attack, with similarity search instead of justifications.</p></li>
+    </ul>
+    <p class="fine" data-reveal>Every figure on this page is read from result files written by <code>python tasks.py bench</code>. Nothing here is typed in.</p>
+  </section>
+
+  <a class="cta" href="/graph?guide=1" aria-label="Run the demo: retract a source and watch what happens">
+    <span class="cta-word" data-reveal>Retract</span>
+  </a>
+
+</main>
+
+<footer class="foot">
+  <p class="foot-name" aria-hidden="true">RETCON</p>
+  <div class="foot-grid">
+    <ul class="places">
+      <li><a href="/graph?guide=1">Run the demo</a></li>
+      <li><a href="/docs/MCP_CLIENT.md">Use it from Claude Code</a></li>
+      <li><a href="/docs/BENCH_FRAMING.md">How we measured</a></li>
+    </ul>
+    <ul class="links">
+      <li><a href="/docs/FRAGILITY.md">What fragility means</a></li>
+      <li><a href="/api/home/numbers">The numbers, as JSON</a></li>
+    </ul>
+  </div>
+  <p class="credits">Pictures: <a href="https://www.flickr.com/photos/39699193@N03/4363999800">“The Archimedes Palimpsest: Looking at a page”</a> by Walters Art Museum Illuminated Manuscripts, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, via Flickr; <a href="https://www.metmuseum.org/art/collection/search/20365">“Account Book Ledger”</a> by John Carlin, 1835–56, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, via The Metropolitan Museum of Art; <a href="https://commons.wikimedia.org/wiki/File:Chart_of_Factory_Ledger_Controlling_Accounts,_1919.jpg">“Chart of Factory Ledger Controlling Accounts, 1919”</a> by Nicholson and Rohrbach, <a href="https://creativecommons.org/publicdomain/mark/1.0/">public domain</a>, via Wikimedia Commons.</p>
+  <p class="legal">Built for Graph Hacks, entering Agents That Act on Connected Data and Agent Memory and Coordination. FalkorDB is the only store. The data is synthetic or public. AI coding assistants were used and are disclosed in the README.</p>
+</footer>
+
+<script src="/home/home.js"></script>
+</body>
+</html>

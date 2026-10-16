@@ -1,0 +1,1 @@
+Source: https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design (fetched 2026-10-16)

@@ -45,7 +45,7 @@ def ui():
 
 def test_page_and_static_assets(ui):
     _, _, url = ui
-    st, ctype, html = get(url + "/")
+    st, ctype, html = get(url + "/graph")          # `/` is the front page (ui/home)
     assert st == 200 and ctype.startswith("text/html") and "<canvas" in html and "app.js" in html
     for name in ("app.js", "store.js", "layout.js", "style.css"):
         st, ctype, body = get(f"{url}/static/{name}")

@@ -170,11 +170,25 @@ class Shell:
                 raise RetconError("INVALID_ARGUMENT", "limit must be an integer", {})
             return 200, {"graph": name, **self.fragility_table(name, w, kinds, limit)}
 
+        def report(req):
+            from core import report as report_mod
+            name, w = self.watcher(req.query.get("graph"))
+            data = report_mod.build(w.g, req.query.get("retraction"), graph_name=name)
+            fmt = req.query.get("format", "html")
+            if fmt == "json":
+                return 200, data
+            if fmt in ("md", "markdown"):
+                return 200, Raw(report_mod.markdown(data).encode("utf8"), "text/markdown; charset=utf-8")
+            if fmt == "html":
+                return 200, Raw(report_mod.html(data).encode("utf8"), "text/html; charset=utf-8")
+            raise RetconError("INVALID_ARGUMENT", "format must be html, md or json", {"format": fmt})
+
         def retr(req):
             name, w = self.watcher(req.query.get("graph"))
             return 200, {"graph": name, "retractions": graphdata.retractions(w.g)}
 
-        r.add("GET", "/", index)
+        r.add("GET", "/graph", index)
+        r.add("GET", "/index.html", index)
         r.add("GET", "/static/<name>", static)
         r.add("GET", "/api/graphs", guard(graphs))
         r.add("GET", "/api/graph", guard(graph))
@@ -182,12 +196,18 @@ class Shell:
         r.add("GET", "/api/node", guard(node))
         r.add("GET", "/api/retractions", guard(retr))
         r.add("GET", "/api/fragility", guard(frag))
+        r.add("GET", "/api/report", guard(report))
         from ui import ops          # operator console (A6): preview / commit / reinstate / approve
         self.ops = ops.mount(r, self)
+        from ui import demo, guide, home          # front door, guided demo (browser-driven), guide panel files
+        home.mount(r, self)
+        demo.mount(r, self, self.ops)
+        guide.mount(r)
         return r
 
 
 def main():
+    os.environ.setdefault("RETCON_EMBEDDER", "hash")      # the guided demo should work offline and start instantly
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8200)
     ap.add_argument("--graph", help="graph to open first (default tenant_<RETCON_TENANT>)")
