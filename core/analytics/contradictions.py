@@ -74,7 +74,9 @@ def contradiction_clusters(g, link: bool = True) -> list[dict]:
     if link:
         link_contradictions(g)
     if not g.query("MATCH ()-[c:CONTRADICTS]->() RETURN count(c)").result_set[0][0]:
-        return []                     # algo.WCC raises on a relationship type that does not exist yet
+        return []                     # algo.WCC({nodeLabels}) raises (`LAGr_ConnectedComponents failed: -1000`) when the
+                                      # selected node set is exactly one node; a CONTRADICTS edge implies two or more.
+                                      # Known FalkorDB behaviour; see scripts/falkordb_repro.py
     comp = {}
     for nid, cid in g.query(
             "CALL algo.WCC({nodeLabels:['Mem'], relationshipTypes:['CONTRADICTS']}) YIELD node, componentId "

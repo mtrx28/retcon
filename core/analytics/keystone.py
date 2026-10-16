@@ -21,7 +21,9 @@ ORDERS = ("priority", "rank", "downstream")
 def keystones(g, top: int = 10, order: str = "priority") -> list[dict]:
     if order not in ORDERS:
         raise ValueError(f"order must be one of {ORDERS}")
-    # algo.pageRank raises on a graph with no DEPENDS_ON edges (a fresh tenant): rank is then 0 for all
+    # algo.pageRank raises (`LAGr_PageRank failed: -1000`) when the graph has exactly ONE node, e.g. a fresh tenant
+    # with a single source. A graph with any DEPENDS_ON edge has two or more nodes, so this guard avoids it;
+    # with no edges rank is 0 for all. Known FalkorDB behaviour (already reported upstream by others); reproduction: scripts/falkordb_repro.py
     if g.query("MATCH ()-[r:DEPENDS_ON]->() RETURN count(r)").result_set[0][0]:
         ranks = {r[0]: (r[1], r[2], r[3]) for r in g.query(
             "CALL algo.pageRank(null, 'DEPENDS_ON') YIELD node, score "

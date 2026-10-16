@@ -1,0 +1,163 @@
+{
+ "laundering": {
+  "depths": [
+   0,
+   1,
+   2,
+   4,
+   8
+  ],
+  "residual": {
+   "delete_source": [
+    0.9310344827586207,
+    0.9333333333333333,
+    0.9354838709677419,
+    0.9393939393939394,
+    0.9459459459459459
+   ],
+   "vector_only": [
+    0.896551724137931,
+    0.9,
+    0.9032258064516129,
+    0.9090909090909091,
+    0.918918918918919
+   ],
+   "edge_invalidation": [
+    0.8620689655172413,
+    0.8666666666666667,
+    0.8709677419354839,
+    0.8787878787878788,
+    0.8918918918918919
+   ],
+   "coarse_taint": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "retcon": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "collateral": {
+   "delete_source": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "vector_only": [
+    0.01557632398753894,
+    0.015337423312883436,
+    0.015105740181268883,
+    0.014629049111807733,
+    0.013785790031813362
+   ],
+   "edge_invalidation": [
+    0.0010384215991692627,
+    0.0010224948875255625,
+    0.0010070493454179255,
+    0.0010449320794148381,
+    0.0010604453870625664
+   ],
+   "coarse_taint": [
+    0.0010384215991692627,
+    0.0010224948875255625,
+    0.0010070493454179255,
+    0.0010449320794148381,
+    0.0010604453870625664
+   ],
+   "retcon": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "ablation": {
+  "graph_on": {
+   "graph_off": false,
+   "threshold": null,
+   "paid_attacker_before_retraction": 1,
+   "paid_attacker_after_retraction": 0,
+   "amount_to_attacker_after": 0,
+   "paid_verified_after_retraction": 1,
+   "payments_after_retraction": [
+    {
+     "invoice": "INV-COASTAL-9",
+     "amount": 4000,
+     "to_attacker": false
+    }
+   ],
+   "verification_requests": 3,
+   "nodes_retracted": 10,
+   "contaminated_total": 10,
+   "contaminated_retracted": 10,
+   "clean_nodes_retracted": 0
+  },
+  "graph_off": {
+   "graph_off": true,
+   "threshold": 0.75,
+   "paid_attacker_before_retraction": 2,
+   "paid_attacker_after_retraction": 0,
+   "amount_to_attacker_after": 0,
+   "paid_verified_after_retraction": 0,
+   "payments_after_retraction": [],
+   "verification_requests": 0,
+   "nodes_retracted": 8,
+   "contaminated_total": 9,
+   "contaminated_retracted": 3,
+   "clean_nodes_retracted": 5
+  },
+  "sweep": [
+   {
+    "threshold": 0.3,
+    "paid_attacker_after": 0,
+    "contaminated_retracted": 9,
+    "contaminated_total": 9,
+    "clean_nodes_retracted": 94,
+    "nodes_retracted": 103
+   },
+   {
+    "threshold": 0.45,
+    "paid_attacker_after": 0,
+    "contaminated_retracted": 7,
+    "contaminated_total": 9,
+    "clean_nodes_retracted": 52,
+    "nodes_retracted": 59
+   },
+   {
+    "threshold": 0.6,
+    "paid_attacker_after": 0,
+    "contaminated_retracted": 4,
+    "contaminated_total": 9,
+    "clean_nodes_retracted": 21,
+    "nodes_retracted": 25
+   },
+   {
+    "threshold": 0.75,
+    "paid_attacker_after": 0,
+    "contaminated_retracted": 3,
+    "contaminated_total": 9,
+    "clean_nodes_retracted": 7,
+    "nodes_retracted": 10
+   },
+   {
+    "threshold": 0.9,
+    "paid_attacker_after": 1,
+    "contaminated_retracted": 2,
+    "contaminated_total": 9,
+    "clean_nodes_retracted": 1,
+    "nodes_retracted": 3
+   }
+  ]
+ }
+}

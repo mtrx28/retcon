@@ -13,6 +13,7 @@ The memory itself, retrieval, agents, brain and bank are unchanged, so any diffe
 """
 import copy
 import math
+import os
 import time
 
 from agents.brain import RuleBrain
@@ -144,7 +145,8 @@ def attacker_experiment(graph_off, seed=7, graph_name="bench_attack", threshold=
     spec = copy.deepcopy(spec)
     spec["observations"].append(dict(LATE))
     attacker_iban = {v["id"]: v["iban_on_portal"] for v in spec["vendors"] if v["compromised"]}
-    world = build_world(spec, graph_name=graph_name, embedder=embedder or get_embedder("hash"))
+    world = build_world(spec, graph_name=graph_name,
+                        embedder=embedder or get_embedder(os.getenv("RETCON_EMBEDDER", "hash")))
     try:
         flat = make_graph_off(world, threshold) if graph_off else None
         orch = Orchestrator(world, brain=RuleBrain())

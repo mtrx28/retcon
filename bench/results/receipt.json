@@ -1,0 +1,103 @@
+{
+ "scenario": "ap_prec_1k",
+ "strategy": "coarse_taint",
+ "nodes": 1025,
+ "poisoned_vendors": 5,
+ "profile": {
+  "poisoned_vendors": 5,
+  "distinct_windows": 5,
+  "touched_beliefs": 30,
+  "corroborated_beliefs": 12,
+  "corroborated_share": 0.4,
+  "touched_actions": 60,
+  "legit_payments": 36,
+  "legit_executed": 18,
+  "legit_pending": 18
+ },
+ "count": 36,
+ "executed": 18,
+ "executed_amount": 566650,
+ "pending": 18,
+ "total": 1163150,
+ "groups": [
+  {
+   "vendor": "v001",
+   "name": "Harbor Dairy",
+   "count": 12,
+   "rows": [
+    {
+     "label": "INV-V001-12 (pending)",
+     "amount": 56000
+    },
+    {
+     "label": "INV-V001-7 (pending)",
+     "amount": 54000
+    },
+    {
+     "label": "INV-V001-9 (pending)",
+     "amount": 47500
+    },
+    {
+     "label": "9 smaller invoices",
+     "amount": 214000
+    }
+   ],
+   "subtotal": 371500
+  },
+  {
+   "vendor": "v003",
+   "name": "Ridgeline Foods",
+   "count": 12,
+   "rows": [
+    {
+     "label": "INV-V003-5 (paid)",
+     "amount": 59500
+    },
+    {
+     "label": "INV-V003-4 (paid)",
+     "amount": 53000
+    },
+    {
+     "label": "INV-V003-6 (paid)",
+     "amount": 47250
+    },
+    {
+     "label": "9 smaller invoices",
+     "amount": 272900
+    }
+   ],
+   "subtotal": 432650
+  },
+  {
+   "vendor": "v004",
+   "name": "Bluewater Seafood",
+   "count": 12,
+   "rows": [
+    {
+     "label": "INV-V004-9 (pending)",
+     "amount": 60250
+    },
+    {
+     "label": "INV-V004-5 (paid)",
+     "amount": 40250
+    },
+    {
+     "label": "INV-V004-12 (pending)",
+     "amount": 36250
+    },
+    {
+     "label": "9 smaller invoices",
+     "amount": 222250
+    }
+   ],
+   "subtotal": 359000
+  }
+ ],
+ "collateral_loss": 0.08851422550052687,
+ "action_precision": 0.4,
+ "retcon": {
+  "count": 0,
+  "collateral_loss": 0.0,
+  "action_precision": 1.0
+ }
+}

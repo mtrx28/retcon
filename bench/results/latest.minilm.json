@@ -1,0 +1,1748 @@
+[
+ {
+  "scenario": "ap_tiny",
+  "domain": "ap",
+  "nodes": 24,
+  "seed": null,
+  "strategy": "delete_source",
+  "out_count": 2,
+  "metrics": {
+   "residual_contamination": 0.8181818181818182,
+   "collateral_loss": 0.0,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 11,
+    "truly_supported": 13,
+    "out": 2,
+    "executed_contaminated": 1,
+    "pending_contaminated": 1
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 6,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 7,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 3.812,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 3.812,
+   "p95": 3.812,
+   "min": 3.812,
+   "max": 3.812,
+   "mean": 3.812
+  },
+  "load_ms": 50.4
+ },
+ {
+  "scenario": "ap_tiny",
+  "domain": "ap",
+  "nodes": 24,
+  "seed": null,
+  "strategy": "vector_only",
+  "out_count": 7,
+  "metrics": {
+   "residual_contamination": 0.7272727272727273,
+   "collateral_loss": 0.3076923076923077,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 11,
+    "truly_supported": 13,
+    "out": 7,
+    "executed_contaminated": 1,
+    "pending_contaminated": 1
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 6,
+    "out": 3,
+    "residual_contamination": 0.8,
+    "collateral_loss": 0.3333333333333333,
+    "collateral_nodes": 2
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 7,
+    "out": 4,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.2857142857142857,
+    "collateral_nodes": 2
+   },
+   "plan": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 59566.367,
+  "engine_ms": 59563.42809996568,
+  "notes": {
+   "threshold": 0.75,
+   "embedder": "minilm"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 59566.367,
+   "p95": 59566.367,
+   "min": 59566.367,
+   "max": 59566.367,
+   "mean": 59566.367
+  },
+  "load_ms": 50.4
+ },
+ {
+  "scenario": "ap_tiny",
+  "domain": "ap",
+  "nodes": 24,
+  "seed": null,
+  "strategy": "edge_invalidation",
+  "out_count": 5,
+  "metrics": {
+   "residual_contamination": 0.6363636363636364,
+   "collateral_loss": 0.07692307692307693,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 11,
+    "truly_supported": 13,
+    "out": 5,
+    "executed_contaminated": 1,
+    "pending_contaminated": 1
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 6,
+    "out": 3,
+    "residual_contamination": 0.6,
+    "collateral_loss": 0.16666666666666666,
+    "collateral_nodes": 1
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 7,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 8.327,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 8.327,
+   "p95": 8.327,
+   "min": 8.327,
+   "max": 8.327,
+   "mean": 8.327
+  },
+  "load_ms": 50.4
+ },
+ {
+  "scenario": "ap_tiny",
+  "domain": "ap",
+  "nodes": 24,
+  "seed": null,
+  "strategy": "coarse_taint",
+  "out_count": 12,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.07692307692307693,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 11,
+    "truly_supported": 13,
+    "out": 12,
+    "executed_contaminated": 1,
+    "pending_contaminated": 1
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 6,
+    "out": 6,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.16666666666666666,
+    "collateral_nodes": 1
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 7,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 3.926,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 3.926,
+   "p95": 3.926,
+   "min": 3.926,
+   "max": 3.926,
+   "mean": 3.926
+  },
+  "load_ms": 50.4
+ },
+ {
+  "scenario": "ap_tiny",
+  "domain": "ap",
+  "nodes": 24,
+  "seed": null,
+  "strategy": "retcon",
+  "out_count": 11,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 11,
+    "truly_supported": 13,
+    "out": 11,
+    "executed_contaminated": 1,
+    "pending_contaminated": 1
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 6,
+    "out": 5,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 7,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 2,
+    "truly_supported": 0,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": null,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 44.471,
+  "engine_ms": 0.087982,
+  "notes": {
+   "retraction_id": "ret_0001",
+   "survived": 1
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 44.471,
+   "p95": 44.471,
+   "min": 44.471,
+   "max": 44.471,
+   "mean": 44.471
+  },
+  "load_ms": 50.4
+ },
+ {
+  "scenario": "ap_1k",
+  "domain": "ap",
+  "nodes": 1024,
+  "seed": 7,
+  "strategy": "delete_source",
+  "out_count": 2,
+  "metrics": {
+   "residual_contamination": 0.9354838709677419,
+   "collateral_loss": 0.0,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 180,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 993,
+    "out": 2,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 331,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 302,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 2.396,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 2.396,
+   "p95": 2.396,
+   "min": 2.396,
+   "max": 2.396,
+   "mean": 2.396
+  },
+  "load_ms": 924.6
+ },
+ {
+  "scenario": "ap_1k",
+  "domain": "ap",
+  "nodes": 1024,
+  "seed": 7,
+  "strategy": "vector_only",
+  "out_count": 18,
+  "metrics": {
+   "residual_contamination": 0.9032258064516129,
+   "collateral_loss": 0.015105740181268883,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 180,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 993,
+    "out": 18,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 331,
+    "out": 3,
+    "residual_contamination": 0.8,
+    "collateral_loss": 0.006042296072507553,
+    "collateral_nodes": 2
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 302,
+    "out": 15,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.04304635761589404,
+    "collateral_nodes": 13
+   },
+   "plan": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 4417.721,
+  "engine_ms": 4414.249700028449,
+  "notes": {
+   "threshold": 0.75,
+   "embedder": "minilm"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 4417.721,
+   "p95": 4417.721,
+   "min": 4417.721,
+   "max": 4417.721,
+   "mean": 4417.721
+  },
+  "load_ms": 924.6
+ },
+ {
+  "scenario": "ap_1k",
+  "domain": "ap",
+  "nodes": 1024,
+  "seed": 7,
+  "strategy": "edge_invalidation",
+  "out_count": 5,
+  "metrics": {
+   "residual_contamination": 0.8709677419354839,
+   "collateral_loss": 0.0010070493454179255,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 180,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 993,
+    "out": 5,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 331,
+    "out": 3,
+    "residual_contamination": 0.6,
+    "collateral_loss": 0.0030211480362537764,
+    "collateral_nodes": 1
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 302,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 5.889,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 5.889,
+   "p95": 5.889,
+   "min": 5.889,
+   "max": 5.889,
+   "mean": 5.889
+  },
+  "load_ms": 924.6
+ },
+ {
+  "scenario": "ap_1k",
+  "domain": "ap",
+  "nodes": 1024,
+  "seed": 7,
+  "strategy": "coarse_taint",
+  "out_count": 32,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0010070493454179255,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 180,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 993,
+    "out": 32,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 12,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 331,
+    "out": 6,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0030211480362537764,
+    "collateral_nodes": 1
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 302,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 12,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 4.236,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 4.236,
+   "p95": 4.236,
+   "min": 4.236,
+   "max": 4.236,
+   "mean": 4.236
+  },
+  "load_ms": 924.6
+ },
+ {
+  "scenario": "ap_1k",
+  "domain": "ap",
+  "nodes": 1024,
+  "seed": 7,
+  "strategy": "retcon",
+  "out_count": 31,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 180,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 31,
+    "truly_supported": 993,
+    "out": 31,
+    "executed_contaminated": 6,
+    "pending_contaminated": 6
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 12,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 5,
+    "truly_supported": 331,
+    "out": 5,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 2,
+    "truly_supported": 302,
+    "out": 2,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 12,
+    "truly_supported": 180,
+    "out": 12,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 39.304,
+  "engine_ms": 0.241264,
+  "notes": {
+   "retraction_id": "ret_0001",
+   "survived": 1
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 39.304,
+   "p95": 39.304,
+   "min": 39.304,
+   "max": 39.304,
+   "mean": 39.304
+  },
+  "load_ms": 924.6
+ },
+ {
+  "scenario": "ap_prec_1k",
+  "domain": "ap",
+  "nodes": 1025,
+  "seed": 7,
+  "strategy": "delete_source",
+  "out_count": 10,
+  "metrics": {
+   "residual_contamination": 0.868421052631579,
+   "collateral_loss": 0.0,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 168,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 76,
+    "truly_supported": 949,
+    "out": 10,
+    "executed_contaminated": 12,
+    "pending_contaminated": 12
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 18,
+    "truly_supported": 318,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 10,
+    "truly_supported": 295,
+    "out": 10,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 12.07,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 12.07,
+   "p95": 12.07,
+   "min": 12.07,
+   "max": 12.07,
+   "mean": 12.07
+  },
+  "latency_per_window_ms": {
+   "n": 5,
+   "p50": 2.42,
+   "p95": 3.567,
+   "min": 1.747,
+   "max": 3.567,
+   "mean": 2.414
+  },
+  "windows": 5,
+  "load_ms": 986.1,
+  "profile": {
+   "poisoned_vendors": 5,
+   "distinct_windows": 5,
+   "touched_beliefs": 30,
+   "corroborated_beliefs": 12,
+   "corroborated_share": 0.4,
+   "touched_actions": 60,
+   "legit_payments": 36,
+   "legit_executed": 18,
+   "legit_pending": 18
+  }
+ },
+ {
+  "scenario": "ap_prec_1k",
+  "domain": "ap",
+  "nodes": 1025,
+  "seed": 7,
+  "strategy": "vector_only",
+  "out_count": 44,
+  "metrics": {
+   "residual_contamination": 0.8157894736842105,
+   "collateral_loss": 0.03161222339304531,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 168,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 76,
+    "truly_supported": 949,
+    "out": 44,
+    "executed_contaminated": 12,
+    "pending_contaminated": 12
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 18,
+    "truly_supported": 318,
+    "out": 15,
+    "residual_contamination": 0.7777777777777778,
+    "collateral_loss": 0.03459119496855346,
+    "collateral_nodes": 11
+   },
+   "observation": {
+    "contaminated": 10,
+    "truly_supported": 295,
+    "out": 29,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.06440677966101695,
+    "collateral_nodes": 19
+   },
+   "plan": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 23523.42,
+  "engine_ms": 23506.563200149685,
+  "notes": {
+   "threshold": 0.75,
+   "embedder": "minilm"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 23523.42,
+   "p95": 23523.42,
+   "min": 23523.42,
+   "max": 23523.42,
+   "mean": 23523.42
+  },
+  "latency_per_window_ms": {
+   "n": 5,
+   "p50": 4755.799,
+   "p95": 4882.898,
+   "min": 4411.706,
+   "max": 4882.898,
+   "mean": 4704.684
+  },
+  "windows": 5,
+  "load_ms": 986.1,
+  "profile": {
+   "poisoned_vendors": 5,
+   "distinct_windows": 5,
+   "touched_beliefs": 30,
+   "corroborated_beliefs": 12,
+   "corroborated_share": 0.4,
+   "touched_actions": 60,
+   "legit_payments": 36,
+   "legit_executed": 18,
+   "legit_pending": 18
+  }
+ },
+ {
+  "scenario": "ap_prec_1k",
+  "domain": "ap",
+  "nodes": 1025,
+  "seed": 7,
+  "strategy": "edge_invalidation",
+  "out_count": 25,
+  "metrics": {
+   "residual_contamination": 0.75,
+   "collateral_loss": 0.006322444678609062,
+   "action_recall": 0.0,
+   "action_precision": null,
+   "blocked_recall": 0.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 168,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 76,
+    "truly_supported": 949,
+    "out": 25,
+    "executed_contaminated": 12,
+    "pending_contaminated": 12
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 18,
+    "truly_supported": 318,
+    "out": 15,
+    "residual_contamination": 0.5,
+    "collateral_loss": 0.018867924528301886,
+    "collateral_nodes": 6
+   },
+   "observation": {
+    "contaminated": 10,
+    "truly_supported": 295,
+    "out": 10,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 17.175,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 17.175,
+   "p95": 17.175,
+   "min": 17.175,
+   "max": 17.175,
+   "mean": 17.175
+  },
+  "latency_per_window_ms": {
+   "n": 5,
+   "p50": 2.946,
+   "p95": 4.33,
+   "min": 2.8,
+   "max": 4.33,
+   "mean": 3.435
+  },
+  "windows": 5,
+  "load_ms": 986.1,
+  "profile": {
+   "poisoned_vendors": 5,
+   "distinct_windows": 5,
+   "touched_beliefs": 30,
+   "corroborated_beliefs": 12,
+   "corroborated_share": 0.4,
+   "touched_actions": 60,
+   "legit_payments": 36,
+   "legit_executed": 18,
+   "legit_pending": 18
+  }
+ },
+ {
+  "scenario": "ap_prec_1k",
+  "domain": "ap",
+  "nodes": 1025,
+  "seed": 7,
+  "strategy": "coarse_taint",
+  "out_count": 160,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.08851422550052687,
+   "action_recall": 1.0,
+   "action_precision": 0.4,
+   "blocked_recall": 1.0,
+   "wrongly_flagged_actions": {
+    "count": 36,
+    "executed": 18,
+    "pending": 18,
+    "amount": 1163150,
+    "executed_amount": 566650,
+    "rate": 0.21428571428571427,
+    "legit_total": 168,
+    "ids": [
+     "v001_act_pay0",
+     "v001_act_pay1",
+     "v001_act_pay10",
+     "v001_act_pay11",
+     "v001_act_pay2",
+     "v001_act_pay3",
+     "v001_act_pay4",
+     "v001_act_pay5",
+     "v001_act_pay6",
+     "v001_act_pay7",
+     "v001_act_pay8",
+     "v001_act_pay9",
+     "v003_act_pay0",
+     "v003_act_pay1",
+     "v003_act_pay10",
+     "v003_act_pay11",
+     "v003_act_pay2",
+     "v003_act_pay3",
+     "v003_act_pay4",
+     "v003_act_pay5",
+     "v003_act_pay6",
+     "v003_act_pay7",
+     "v003_act_pay8",
+     "v003_act_pay9",
+     "v004_act_pay0",
+     "v004_act_pay1",
+     "v004_act_pay10",
+     "v004_act_pay11",
+     "v004_act_pay2",
+     "v004_act_pay3",
+     "v004_act_pay4",
+     "v004_act_pay5",
+     "v004_act_pay6",
+     "v004_act_pay7",
+     "v004_act_pay8",
+     "v004_act_pay9"
+    ]
+   },
+   "counts": {
+    "contaminated": 76,
+    "truly_supported": 949,
+    "out": 160,
+    "executed_contaminated": 12,
+    "pending_contaminated": 12
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 60,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.21428571428571427,
+    "collateral_nodes": 36
+   },
+   "belief": {
+    "contaminated": 18,
+    "truly_supported": 318,
+    "out": 30,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.03773584905660377,
+    "collateral_nodes": 12
+   },
+   "observation": {
+    "contaminated": 10,
+    "truly_supported": 295,
+    "out": 10,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 60,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.21428571428571427,
+    "collateral_nodes": 36
+   }
+  },
+  "elapsed_ms": 25.378,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 25.378,
+   "p95": 25.378,
+   "min": 25.378,
+   "max": 25.378,
+   "mean": 25.378
+  },
+  "latency_per_window_ms": {
+   "n": 5,
+   "p50": 5.138,
+   "p95": 5.868,
+   "min": 4.312,
+   "max": 5.868,
+   "mean": 5.076
+  },
+  "windows": 5,
+  "load_ms": 986.1,
+  "profile": {
+   "poisoned_vendors": 5,
+   "distinct_windows": 5,
+   "touched_beliefs": 30,
+   "corroborated_beliefs": 12,
+   "corroborated_share": 0.4,
+   "touched_actions": 60,
+   "legit_payments": 36,
+   "legit_executed": 18,
+   "legit_pending": 18
+  }
+ },
+ {
+  "scenario": "ap_prec_1k",
+  "domain": "ap",
+  "nodes": 1025,
+  "seed": 7,
+  "strategy": "retcon",
+  "out_count": 76,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": 1.0,
+   "action_precision": 1.0,
+   "blocked_recall": 1.0,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": 0.0,
+    "legit_total": 168,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 76,
+    "truly_supported": 949,
+    "out": 76,
+    "executed_contaminated": 12,
+    "pending_contaminated": 12
+   }
+  },
+  "by_layer": {
+   "action": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 24,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "belief": {
+    "contaminated": 18,
+    "truly_supported": 318,
+    "out": 18,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 10,
+    "truly_supported": 295,
+    "out": 10,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "plan": {
+    "contaminated": 24,
+    "truly_supported": 168,
+    "out": 24,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 219.155,
+  "engine_ms": 3.907784,
+  "notes": {
+   "retraction_id": "ret_0005",
+   "survived": 28
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 219.155,
+   "p95": 219.155,
+   "min": 219.155,
+   "max": 219.155,
+   "mean": 219.155
+  },
+  "latency_per_window_ms": {
+   "n": 5,
+   "p50": 45.036,
+   "p95": 47.395,
+   "min": 36.735,
+   "max": 47.395,
+   "mean": 43.831
+  },
+  "windows": 5,
+  "load_ms": 986.1,
+  "profile": {
+   "poisoned_vendors": 5,
+   "distinct_windows": 5,
+   "touched_beliefs": 30,
+   "corroborated_beliefs": 12,
+   "corroborated_share": 0.4,
+   "touched_actions": 60,
+   "legit_payments": 36,
+   "legit_executed": 18,
+   "legit_pending": 18
+  }
+ },
+ {
+  "scenario": "science",
+  "domain": "science",
+  "nodes": 2164,
+  "seed": null,
+  "strategy": "delete_source",
+  "out_count": 80,
+  "metrics": {
+   "residual_contamination": 0.84,
+   "collateral_loss": 0.0,
+   "action_recall": null,
+   "action_precision": null,
+   "blocked_recall": null,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 500,
+    "truly_supported": 1664,
+    "out": 80,
+    "executed_contaminated": 0,
+    "pending_contaminated": 0
+   }
+  },
+  "by_layer": {
+   "claim": {
+    "contaminated": 384,
+    "truly_supported": 668,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 80,
+    "truly_supported": 972,
+    "out": 80,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "topic": {
+    "contaminated": 36,
+    "truly_supported": 24,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 86.187,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 86.187,
+   "p95": 86.187,
+   "min": 86.187,
+   "max": 86.187,
+   "mean": 86.187
+  },
+  "latency_per_window_ms": {
+   "n": 40,
+   "p50": 2.052,
+   "p95": 3.192,
+   "min": 1.347,
+   "max": 5.247,
+   "mean": 2.155
+  },
+  "windows": 40,
+  "load_ms": 1412.4
+ },
+ {
+  "scenario": "science",
+  "domain": "science",
+  "nodes": 2164,
+  "seed": null,
+  "strategy": "vector_only",
+  "out_count": 196,
+  "metrics": {
+   "residual_contamination": 0.664,
+   "collateral_loss": 0.016826923076923076,
+   "action_recall": null,
+   "action_precision": null,
+   "blocked_recall": null,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 500,
+    "truly_supported": 1664,
+    "out": 196,
+    "executed_contaminated": 0,
+    "pending_contaminated": 0
+   }
+  },
+  "by_layer": {
+   "claim": {
+    "contaminated": 384,
+    "truly_supported": 668,
+    "out": 98,
+    "residual_contamination": 0.7708333333333334,
+    "collateral_loss": 0.014970059880239521,
+    "collateral_nodes": 10
+   },
+   "observation": {
+    "contaminated": 80,
+    "truly_supported": 972,
+    "out": 98,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.018518518518518517,
+    "collateral_nodes": 18
+   },
+   "topic": {
+    "contaminated": 36,
+    "truly_supported": 24,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 1058513.766,
+  "engine_ms": 1058327.211500844,
+  "notes": {
+   "threshold": 0.75,
+   "embedder": "minilm"
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 1058513.766,
+   "p95": 1058513.766,
+   "min": 1058513.766,
+   "max": 1058513.766,
+   "mean": 1058513.766
+  },
+  "latency_per_window_ms": {
+   "n": 40,
+   "p50": 26497.032,
+   "p95": 27357.452,
+   "min": 25404.036,
+   "max": 28022.871,
+   "mean": 26462.844
+  },
+  "windows": 40,
+  "load_ms": 1412.4
+ },
+ {
+  "scenario": "science",
+  "domain": "science",
+  "nodes": 2164,
+  "seed": null,
+  "strategy": "edge_invalidation",
+  "out_count": 464,
+  "metrics": {
+   "residual_contamination": 0.072,
+   "collateral_loss": 0.0,
+   "action_recall": null,
+   "action_precision": null,
+   "blocked_recall": null,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 500,
+    "truly_supported": 1664,
+    "out": 464,
+    "executed_contaminated": 0,
+    "pending_contaminated": 0
+   }
+  },
+  "by_layer": {
+   "claim": {
+    "contaminated": 384,
+    "truly_supported": 668,
+    "out": 384,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 80,
+    "truly_supported": 972,
+    "out": 80,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "topic": {
+    "contaminated": 36,
+    "truly_supported": 24,
+    "out": 0,
+    "residual_contamination": 1.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 177.837,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 177.837,
+   "p95": 177.837,
+   "min": 177.837,
+   "max": 177.837,
+   "mean": 177.837
+  },
+  "latency_per_window_ms": {
+   "n": 40,
+   "p50": 4.188,
+   "p95": 6.089,
+   "min": 3.237,
+   "max": 10.193,
+   "mean": 4.446
+  },
+  "windows": 40,
+  "load_ms": 1412.4
+ },
+ {
+  "scenario": "science",
+  "domain": "science",
+  "nodes": 2164,
+  "seed": null,
+  "strategy": "coarse_taint",
+  "out_count": 524,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.014423076923076924,
+   "action_recall": null,
+   "action_precision": null,
+   "blocked_recall": null,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 500,
+    "truly_supported": 1664,
+    "out": 524,
+    "executed_contaminated": 0,
+    "pending_contaminated": 0
+   }
+  },
+  "by_layer": {
+   "claim": {
+    "contaminated": 384,
+    "truly_supported": 668,
+    "out": 384,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 80,
+    "truly_supported": 972,
+    "out": 80,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "topic": {
+    "contaminated": 36,
+    "truly_supported": 24,
+    "out": 60,
+    "residual_contamination": 0.0,
+    "collateral_loss": 1.0,
+    "collateral_nodes": 24
+   }
+  },
+  "elapsed_ms": 179.796,
+  "engine_ms": null,
+  "notes": {},
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 179.796,
+   "p95": 179.796,
+   "min": 179.796,
+   "max": 179.796,
+   "mean": 179.796
+  },
+  "latency_per_window_ms": {
+   "n": 40,
+   "p50": 4.057,
+   "p95": 7.131,
+   "min": 3.113,
+   "max": 8.786,
+   "mean": 4.495
+  },
+  "windows": 40,
+  "load_ms": 1412.4
+ },
+ {
+  "scenario": "science",
+  "domain": "science",
+  "nodes": 2164,
+  "seed": null,
+  "strategy": "retcon",
+  "out_count": 500,
+  "metrics": {
+   "residual_contamination": 0.0,
+   "collateral_loss": 0.0,
+   "action_recall": null,
+   "action_precision": null,
+   "blocked_recall": null,
+   "wrongly_flagged_actions": {
+    "count": 0,
+    "executed": 0,
+    "pending": 0,
+    "amount": 0,
+    "executed_amount": 0,
+    "rate": null,
+    "legit_total": 0,
+    "ids": []
+   },
+   "counts": {
+    "contaminated": 500,
+    "truly_supported": 1664,
+    "out": 500,
+    "executed_contaminated": 0,
+    "pending_contaminated": 0
+   }
+  },
+  "by_layer": {
+   "claim": {
+    "contaminated": 384,
+    "truly_supported": 668,
+    "out": 384,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "observation": {
+    "contaminated": 80,
+    "truly_supported": 972,
+    "out": 80,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   },
+   "topic": {
+    "contaminated": 36,
+    "truly_supported": 24,
+    "out": 36,
+    "residual_contamination": 0.0,
+    "collateral_loss": 0.0,
+    "collateral_nodes": 0
+   }
+  },
+  "elapsed_ms": 1876.45,
+  "engine_ms": 12.46927,
+  "notes": {
+   "retraction_id": "ret_0040",
+   "survived": 1
+  },
+  "error": null,
+  "latency_ms": {
+   "n": 1,
+   "p50": 1876.45,
+   "p95": 1876.45,
+   "min": 1876.45,
+   "max": 1876.45,
+   "mean": 1876.45
+  },
+  "latency_per_window_ms": {
+   "n": 40,
+   "p50": 44.715,
+   "p95": 75.086,
+   "min": 31.579,
+   "max": 105.149,
+   "mean": 46.911
+  },
+  "windows": 40,
+  "load_ms": 1412.4
+ }
+]
