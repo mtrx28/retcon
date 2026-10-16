@@ -62,7 +62,8 @@ def main(argv=None):
     sweep_rows = None
     if a.concurrency:
         from bench.harness.concurrency import sweep
-        sweep_rows = sweep(scenarios[-1].spec if scenarios else build("ap_1k").spec)
+        ap = [sc for sc in scenarios if sc.domain == "ap"]   # the sweep needs a scenario with a window (not science)
+        sweep_rows = sweep((ap[-1] if ap else build("ap_1k")).spec)
         extra["concurrency"] = sweep_rows
         print("\nconcurrency (writers: read p50/p95 ms | write p50/p95 ms | cascade ms | errors | stale in/out):")
         for r in sweep_rows:
