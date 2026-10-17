@@ -210,11 +210,14 @@ def main():
     os.environ.setdefault("RETCON_EMBEDDER", "hash")      # the guided demo should work offline and start instantly
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8200)
+    ap.add_argument("--host", default=os.getenv("RETCON_HOST", "127.0.0.1"),
+                    help="bind address. The operator API can retract and approve, so keep 127.0.0.1 unless the "
+                         "port is published only to this machine (docker-compose does that)")
     ap.add_argument("--graph", help="graph to open first (default tenant_<RETCON_TENANT>)")
     ap.add_argument("--limit", type=int, default=3000, help="max Mem nodes drawn")
     a = ap.parse_args()
     shell = Shell(default_graph=a.graph, limit=a.limit)
-    _, url = serve(shell.router(), a.port)
+    _, url = serve(shell.router(), a.port, a.host)
     print(f"RETCON UI on {url}   graphs: {', '.join(shell.graph_names()) or '(none yet)'}")
     while True:
         time.sleep(3600)

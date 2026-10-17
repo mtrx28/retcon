@@ -1,0 +1,18 @@
+# keep the build context small and keep secrets out of the image
+.git
+.venv
+.env
+.env.*
+!.env.example
+**/__pycache__
+.pytest_cache
+.hypothesis
+*.egg-info
+node_modules
+.claude
+.taste-skill
+ui_server.log
+# raw science downloads are large and are not needed to run anything
+data/science/raw
+# tests are not part of the running product
+tests

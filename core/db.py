@@ -4,9 +4,25 @@ import os
 from falkordb import FalkorDB
 
 
+def connection_args(env=None) -> dict:
+    """Keyword arguments for `FalkorDB(...)` from the environment.
+
+    FALKORDB_HOST (localhost), FALKORDB_PORT (6379) always; FALKORDB_USERNAME, FALKORDB_PASSWORD and
+    FALKORDB_SSL=1 only when set, for a hosted instance such as FalkorDB Cloud. The local docker-compose
+    needs none of them."""
+    env = os.environ if env is None else env
+    args = {"host": env.get("FALKORDB_HOST", "localhost"), "port": int(env.get("FALKORDB_PORT", "6379"))}
+    if env.get("FALKORDB_USERNAME"):
+        args["username"] = env["FALKORDB_USERNAME"]
+    if env.get("FALKORDB_PASSWORD"):
+        args["password"] = env["FALKORDB_PASSWORD"]
+    if env.get("FALKORDB_SSL", "").lower() in ("1", "true", "yes"):
+        args["ssl"] = True
+    return args
+
+
 def connect() -> FalkorDB:
-    return FalkorDB(host=os.getenv("FALKORDB_HOST", "localhost"),
-                    port=int(os.getenv("FALKORDB_PORT", "6379")))
+    return FalkorDB(**connection_args())
 
 
 def tenant_graph(tenant: str | None = None, db: FalkorDB | None = None):

@@ -13,7 +13,6 @@ scenarios (science) apply the windows in order on that graph and union the out s
 import argparse
 import json
 import os
-import re
 import time
 from pathlib import Path
 
@@ -25,15 +24,11 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def scenario(name):
-    """-> (spec, meta). Names: ap_tiny, ap_<N>k (generated, seed 7), science, science_<N> (first N retractions)."""
+    """-> (spec, meta). ap_tiny, science, science_<N> (first N retractions) are built here; every other name
+    (ap_1k, ap_10k, ap_prec_1k, ...) is Lane B's scenario from bench.harness.scenarios, so both runners score the same graph."""
     if name == "ap_tiny":
         spec = json.loads((ROOT / "data" / "fixtures" / "ap_tiny.json").read_text(encoding="utf8"))
         return spec, {"name": name, "domain": "ap", "seed": None}
-    if re.fullmatch(r"ap_\d+k", name):
-        from data.generator import generate, vendors_for_nodes
-        nodes = int(name[3:-1]) * 1000
-        spec = generate(seed=7, vendors=vendors_for_nodes(nodes, 2, 2))
-        return spec, {"name": name, "domain": "ap", "seed": 7}
     if name.startswith("science"):
         spec = json.loads((ROOT / "data" / "fixtures" / "science.json").read_text(encoding="utf8"))
         if "_" in name:

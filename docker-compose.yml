@@ -1,11 +1,57 @@
-# FalkorDB is the only store. Server/UI services are added when they exist (B3/B6a).
+# One command from a clean clone:   docker compose up --build      then open http://127.0.0.1:8200
+#
+#   falkordb  the only store (graph on 6379, FalkorDB Browser on 3000), pinned by digest
+#   seed      runs once: loads the 24-memory accounts-payable fixture as graph tenant_northwind
+#   app       the front page, the graph canvas, the guided demo and the operator API on 8200
+#
+# `python tasks.py up` still works: it starts only the falkordb service, for local development.
+# Host ports can be moved if they are taken:  FALKORDB_HOST_PORT=6390 RETCON_UI_PORT=8290 docker compose up --build
+name: retcon
+
+x-app: &app
+  build: .
+  image: retcon-app:local
+  environment:
+    FALKORDB_HOST: falkordb
+    FALKORDB_PORT: "6379"
+    RETCON_TENANT: northwind
+    RETCON_EMBEDDER: hash
+
 services:
   falkordb:
-    image: falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6   # pinned; graph module ver 60002 (see docs/SPIKE.md). Was :latest on 2026-10-15
+    image: falkordb/falkordb@sha256:107455e862a824e45e8e9f5a7fbfdf5e00a08b14e13eae2577c72fd9e3f59ba6   # pinned; graph module ver 60002 (docs/SPIKE.md)
     ports:
-      - "6379:6379"   # graph/redis protocol
-      - "3000:3000"   # FalkorDB Browser (judges can inspect the graph)
+      - "${FALKORDB_HOST_PORT:-6379}:6379"          # graph / redis protocol
+      - "${FALKORDB_BROWSER_PORT:-3000}:3000"       # FalkorDB Browser (inspect the graph)
     volumes:
       - falkordb-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+  seed:
+    <<: *app
+    command: ["python", "-m", "data.load_fixture"]
+    depends_on:
+      falkordb:
+        condition: service_healthy
+    restart: "no"
+
+  app:
+    <<: *app
+    command: ["python", "-m", "ui.shell.server", "--port", "8200"]
+    depends_on:
+      falkordb:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+    ports:
+      # published to this machine only: the operator API can retract and approve
+      - "127.0.0.1:${RETCON_UI_PORT:-8200}:8200"
+    restart: unless-stopped
+
 volumes:
   falkordb-data:

@@ -21,9 +21,7 @@ def epoch(iso):
     return int(datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp()) if iso else None
 
 
-def connect():
-    return FalkorDB(host=os.getenv("FALKORDB_HOST", "localhost"),
-                    port=int(os.getenv("FALKORDB_PORT", "6379")))
+from core.db import connect  # noqa: E402,F401  (one place decides how to reach FalkorDB: host, port, optional auth)
 
 
 def validate_spec(spec, require_ground_truth=False):

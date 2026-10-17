@@ -23,7 +23,7 @@ Do **not** present "RETCON scores 100%" as the headline. Lead with the baselines
 
 | Claim | Evidence (where) |
 |---|---|
-| Delete-source, vector similarity and one-hop invalidation leave most contamination behind | AP: 82 / 82 / 64% residual (`ap_1k`); 87 / 84 / 75% (`ap_prec_1k`). Science: 84 / 68% for delete-source / vector; **one-hop invalidation 7% overall but 100% of the synthesized topic claims** |
+| Delete-source, vector similarity and one-hop invalidation leave most contamination behind | AP: 94 / 94 / 87% residual (`ap_1k`); 87 / 84 / 75% (`ap_prec_1k`, hash embedder; vector similarity 82% under MiniLM). Science: 84 / 68% for delete-source / vector; **one-hop invalidation 7% overall but 100% of the synthesized topic claims** |
 | Their executed payments are never recalled | action recall 0% for all three, both AP scenarios |
 | Coarse taint (wipe everything downstream) catches everything but destroys honest work | `ap_prec_1k`: **36 of 168 legitimate payments wrongly flagged ($1,163,150)**, precision 40% (60% of what it recalls is fine); RETCON 0 of 168 |
 | ... and the loss is concentrated where the memory is *synthesized* | science, by layer: coarse taint loses **24 of 24 independently supported topic claims (100%)**, and 0 elsewhere. The overall 1% hides it |
@@ -39,7 +39,7 @@ Do **not** present "RETCON scores 100%" as the headline. Lead with the baselines
   Science overall collateral for coarse taint is 1% (24 of 1,691 supported nodes). RETCON's advantage there is
   that the synthesized, multi-paper positions are handled correctly (see above) and that every removal is
   explainable (`why`), reversible (`reinstate`) and previewable, not that it removes less.
-- **RETCON is not faster than the naive rules.** Coarse taint: 1-6 ms; RETCON: 19-55 ms per scenario, ~14 ms
+- **RETCON is not faster than the naive rules.** Coarse taint: 1-6 ms; RETCON: about 10-70 ms per scenario, ~14 ms
   per retraction on science (550 ms for all 40) because it re-derives. It is interactive, and the extra cost
   buys the precision. Do not put "fast" next to RETCON in a comparison with the baselines; "milliseconds" is
   accurate on its own.
@@ -85,7 +85,7 @@ rests on which paper) is real; the *content* of a claim node is a sentence, not 
 > **Benchmark.** RetconBench compares five retraction strategies on synthetic accounts-payable scenarios and on
 > 40 real retractions from Retraction Watch. RETCON implements the retraction semantics exactly (verified
 > against a reference JTMS on random graphs), so we report what the *alternatives* cost: delete-source, vector
-> similarity and one-hop invalidation leave 64-87% of contaminated memory in service and recall none of the
+> similarity and one-hop invalidation leave 75-94% of contaminated memory in service (68-84% in the science corpus, apart from one-hop invalidation) and recall none of the
 > payments made on it; wiping everything downstream catches it all but wrongly freezes 36 of 168 legitimate
 > payments ($1.16M) in the precision scenario, and in the science corpus loses all 24 independently supported
 > synthesized topics. On a scenario with one poisoned vendor and nothing corroborated, wiping everything
