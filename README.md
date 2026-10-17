@@ -341,7 +341,6 @@ Everything is synthetic or public. [DATA.md](DATA.md) lists each dataset, its so
 
 ## AI assistance
 
-The hackathon rules ask how AI tools were used:
 
 - **Claude Code (Anthropic)** was our coding assistant throughout. It helped design
   the contract between our two halves of the work, wrote most of the code, and assisted in reviews and testing.
